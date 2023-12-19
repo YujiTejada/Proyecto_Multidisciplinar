@@ -1,5 +1,4 @@
 package org.example;
-
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.http.HttpStatus;
@@ -8,21 +7,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 @RestController
-public class FTPController {
+public class FTPFileUploadController {
 
     @PostMapping(value = "/upload", consumes = "multipart/form-data")
     public ResponseEntity<String> uploadFile(@RequestPart("file") MultipartFile file) {
         String server = "localhost";
         int port = 21;
-        String username = "a";
+        String username = "directivo";
         String password = "";
-        String destinationFolder = "/Archivos documentos directivos";
-
+        String destinationFolder = "/";
         FTPClient ftpClient = new FTPClient();
         try {
             ftpClient.connect(server, port);
@@ -34,7 +31,7 @@ public class FTPController {
             byte[] fileBytes = file.getBytes();
 
             // Subir archivo al servidor FTP
-            boolean success = ftpClient.storeFile(destinationFolder + "/" + file.getOriginalFilename(), new ByteArrayInputStream(fileBytes));
+            boolean success = ftpClient.storeFile(destinationFolder + "/" + file.getOriginalFilename(), new ByteArrayInputStream(file.getBytes()));
 
             if (success) {
                 return ResponseEntity.ok("File uploaded successfully");

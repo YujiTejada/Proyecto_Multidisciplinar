@@ -1,6 +1,6 @@
 package org.example;
 
-public class FTPRequest {
+public class FTPFileRequest {
     private String username;
     private String password;
     private String filePath;
