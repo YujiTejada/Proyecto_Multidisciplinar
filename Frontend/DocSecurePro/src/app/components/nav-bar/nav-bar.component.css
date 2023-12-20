@@ -1,0 +1,36 @@
+#banner{
+    height: 80px;
+    background-color: #BBDEF0;
+    color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+i{
+    font-size: 33px;
+}
+@media (max-width:330px){
+    h2,i{
+        font-size: 20px;
+    }
+    button{
+        width: 36.5%;
+        height: 30%;
+        font-size: 9px;
+    }
+}
+@media (max-width:265px){
+    h2,i{
+        font-size: 15px;
+    }
+    button{
+        width: 34%;
+        max-height: 20%;
+        font-size: 7.5px;
+    }
+}
+@media (max-width:230px){
+    h2,i{
+        font-size: 11px;
+    }
+}
