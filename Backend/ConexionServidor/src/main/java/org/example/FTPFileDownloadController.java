@@ -1,11 +1,15 @@
 package org.example;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.FileOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 @RestController
@@ -13,7 +17,7 @@ import java.io.IOException;
 public class FTPFileDownloadController {
 
     @GetMapping("/{filename}")
-    public ResponseEntity<String> downloadFile(@PathVariable("filename") String filename, @RequestParam("destinationPath") String destinationPath) {
+    public ResponseEntity<? extends Resource> downloadFile(@PathVariable("filename") String filename, @RequestParam("destinationPath") String destinationPath) {
         String server = "localhost";
         int port = 21;
         String username = "directivo";
@@ -29,22 +33,28 @@ public class FTPFileDownloadController {
             // Ruta del archivo en el servidor FTP
             String remoteFilePath = "/" + filename;
 
-            // Ruta donde se guardará el archivo descargado localmente
-            String localFilePath = destinationPath + "/" + filename;
-
             // Descargar archivo desde el servidor FTP
-            FileOutputStream fos = new FileOutputStream(localFilePath);
-            boolean success = ftpClient.retrieveFile(remoteFilePath, fos);
-            fos.close();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            boolean success = ftpClient.retrieveFile(remoteFilePath, baos);
 
             if (success) {
-                return ResponseEntity.ok("File downloaded successfully to: " + localFilePath);
+                byte[] fileContent = baos.toByteArray();
+                ByteArrayResource resource = new ByteArrayResource(fileContent);
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename);
+
+                return ResponseEntity.ok()
+                        .headers(headers)
+                        .contentLength(fileContent.length)
+                        .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                        .body(resource);
             } else {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error downloading file");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error downloading file");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         } finally {
             try {
                 if (ftpClient.isConnected()) {
@@ -57,3 +67,4 @@ public class FTPFileDownloadController {
         }
     }
 }
+

@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row vh-100">
+    <div class="col-md-1" id="columna">
+        <div class="card btn mt-3 d-flex align-items-center">
+        <img src="icon/carpeta-abierta.png" class="card-img-top mt-3" alt="Carpeta width">
+        <div class="card-body">
+          <h5 class="card-title">Archivos</h5>
+        </div>
+      </div>
+
+      <div class="card btn mt-3 mb-3 d-flex align-items-center">
+        <img src="icon/email.png" class="card-img-top mt-3" alt="Bandeja de entrada">
+        <div class="card-body">
+          <h5 class="card-title">Correo</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-11" id="contenido">
+      <div class="card mt-3">
+        <div class="card-body">
+          <h2 class="card-title">Buscador</h2>
+          <div class="input-group mb-3">
+            <input type="search" class="form-control" placeholder="Buscar archivos" aria-label="Buscar archivos">
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-3 mb-3">
+        <div class="card-body">
+          <h2 class="card-title">Archivos y Documentos</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<form class="d-flex" role="search">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+<!-- Formulario para subir archivos -->
+<form (ngSubmit)="uploadFile()" #fileForm="ngForm">
+    <input type="file" [(ngModel)]="file" name="file" id="archivo" />
+    <button type="submit">Subir Archivo</button>
+  </form>
+  
+<!-- Lista de archivos disponibles para descargar -->
+<ul>
+  <li *ngFor="let uploadedFile of uploadedFiles">
+    {{ uploadedFile.name }} 
+    <a [href]="uploadedFile.url" download="{{ uploadedFile.name }}">Descargar</a>
+  </li>
+</ul>
