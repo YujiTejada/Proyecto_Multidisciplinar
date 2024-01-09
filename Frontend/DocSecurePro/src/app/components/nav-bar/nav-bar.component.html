@@ -2,8 +2,17 @@
     <div *ngIf="router.url != 'inicio'" class="w-100 h-100 d-flex flex-row justify-content-between align-items-center">
         <h2 class="p-4">LOGO</h2>
         <div class="d-flex flex-row justify-content-around align-items-center p-2">
-            <i class="p-3 mb-2 bi bi-globe"></i>
-            <button class="p-2 m-2 btn btn-primary">Login</button>
+            <div ngbDropdown class="d-inline-block">
+                <button type="button" class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>
+                    <i class="m-0 p-0 bi bi-globe"></i>
+                </button>
+                <div ngbDropdownMenu #contactForm aria-labelledby="dropdownBasic1" >
+                    <button ngbDropdownItem (click)="changeLenguage('es')">{{"languages.es" | translate}}</button>
+                    <button ngbDropdownItem (click)="changeLenguage('en')">{{"languages.en" | translate}}</button>
+                </div>
+            </div>
+            
+            <button class="p-2 m-2 btn btn-primary">{{"login" | translate}}</button>
         </div>
     </div>
     <div *ngIf="router.url == 'inicio'" class="w-100 h-100 d-flex flex-row justify-content-between align-items-center">

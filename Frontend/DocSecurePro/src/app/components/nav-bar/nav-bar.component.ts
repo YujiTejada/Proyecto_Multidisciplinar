@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateConfigService } from 'src/app/services/translate-config.service';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,5 +10,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  constructor (public router: Router){}
+  constructor (public router: Router,
+    private translateConfigService: TranslateConfigService,
+    private modalService: NgbModal){}
+
+   
+  changeLenguage(leng: any){
+    this.translateConfigService.changeLanguaje(leng);
+  }  
+
+
 }
