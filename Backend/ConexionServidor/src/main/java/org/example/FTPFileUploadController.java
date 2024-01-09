@@ -1,29 +1,28 @@
 package org.example;
-
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 @RestController
-public class FTPController {
-
-    @PostMapping(value = "/upload", consumes = "multipart/form-data")
-    public ResponseEntity<String> uploadFile(@RequestPart("file") MultipartFile file) {
+public class FTPFileUploadController {
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> uploadFile(@RequestPart(name = "file", required = true) MultipartFile file) {
+        if (!file.getContentType().equals("application/pdf")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El archivo debe ser de tipo PDF.");
+        }
         String server = "localhost";
         int port = 21;
-        String username = "a";
+        String username = "directivo";
         String password = "";
-        String destinationFolder = "/Archivos documentos directivos";
-
+        String destinationFolder = "/";
         FTPClient ftpClient = new FTPClient();
+
         try {
             ftpClient.connect(server, port);
             ftpClient.login(username, password);
