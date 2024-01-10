@@ -1,19 +1,15 @@
 package com.multidisciplinar.docsecurepro.application.controller;
 
 import com.multidisciplinar.docsecurepro.application.service.api.DocSecureProService;
-import com.multidisciplinar.docsecurepro.bean.GetAllUsersResponse;
-import com.multidisciplinar.docsecurepro.bean.GetUserByIdResponse;
+import com.multidisciplinar.docsecurepro.bean.docsecurepro.GetAllUsersResponse;
+import com.multidisciplinar.docsecurepro.bean.docsecurepro.GetUserByIdResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 

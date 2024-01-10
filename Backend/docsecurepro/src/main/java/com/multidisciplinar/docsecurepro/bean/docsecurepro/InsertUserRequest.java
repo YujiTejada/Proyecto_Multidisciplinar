@@ -1,4 +1,4 @@
-package com.multidisciplinar.docsecurepro.bean;
+package com.multidisciplinar.docsecurepro.bean.docsecurepro;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,9 +7,11 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class UserLoginRequest {
+public class InsertUserRequest {
 
     private String nombreUsuario;
+    private String correo;
     private String contrasenya;
+    private String idCargo;
 
 }

@@ -1,7 +1,7 @@
 package com.multidisciplinar.docsecurepro.application.service.database;
 
 import com.multidisciplinar.docsecurepro.api.dao.User;
-import com.multidisciplinar.docsecurepro.bean.InsertUserRequest;
+import com.multidisciplinar.docsecurepro.bean.docsecurepro.InsertUserRequest;
 import com.multidisciplinar.docsecurepro.persistence.manager.implementation.UserManagerImplementation;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,11 +79,11 @@ public class UserService {
         }
     }
 
-    public User findById(int id) {
+    public User findByIdUsuario(int id) {
         Connection connection = null;
         try {
             connection = dataSource.getConnection();
-            return manager.findById(connection, id);
+            return manager.findByIdUsuario(connection, id);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

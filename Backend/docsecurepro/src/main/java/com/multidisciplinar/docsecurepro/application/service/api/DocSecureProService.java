@@ -2,15 +2,13 @@ package com.multidisciplinar.docsecurepro.application.service.api;
 
 import com.multidisciplinar.docsecurepro.api.dao.User;
 import com.multidisciplinar.docsecurepro.application.service.ftp.FtpService;
-import com.multidisciplinar.docsecurepro.bean.GetAllUsersResponse;
+import com.multidisciplinar.docsecurepro.bean.docsecurepro.GetAllUsersResponse;
 import com.multidisciplinar.docsecurepro.application.service.database.UserService;
-import com.multidisciplinar.docsecurepro.bean.GetUserByIdResponse;
-import com.multidisciplinar.docsecurepro.bean.InsertUserRequest;
-import com.multidisciplinar.docsecurepro.bean.UserLoginRequest;
+import com.multidisciplinar.docsecurepro.bean.docsecurepro.GetUserByIdResponse;
+import com.multidisciplinar.docsecurepro.bean.docsecurepro.InsertUserRequest;
+import com.multidisciplinar.docsecurepro.bean.docsecurepro.UserLoginRequest;
 import com.multidisciplinar.docsecurepro.util.DocSecureProUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.antlr.v4.runtime.misc.Utils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,14 +33,19 @@ public class DocSecureProService {
         return getAllUsersResponse;
     }
 
-    public GetUserByIdResponse getUserById (int id) {
-        return new GetUserByIdResponse(this.userService.findById(id));
+    public GetUserByIdResponse getUserById(int id) {
+        return new GetUserByIdResponse(this.userService.findByIdUsuario(id));
     }
 
-    public String userLogin(UserLoginRequest userLoginRequest) {
-        var userFound = this.userService.findByNombreUsuario(userLoginRequest.getNombreUsuario());
-        if (userFound != null) {
-            if (userFound.getContrasenya().equals(userLoginRequest.getContrasenya())) {
+    public User userLogin(UserLoginRequest userLoginRequest) {
+        return this.userService.findByNombreUsuario(userLoginRequest.getNombreUsuario());
+    }
+
+    public String insertUser(InsertUserRequest insertUserRequest) {
+        var userCheck = this.userService.findByNombreUsuario(insertUserRequest.getNombreUsuario());
+        if (userCheck != null) {
+            int userInsertResult = this.userService.insert(insertUserRequest);
+            if (userInsertResult != 0) {
                 return "1";
             } else {
                 return "2";
@@ -50,13 +53,6 @@ public class DocSecureProService {
         } else {
             return "0";
         }
-    }
-
-    public void listFiles() {
-        this.ftpService.printTree("/");
-    }
-    public String insertUser(InsertUserRequest user) {
-        return String.valueOf(userService.insert(user));
     }
 
 }

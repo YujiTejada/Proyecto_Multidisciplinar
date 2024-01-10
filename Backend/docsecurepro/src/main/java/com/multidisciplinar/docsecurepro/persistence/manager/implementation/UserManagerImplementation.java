@@ -1,11 +1,10 @@
 package com.multidisciplinar.docsecurepro.persistence.manager.implementation;
 
 import com.multidisciplinar.docsecurepro.api.dao.User;
-import com.multidisciplinar.docsecurepro.bean.InsertUserRequest;
+import com.multidisciplinar.docsecurepro.bean.docsecurepro.InsertUserRequest;
 import lombok.NoArgsConstructor;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -56,7 +55,7 @@ public class UserManagerImplementation {
         }
     }
 
-    public User findById(Connection connection, int id) {
+    public User findByIdUsuario(Connection connection, int id) {
         var sql = String.format("SELECT * FROM usuario WHERE idUsuario = %d;",
                 id);
         try (Statement statement = connection.createStatement()) {

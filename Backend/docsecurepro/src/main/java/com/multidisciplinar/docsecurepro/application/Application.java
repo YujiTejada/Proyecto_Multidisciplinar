@@ -34,6 +34,7 @@ public class Application {
 		try {
 			ftpClient.connect(FtpConstants.HOST, FtpConstants.PORT);
 			ftpClient.login(FtpConstants.USERNAME, FtpConstants.PASSWORD);
+			ftpClient.enterLocalPassiveMode();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

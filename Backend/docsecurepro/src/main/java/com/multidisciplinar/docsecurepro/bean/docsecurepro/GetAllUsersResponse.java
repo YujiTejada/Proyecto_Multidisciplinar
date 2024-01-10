@@ -1,4 +1,4 @@
-package com.multidisciplinar.docsecurepro.bean;
+package com.multidisciplinar.docsecurepro.bean.docsecurepro;
 
 import com.multidisciplinar.docsecurepro.api.dao.User;
 import lombok.*;
