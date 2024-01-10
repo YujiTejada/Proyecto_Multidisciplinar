@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/traducir"
+        android:enabled="true"
+        android:icon="@drawable/icons8_translation_96__xxxhdpi_"
+        android:title="@string/idioma"/>
+    <item
+        android:id="@+id/inicio"
+        android:enabled="true"
+        android:icon="@drawable/icons8_home"
+        android:title="@string/inicio"/>
+    <item
+        android:id="@+id/demo"
+        android:enabled="true"
+        android:icon="@drawable/icons8_start_96__xxxhdpi_"
+        android:title="@string/demo"/>
+</menu>

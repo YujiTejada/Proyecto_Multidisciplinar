@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ManualDemo</string>
+    <string name="idioma">Idioma</string>
+    <string name="inicio">Inicio</string>
+    <string name="demo">Demo</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
