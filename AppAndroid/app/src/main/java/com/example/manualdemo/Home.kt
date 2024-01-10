@@ -39,11 +39,12 @@ class Home : Fragment(), TemarioAdapter.OnItemClickListener {
         recyclerView = view.findViewById<RecyclerView>(R.id.rvItems)
         recyclerView.layoutManager = LinearLayoutManager(context)
         temarioList = ArrayList()
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "1. Inicio Sesión"))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "1. Inicio Sesión"))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "1. Inicio Sesión"))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "1. Inicio Sesión"))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "1. Inicio Sesión"))
+        val inicioSesionString = getString(R.string.iniciar_sesion)
+        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "1. " + inicioSesionString))
+        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "1. " + inicioSesionString))
+        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "1. " + inicioSesionString))
+        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "1. " + inicioSesionString))
+        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "1. " + inicioSesionString))
         temarioAdapter = TemarioAdapter(temarioList, this)
         recyclerView.adapter = temarioAdapter
     }
