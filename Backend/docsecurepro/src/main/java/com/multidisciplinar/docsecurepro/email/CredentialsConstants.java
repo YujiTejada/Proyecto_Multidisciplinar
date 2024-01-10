@@ -2,7 +2,7 @@ package com.multidisciplinar.docsecurepro.email;
 
 /**
  * credentials Constants class.
- * @author jose.m.prieto.villar
+ * @author docsecurepro
  *
  */
 public class CredentialsConstants {

@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Email sender example with and without attachment.
- * @author jose.m.prieto.villar
+ * Email sender example without attachment.
+ * @author docsecurepro
  * @version 1.0
  */
 public class Sender {
@@ -41,13 +41,12 @@ public class Sender {
     /**
      * Send a simple email with from and recipient address, subject and a simple HTML format content.
      *
-     * @param from    from email address
      * @param to      recipient email address
      * @param subject email subject
      * @param content email content in html format
      * @return a {@link boolean} indicating if the email was sent or not.
      */
-    public boolean send(String from, String to, String subject, String content) {
+    public boolean send(String to, String subject, String content) {
         // Get the Session object.// and pass username and password
         Session session = createSession();
 
@@ -56,7 +55,7 @@ public class Sender {
             MimeMessage message = new MimeMessage(session);
 
             // Set From: header field of the header.
-            message.setFrom(new InternetAddress(from));
+            message.setFrom(new InternetAddress(credentialProp.getProperty(MailCredentialProperties.USER.getName())));
 
             // Set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
