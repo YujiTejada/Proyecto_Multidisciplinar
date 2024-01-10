@@ -1,6 +1,10 @@
 <div class="w-100" id="banner">
     <div *ngIf="router.url != 'inicio'" class="w-100 h-100 d-flex flex-row justify-content-between align-items-center">
-        <h2 class="p-4">LOGO</h2>
+        <h2 class="p-4 consolas">
+            <a [routerLink]="['']">
+                <span class="blue">D</span>oc<span class="blue">S</span>ecure<span class="blue">P</span>ro
+            </a>
+        </h2>
         <div class="d-flex flex-row justify-content-around align-items-center p-2">
             <div ngbDropdown class="d-inline-block">
                 <button type="button" class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>
@@ -12,7 +16,7 @@
                 </div>
             </div>
             
-            <button class="p-2 m-2 btn btn-primary">{{"login" | translate}}</button>
+            <button class="p-2 m-2 btn btn-primary" [routerLink]="['/logIn']">{{"login" | translate}}</button>
         </div>
     </div>
     <div *ngIf="router.url == 'inicio'" class="w-100 h-100 d-flex flex-row justify-content-between align-items-center">
