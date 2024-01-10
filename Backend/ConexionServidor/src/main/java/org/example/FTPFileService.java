@@ -2,11 +2,7 @@ package org.example;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,9 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
-@RequestMapping("/files")
-public class FTPFileListController {
+@Service
+public class FTPFileService {
 
     private String server = "localhost";
     private int port = 21;
@@ -24,8 +19,7 @@ public class FTPFileListController {
     private String password = "";
     private String baseDirectory = "/";
 
-    @GetMapping
-    public ResponseEntity<List<FileInfo>> listFiles(@RequestParam(value = "folderName", defaultValue = "/") String folderName) {
+    public List<FileInfo> getFilesInFolder(String folderName) {
         FTPClient ftpClient = new FTPClient();
         List<FileInfo> fileList = new ArrayList<>();
 
@@ -35,22 +29,19 @@ public class FTPFileListController {
             ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
 
-            // Cambia al directorio indicado por el parámetro
-            ftpClient.changeWorkingDirectory(folderName);
+            // Cambiar el directorio al especificado
+            ftpClient.changeWorkingDirectory(baseDirectory + folderName);
 
             // Obtén la lista de nombres de archivos en el directorio actual
             FTPFile[] files = ftpClient.listFiles();
             fileList = Arrays.stream(files)
                     .map(file -> {
-                        String fileUrl = "ftp://" + username + "@" + server + ":" + port + folderName + file.getName();
+                        String fileUrl = "ftp://" + username + "@" + server + ":" + port + baseDirectory + folderName + "/" + file.getName();
                         return new FileInfo(file.getName(), file.isDirectory(), fileUrl);
                     })
                     .collect(Collectors.toList());
-
-            return ResponseEntity.ok(fileList);
         } catch (IOException e) {
             e.printStackTrace();
-            return ResponseEntity.status(500).body(null);
         } finally {
             try {
                 if (ftpClient.isConnected()) {
@@ -61,6 +52,7 @@ public class FTPFileListController {
                 e.printStackTrace();
             }
         }
-    }
 
+        return fileList;
+    }
 }
