@@ -62,9 +62,11 @@ class MainActivity : AppCompatActivity() {
                 when (which) {
                     0 -> {
                         // Implementa la lógica para el idioma Español
+                        recreate()
                     }
                     1 -> {
                         // Implementa la lógica para el idioma Inglés
+                        recreate()
                     }
                 }
             }
