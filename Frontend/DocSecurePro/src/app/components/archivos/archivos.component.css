@@ -1,0 +1,31 @@
+body{
+    width: 100%;
+}
+#columna {
+    background-color: #EFC88B;
+}
+
+#contenido {
+    background-color: #F4E3B2;
+}
+.archivos {
+    background-color: white;
+}
+#columna img {
+    width: 50px;
+    height: auto;
+}
+/* Ajustes para dispositivos móviles */
+@media (max-width: 767px) {
+    #columna {
+      padding: 10px;
+    }
+
+    .card-body {
+      padding: 10px;
+    }
+
+    .card {
+      margin-bottom: 10px;
+    }
+  }
