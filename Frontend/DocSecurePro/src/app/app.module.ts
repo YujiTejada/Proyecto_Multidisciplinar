@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { PaginaInicioComponent } from './components/pagina-inicio/pagina-inicio.component';
+
 import { IndexComponent } from './index/index.component';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     IndexComponent,
-    ArchivosComponent
+    ArchivosComponent,
+    PaginaInicioComponent
   ],
   imports: [
     BrowserModule,
