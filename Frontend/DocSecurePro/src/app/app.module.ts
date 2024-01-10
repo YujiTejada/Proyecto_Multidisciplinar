@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PantallaLoginComponent } from './components/pantalla-login/pantalla-login.component';
 
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -23,9 +24,13 @@ export function HttpLoaderFactory(http: HttpClient){
 @NgModule({
   declarations: [
     AppComponent,
+<<<<<<< HEAD
     NavBarComponent,
     IndexComponent,
     ArchivosComponent
+=======
+    PantallaLoginComponent
+>>>>>>> feature/PantallaLogIn
   ],
   imports: [
     BrowserModule,
