@@ -1,4 +1,5 @@
 package org.example;
+
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.core.io.ByteArrayResource;
@@ -17,7 +18,7 @@ import java.io.IOException;
 public class FTPFileDownloadController {
 
     @GetMapping("/{filename}")
-    public ResponseEntity<? extends Resource> downloadFile(@PathVariable("filename") String filename, @RequestParam("destinationPath") String destinationPath) {
+    public ResponseEntity<Resource> downloadFile(@PathVariable("filename") String filename, @RequestParam("destinationPath") String destinationPath) {
         String server = "localhost";
         int port = 21;
         String username = "directivo";
@@ -59,12 +60,16 @@ public class FTPFileDownloadController {
             try {
                 if (ftpClient.isConnected()) {
                     ftpClient.logout();
-                    ftpClient.disconnect();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    ftpClient.disconnect();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 }
-
