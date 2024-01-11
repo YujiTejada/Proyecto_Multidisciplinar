@@ -46,7 +46,7 @@ public class Sender {
      * @param content email content in html format
      * @return a {@link boolean} indicating if the email was sent or not.
      */
-    public boolean send(String to, String subject, String content) {
+    public boolean send(String from, String to, String subject, String content) {
         // Get the Session object.// and pass username and password
         Session session = createSession();
 
@@ -55,13 +55,13 @@ public class Sender {
             MimeMessage message = new MimeMessage(session);
 
             // Set From: header field of the header.
-            message.setFrom(new InternetAddress(credentialProp.getProperty(MailCredentialProperties.USER.getName())));
+            message.setFrom(new InternetAddress(from));
 
             // Set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
             // Set Subject: header field
-            message.setSubject(subject);
+            message.setSubject("Message sent by " + from + ":\n" + subject);
 
             // Now set the actual message
             message.setContent(content, "text/html");

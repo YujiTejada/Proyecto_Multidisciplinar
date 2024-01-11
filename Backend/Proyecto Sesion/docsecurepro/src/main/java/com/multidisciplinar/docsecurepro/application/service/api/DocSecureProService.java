@@ -1,11 +1,9 @@
 package com.multidisciplinar.docsecurepro.application.service.api;
 
 import com.multidisciplinar.docsecurepro.api.dao.User;
-import com.multidisciplinar.docsecurepro.bean.docsecurepro.GetAllUsersResponse;
+import com.multidisciplinar.docsecurepro.bean.docsecurepro.*;
 import com.multidisciplinar.docsecurepro.application.service.database.UserService;
-import com.multidisciplinar.docsecurepro.bean.docsecurepro.GetUserByIdResponse;
-import com.multidisciplinar.docsecurepro.bean.docsecurepro.InsertUserRequest;
-import com.multidisciplinar.docsecurepro.bean.docsecurepro.UserLoginRequest;
+import com.multidisciplinar.docsecurepro.email.sender.Sender;
 import com.multidisciplinar.docsecurepro.util.DocSecureProUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +48,11 @@ public class DocSecureProService {
         } else {
             return "0";
         }
+    }
+
+    public boolean sendMail(SendMailRequest sendMailRequest, String userSender) {
+        Sender mailSender = new Sender();
+        return mailSender.send(userSender, sendMailRequest.getRecipient(), sendMailRequest.getSubject(), sendMailRequest.getMessage());
     }
 
 }

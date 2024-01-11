@@ -1,11 +1,8 @@
 package com.multidisciplinar.docsecurepro.application.controller;
 
 import com.multidisciplinar.docsecurepro.api.dao.User;
-import com.multidisciplinar.docsecurepro.bean.docsecurepro.GetAllUsersResponse;
+import com.multidisciplinar.docsecurepro.bean.docsecurepro.*;
 import com.multidisciplinar.docsecurepro.application.service.api.DocSecureProService;
-import com.multidisciplinar.docsecurepro.bean.docsecurepro.GetUserByIdResponse;
-import com.multidisciplinar.docsecurepro.bean.docsecurepro.InsertUserRequest;
-import com.multidisciplinar.docsecurepro.bean.docsecurepro.UserLoginRequest;
 import com.multidisciplinar.docsecurepro.constants.ApiConstants;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,29 +41,23 @@ public class DocSecureProController {
 
     @PostMapping("/users/login")
     public ResponseEntity<String> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpSession httpSession) {
-        if (httpSession.getAttribute("login") == null) {
-            User userFound = this.docSecureProService.userLogin(userLoginRequest);
-            if (userFound != null) {
-                if (userFound.getContrasenya().equals(userLoginRequest.getContrasenya())) {
-                    httpSession.setAttribute("login", true);
-                    httpSession.setAttribute("idUsuario", userFound.getIdUsuario());
-                    return ResponseEntity.ok()
-                            .contentType(MediaType.TEXT_PLAIN)
-                            .body("login_succesful");
-                } else {
-                    return ResponseEntity.ok()
-                            .contentType(MediaType.TEXT_PLAIN)
-                            .body("password_incorrect");
-                }
+        User userFound = this.docSecureProService.userLogin(userLoginRequest);
+        if (userFound != null) {
+            if (userFound.getContrasenya().equals(userLoginRequest.getContrasenya())) {
+                httpSession.setAttribute("login", true);
+                httpSession.setAttribute("usuario", userFound);
+                return ResponseEntity.ok()
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .body("login_succesful");
             } else {
                 return ResponseEntity.ok()
                         .contentType(MediaType.TEXT_PLAIN)
-                        .body("user_does_not_exist");
+                        .body("password_incorrect");
             }
         } else {
             return ResponseEntity.ok()
                     .contentType(MediaType.TEXT_PLAIN)
-                    .body("login_succesful");
+                    .body("user_does_not_exist");
         }
     }
 
@@ -95,6 +86,20 @@ public class DocSecureProController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .contentType(MediaType.TEXT_PLAIN)
                     .body("user_not_logged");
+        }
+    }
+
+    @PostMapping("/mail/sendMail")
+    public ResponseEntity<String> sendMail(@RequestBody SendMailRequest sendMailRequest, HttpSession httpSession) {
+        User usuario = (User) httpSession.getAttribute("usuario");
+        if (this.docSecureProService.sendMail(sendMailRequest, usuario.getCorreo())) {
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .body("mail_sent_succesfully");
+        } else {
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .body("error_sending_mail");
         }
     }
 
