@@ -1,27 +1,25 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, Subject, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { FileInfo } from '../../file-info';
 import { UserLoginRequest } from 'src/app/models/user/userLoginRequest/user-login-request';
-import { enviroment } from 'src/app/env/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private serverUrl = 'http://localhost:8080';
-  private urlApi = enviroment.baseURL;
   private currentDirectory = '/';
-
+  private createFolderSubject = new Subject<void>();
   constructor(private http: HttpClient) { }
 
   getCurrentDirectory(): string {
     return this.currentDirectory;
   }
 
-  upload(data: any): Observable<any> {
-    const uploadUrl = `${this.serverUrl}/upload`;
+  upload(data: any, currentDirectory: string): Observable<any> {
+    const uploadUrl = `${this.serverUrl}/upload?currentDirectory=${encodeURIComponent(currentDirectory)}`;
     return this.http.post(uploadUrl, data, { responseType: 'text' }).pipe(
       catchError(error => this.handleError(error))
     );
@@ -51,13 +49,25 @@ export class ApiService {
     ) as Observable<HttpResponse<Blob>>;
   }
 
-  deleteFile(filename: string): Observable<any> {
-    const deleteUrl = `${this.serverUrl}/delete/${filename}`;
+  deleteFile(filename: string, currentDirectory: string): Observable<any> {
+    const deleteUrl = `${this.serverUrl}/delete-file?filename=${encodeURIComponent(filename)}&currentDirectory=${encodeURIComponent(currentDirectory)}`;
     return this.http.delete(deleteUrl).pipe(
       catchError(error => this.handleError(error))
     );
   }
-
+  
+  createFolder(folderName: string, currentDirectory: string): Observable<any> {
+    const body = { folderName, currentDirectory };
+    return this.http.post(`${this.serverUrl}/create-folder`, body, { responseType: 'json' }).pipe(
+      catchError(error => this.handleError(error))
+    );
+  }
+  
+  // Método para suscribirse a eventos de creación de carpeta
+  onFolderCreated(): Observable<void> {
+    return this.createFolderSubject.asObservable();
+  }
+   
   private handleError(error: any): Observable<never> {
     console.error('Error:', error);
   
@@ -68,8 +78,7 @@ export class ApiService {
     }
 
     return throwError(error);
-  }
-
+  } 
   userLogin(userLoginRequest: UserLoginRequest): Observable<any> {
     const loginUrl = '${this.urlApi}/users/login';
     return this.http.post(loginUrl, userLoginRequest, {withCredentials: true, responseType: 'text'});

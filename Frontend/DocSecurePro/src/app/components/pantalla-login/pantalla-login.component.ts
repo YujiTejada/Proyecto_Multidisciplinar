@@ -18,8 +18,7 @@ export class PantallaLoginComponent implements OnInit{
 
   constructor(private readonly fb: FormBuilder
     , private loginService: LoginService
-    , private router: Router
-    ){}
+    , private router: Router){}
 
     formValidation = this.fb.group({
       nombreUsuario: ['', [Validators.required]],
@@ -38,7 +37,6 @@ export class PantallaLoginComponent implements OnInit{
           debugger;
           console.log('Login successful', response);
           this.router.navigate(['/archivos']);
-
         },
         error: (err) => {
           console.error('Login error', err);

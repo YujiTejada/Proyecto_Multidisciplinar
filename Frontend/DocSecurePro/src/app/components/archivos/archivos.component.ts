@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FileInfo } from 'src/app/file-info';
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/services/api/api.service';
+import { LoginService } from 'src/app/services/login/login.service';
+
+
 
 @Component({
   selector: 'app-archivos',
@@ -14,7 +18,7 @@ export class ArchivosComponent implements OnInit {
   searchTerm: string = '';
   currentDirectory: string = '/';
   isInFolder: boolean = false;
-  constructor(private service: ApiService) {}
+  constructor(private service: ApiService, private loginService: LoginService, private router: Router) {}
 
   ngOnInit() {
     // Al iniciar el componente, obtén la lista de archivos en la carpeta actual
@@ -23,6 +27,21 @@ export class ArchivosComponent implements OnInit {
       // Actualizar la lista de archivos después de crear una carpeta
       this.getUploadedFiles();
     });
+    this.loginService.checkSession().subscribe(
+      (response: string) => {
+        if (response === 'user_logged') {
+          console.log('Usuario autenticado');
+        } else {
+          // Usuario no está autenticado
+          console.log('Usuario no autenticado');
+          this.router.navigate(['/home']);
+        }
+      },
+      (error) => {
+        console.error('Error al verificar la sesión', error);
+        this.router.navigate(['/home']);
+      }
+    );
   }
 
   uploadFile() {
