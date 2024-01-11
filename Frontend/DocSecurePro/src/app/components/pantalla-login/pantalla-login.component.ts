@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserLoginRequest } from 'src/app/models/user/userLoginRequest/user-login-request';
 import { LoginService } from 'src/app/services/login/login.service';
@@ -17,6 +18,7 @@ export class PantallaLoginComponent implements OnInit{
 
   constructor(private readonly fb: FormBuilder
     , private loginService: LoginService
+    , private router: Router
     ){}
 
     formValidation = this.fb.group({
@@ -30,13 +32,16 @@ export class PantallaLoginComponent implements OnInit{
 
     onSubmit(): void {
       this.formClass = this.userLoginForm.value;
+      debugger;
       this.loginSubscription = this.loginService.userLogin(this.formClass).subscribe({
         next: (response) => {
+          debugger;
           console.log('Login successful', response);
+          this.router.navigate(['/archivos']);
+
         },
         error: (err) => {
           console.error('Login error', err);
-          // Handle the error accordingly
         }
       }
     );
