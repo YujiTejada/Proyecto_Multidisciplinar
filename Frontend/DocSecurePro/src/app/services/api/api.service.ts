@@ -3,12 +3,15 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { FileInfo } from '../../file-info';
+import { UserLoginRequest } from 'src/app/models/user/userLoginRequest/user-login-request';
+import { enviroment } from 'src/app/env/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private serverUrl = 'http://localhost:8080';
+  private urlApi = enviroment.baseURL;
   private currentDirectory = '/';
 
   constructor(private http: HttpClient) { }
@@ -66,5 +69,9 @@ export class ApiService {
 
     return throwError(error);
   }
-  
+
+  userLogin(userLoginRequest: UserLoginRequest): Observable<any> {
+    const loginUrl = '${this.urlApi}/users/login';
+    return this.http.post(loginUrl, userLoginRequest, {withCredentials: true, responseType: 'text'});
+  }
 }
