@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
+import android.webkit.WebView
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -30,8 +33,15 @@ class Demo : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_demo, container, false)
+        // Inflar el diseño del fragmento que contiene el WebView
+        val view = inflater.inflate(R.layout.fragment_demo, container, false)
+        val webView: WebView = view.findViewById(R.id.demoApp)
+        val webSettings: WebSettings = webView.settings
+        webSettings.javaScriptEnabled = true
+        webView.loadUrl("http://192.168.0.19:4200")
+        return view
     }
+
 
     companion object {
         /**

@@ -13,26 +13,30 @@ export class ArchivosComponent implements OnInit {
   folderHistory: FileInfo[][] = [];
   searchTerm: string = '';
   currentDirectory: string = '/';
-
+  isInFolder: boolean = false;
   constructor(private service: ApiService) {}
 
   ngOnInit() {
     // Al iniciar el componente, obtén la lista de archivos en la carpeta actual
     this.getUploadedFiles();
+    this.service.onFolderCreated().subscribe(() => {
+      // Actualizar la lista de archivos después de crear una carpeta
+      this.getUploadedFiles();
+    });
   }
 
   uploadFile() {
     // Método para subir archivos
     const archivoInput = document.getElementById('archivo') as HTMLInputElement;
-
+  
     if (archivoInput.files && archivoInput.files.length > 0) {
       const formData = new FormData();
       const file = archivoInput.files[0];
-
+  
       formData.append('file', file, file.name);
-
+  
       // Llama al servicio para subir el archivo
-      this.service.upload(formData).subscribe(
+      this.service.upload(formData, this.currentDirectory).subscribe(
         (response: FileInfo[]) => {
           // Actualiza la lista de archivos después de subir uno nuevo
           this.getUploadedFiles();
@@ -57,13 +61,16 @@ export class ArchivosComponent implements OnInit {
     if (folder.isDirectory) {
       this.folderHistory.push([...this.uploadedFiles]);
       const folderName = folder.name;
-      this.currentDirectory = `${this.currentDirectory}${folderName}/`;
-      this.service.getFilesListInFolder(folderName).subscribe(
+      const newPath = this.currentDirectory + folderName + '/';
+  
+      this.service.getFilesListInFolder(newPath).subscribe(
         (response: FileInfo[]) => {
           this.uploadedFiles = response.map(file => {
             const isDirectory = !file.name.includes('.');
             return { ...file, isDirectory };
           });
+          this.isInFolder = true;
+          this.currentDirectory = newPath; 
         },
         (error) => {
           console.error('Error al obtener la lista de archivos en la carpeta:', error);
@@ -72,14 +79,30 @@ export class ArchivosComponent implements OnInit {
     }
   }
   
+  
   goBack() {
-    // Método para retroceder en la navegación de carpetas
     if (this.folderHistory.length > 0) {
-      // Si hay historial, retrocede y actualiza la lista de archivos
-      this.uploadedFiles = this.folderHistory.pop() || [];
+      const previousFiles = this.folderHistory.pop() || [];
+      this.isInFolder = this.folderHistory.length > 0;
+  
+      // Obtener la ruta de la carpeta anterior
+      const lastSlashIndex = this.currentDirectory.lastIndexOf('/');
+      this.currentDirectory = this.currentDirectory.substring(0, lastSlashIndex + 1);
+  
+      // Actualizar la propiedad currentDirectory después de obtener la nueva lista de archivos
+      if (this.folderHistory.length > 0) {
+        const lastFolder = this.folderHistory[this.folderHistory.length - 1];
+        this.currentDirectory += lastFolder[lastFolder.length - 1].name + '/';
+      } else {
+        // Si no hay más historial, la ruta debe ser la raíz
+        this.currentDirectory = '/';
+      }
+  
+      this.uploadedFiles = previousFiles;
+      this.getUploadedFiles(); 
     }
-  }
-
+  }  
+  
   getUploadedFiles() {
     // Método para obtener la lista de archivos en la carpeta actual
     this.service.getFilesList().subscribe(
@@ -114,6 +137,31 @@ export class ArchivosComponent implements OnInit {
     );
   }
   
+  createFolder() {
+    const folderName = prompt('Ingrese el nombre de la carpeta:');
+    if (folderName) {
+      this.service.createFolder(folderName, this.currentDirectory).subscribe(
+        (response: any) => {
+          if (response.status === 'success') {
+            // Actualizar la lista de archivos después de crear una carpeta
+            this.getUploadedFiles();
+          } else {
+            console.error('Error al crear la carpeta:', response.message);
+          }
+        },
+        (error) => {
+          console.error('Error al crear la carpeta:', error);
+        }
+      );
+    }
+  }  
+    
+  deleteFolder() {
+    const selectedFolder = prompt('Ingrese el nombre de la carpeta a eliminar:');
+    
+    
+  }
+    
   private saveFile(data: any, filename: string) {
     // Método para guardar el archivo descargado
     const blob = new Blob([data.body], { type: 'application/octet-stream' });
@@ -126,25 +174,23 @@ export class ArchivosComponent implements OnInit {
     a.click();
     window.URL.revokeObjectURL(url);
   }
+  
 
   deleteFile(filename: string) {
-    // Método para eliminar un archivo
-    this.service.deleteFile(filename).subscribe(
-      (response) => {
-        // Si el archivo se elimina correctamente, actualiza la lista de archivos
-        console.log('Archivo eliminado exitosamente:', response);
-        this.getUploadedFiles();
+    this.service.deleteFile(filename, this.currentDirectory).subscribe(
+      (response: any) => {
+        if (response.status === 'success') {
+          // Actualiza la lista de archivos después de eliminar el archivo
+          this.getUploadedFiles();
+        } else {
+          console.error('Error al eliminar el archivo:', response.message);
+        }
       },
       (error) => {
-        // Manejo de errores al eliminar el archivo
         console.error('Error al eliminar el archivo:', error);
-        // Agregar un manejo específico del error para obtener más detalles
-        if (error.error instanceof ErrorEvent) {
-          console.error('Error del cliente:', error.error.message);
-        } else {
-          console.error('Error del servidor:', error.status, error.error);
-        }
       }
     );
   }
+
+  
 }

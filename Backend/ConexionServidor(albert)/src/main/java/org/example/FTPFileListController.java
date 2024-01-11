@@ -22,7 +22,6 @@ public class FTPFileListController {
     private int port = 21;
     private String username = "directivo";
     private String password = "";
-    private String baseDirectory = "/";
 
     @GetMapping
     public ResponseEntity<List<FileInfo>> listFiles(@RequestParam(value = "folderName", defaultValue = "/") String folderName) {
