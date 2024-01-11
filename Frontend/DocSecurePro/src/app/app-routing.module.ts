@@ -5,7 +5,7 @@ import { ArchivosComponent } from './components/archivos/archivos.component';
 import { PantallaLoginComponent } from './components/pantalla-login/pantalla-login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirigir de la ruta vacía a /home
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: IndexComponent },
   { path: 'archivos', component: ArchivosComponent },
   { path: 'logIn', component:PantallaLoginComponent}

@@ -18,4 +18,9 @@ export class LoginService {
     const loginUrl = `${this.urlApi}/users/login`;
     return this.http.post(loginUrl, userLoginRequest, {withCredentials: true, responseType: 'text'});
   }
+
+  public checkSession(): Observable<any>{
+    const loginUrl = `${this.urlApi}/users/checkSession`;
+    return this.http.get(loginUrl, {withCredentials: true, responseType: 'text'});
+  }
 }

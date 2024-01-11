@@ -15,7 +15,7 @@ public class FTPFileService {
 
     private String server = "localhost";
     private int port = 21;
-    private String username = "representante";
+    private String username = "directivo";
     private String password = "";
     private String baseDirectory = "/";
 

@@ -14,8 +14,8 @@ import java.util.List;
 public class UserManagerImplementation {
 
     public int insert(Connection connection, InsertUserRequest user) {
-        var sql = String.format("INSERT INTO usuario(nombreUsuario, correo, contrasenya, idCargo) " +
-                        "VALUES('%s', '%s', '%s', %d);",
+        var sql = String.format("INSERT INTO usuarios(dni,nombre_usuario, contrasenya, correo, id_rol) " +
+                        "VALUES(null,'%s', '%s', '%s', %d);",
                 user.getNombreUsuario(), user.getCorreo(), user.getContrasenya(), Integer.valueOf(user.getIdCargo()));
         try (Statement statement = connection.createStatement()) {
             return statement.executeUpdate(sql);
@@ -25,7 +25,7 @@ public class UserManagerImplementation {
     }
 
     public List<User> findAll(Connection connection) {
-        var sql = "SELECT * FROM usuario;";
+        var sql = "SELECT * FROM usuarios;";
         try (Statement statement = connection.createStatement()) {
             var usersRetrieved = new ArrayList<User>();
             var resultSet = statement.executeQuery(sql);
@@ -40,7 +40,7 @@ public class UserManagerImplementation {
     }
 
     public User findByNombreUsuario(Connection connection, String nombreUsuario) {
-        var sql = String.format("SELECT * FROM usuario WHERE nombreUsuario LIKE '%s';",
+        var sql = String.format("SELECT * FROM usuarios WHERE nombre_usuario LIKE '%s';",
                 nombreUsuario);
         try (Statement statement = connection.createStatement()) {
             var resultSet = statement.executeQuery(sql);
@@ -56,7 +56,7 @@ public class UserManagerImplementation {
     }
 
     public User findByIdUsuario(Connection connection, int id) {
-        var sql = String.format("SELECT * FROM usuario WHERE idUsuario = %d;",
+        var sql = String.format("SELECT * FROM usuarios WHERE id_usuarios = %d;",
                 id);
         try (Statement statement = connection.createStatement()) {
             var resultSet = statement.executeQuery(sql);

@@ -2,6 +2,7 @@ package com.multidisciplinar.docsecurepro.api.dao;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User implements Serializable {
 
     private int idUsuario;
     private String nombreUsuario;
@@ -18,14 +19,14 @@ public class User {
     private String contrasenya;
     private int idCargo;
 
-    public User(ResultSet resultSet) {
+    public User(ResultSet resultSet){
 
         try {
-            this.idUsuario = resultSet.getInt("idUsuario");
-            this.nombreUsuario = resultSet.getString("nombreUsuario");
+            this.idUsuario = resultSet.getInt("id_usuarios");
+            this.nombreUsuario = resultSet.getString("nombre_usuario");
             this.correo = resultSet.getString("correo");
             this.contrasenya = resultSet.getString("contrasenya");
-            this.idCargo = resultSet.getInt("idCargo");
+            this.idCargo = resultSet.getInt("id_rol");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

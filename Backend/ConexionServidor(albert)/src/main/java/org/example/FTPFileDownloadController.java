@@ -21,7 +21,7 @@ public class FTPFileDownloadController {
     public ResponseEntity<Resource> downloadFile(@PathVariable("filename") String filename, @RequestParam("destinationPath") String destinationPath) {
         String server = "localhost";
         int port = 21;
-        String username = "representante";
+        String username = "directivo";
         String password = "";
         FTPClient ftpClient = new FTPClient();
 

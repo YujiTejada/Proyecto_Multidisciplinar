@@ -84,5 +84,18 @@ public class DocSecureProController {
         responseEntity.getHeaders().setContentType(MediaType.TEXT_PLAIN);
         return responseEntity;
     }
+    @GetMapping("/users/checkSession")
+    public ResponseEntity<String> checkSession(HttpSession httpSession) {
+        if (httpSession.getAttribute("login") != null
+                && (boolean) httpSession.getAttribute("login") == true) {
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .body("user_logged");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .body("user_not_logged");
+        }
+    }
 
 }

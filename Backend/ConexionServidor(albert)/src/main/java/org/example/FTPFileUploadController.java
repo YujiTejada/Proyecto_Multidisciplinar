@@ -22,7 +22,7 @@ public class FTPFileUploadController {
         }
         String server = "localhost";
         int port = 21;
-        String username = "representante";
+        String username = "directivo";
         String password = "";
         String destinationFolder = "/";
         FTPClient ftpClient = new FTPClient();
