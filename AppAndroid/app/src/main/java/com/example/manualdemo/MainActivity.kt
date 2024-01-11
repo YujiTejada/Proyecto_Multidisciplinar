@@ -1,10 +1,8 @@
 package com.example.manualdemo
-import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationBarView
-import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,22 +60,16 @@ class MainActivity : AppCompatActivity() {
             .setItems(idiomas) { _, which ->
                 // which se refiere al índice del elemento seleccionado en el array
                 when (which) {
-                    0 -> cambiarIdioma("es")
-                    1 -> cambiarIdioma("en")
+                    0 -> {
+                        // Implementa la lógica para el idioma Español
+                        recreate()
+                    }
+                    1 -> {
+                        // Implementa la lógica para el idioma Inglés
+                        recreate()
+                    }
                 }
             }
             .show()
-    }
-
-    private fun cambiarIdioma(codigoIdioma: String) {
-        val locale = Locale(codigoIdioma)
-        Locale.setDefault(locale)
-
-        val configuration = Configuration(resources.configuration)
-        configuration.setLocale(locale)
-
-        resources.updateConfiguration(configuration, resources.displayMetrics)
-
-        recreate()
     }
 }

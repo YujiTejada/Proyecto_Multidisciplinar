@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ManualDemo</string>
-    <string name="iniciar_sesion">Log In</string>
-    <!-- activity_main -->
-    <string name="idioma">Language</string>
-    <string name="inicio">Start</string>
-    <string name="demo">Demo</string>
-    <string name="buscar">Search...</string>
-    <!-- fragment_contenido -->
-    <string name="tituloContenido">Title</string>
-    <string name="textoContenido">Text</string>
-    <string name="anterior">Previous</string>
-    <string name="siguiente">Following</string>
-    <!-- item_layout -->
-    <string name="tituloItemLayout">1. Log In</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

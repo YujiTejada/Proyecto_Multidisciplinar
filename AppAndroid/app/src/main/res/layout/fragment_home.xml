@@ -25,7 +25,7 @@
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/buscar"/>
+                android:hint="Buscar..." />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView

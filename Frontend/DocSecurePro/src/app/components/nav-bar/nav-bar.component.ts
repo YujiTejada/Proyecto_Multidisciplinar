@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateConfigService } from 'src/app/services/translate-config.service';
+import { TranslateConfigService } from 'src/app/services/translate/translate-config.service';
 
 
 @Component({

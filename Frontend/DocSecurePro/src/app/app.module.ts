@@ -3,10 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PantallaLoginComponent } from './components/pantalla-login/pantalla-login.component';
-
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { PaginaInicioComponent } from './components/pagina-inicio/pagina-inicio.component';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -28,7 +27,8 @@ export function HttpLoaderFactory(http: HttpClient){
     NavBarComponent,
     IndexComponent,
     ArchivosComponent,
-    PantallaLoginComponent
+    PantallaLoginComponent,
+    PaginaInicioComponent,
   ],
   imports: [
     BrowserModule,
