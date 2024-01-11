@@ -125,3 +125,16 @@ public void printTree(String path) {
                                     directoryExists = true;
                                 }
                             }
+
+@Bean
+	public FTPClient ftpClient() {
+		FTPClient ftpClient = new FTPClient();
+		try {
+			ftpClient.connect(FtpConstants.HOST, FtpConstants.PORT);
+			ftpClient.login(FtpConstants.USERNAME, FtpConstants.PASSWORD);
+			ftpClient.enterLocalPassiveMode();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		return ftpClient;
+	}

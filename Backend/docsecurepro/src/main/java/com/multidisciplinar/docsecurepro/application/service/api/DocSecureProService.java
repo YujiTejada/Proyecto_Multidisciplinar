@@ -1,7 +1,6 @@
 package com.multidisciplinar.docsecurepro.application.service.api;
 
 import com.multidisciplinar.docsecurepro.api.dao.User;
-import com.multidisciplinar.docsecurepro.application.service.ftp.FtpService;
 import com.multidisciplinar.docsecurepro.bean.docsecurepro.GetAllUsersResponse;
 import com.multidisciplinar.docsecurepro.application.service.database.UserService;
 import com.multidisciplinar.docsecurepro.bean.docsecurepro.GetUserByIdResponse;
@@ -17,12 +16,10 @@ import org.springframework.stereotype.Service;
 public class DocSecureProService {
 
     private UserService userService;
-    private FtpService ftpService;
 
     @Autowired
-    public DocSecureProService(UserService userService, FtpService ftpService) {
+    public DocSecureProService(UserService userService) {
         this.userService = userService;
-        this.ftpService = ftpService;
     }
     public GetAllUsersResponse getAllUsers() {
         log.info("getAllUsers - begin");
