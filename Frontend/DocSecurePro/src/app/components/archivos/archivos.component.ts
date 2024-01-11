@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileInfo } from 'src/app/file-info';
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
   selector: 'app-archivos',
