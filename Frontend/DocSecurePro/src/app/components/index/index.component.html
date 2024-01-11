@@ -13,45 +13,43 @@
     
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
       <div class="row gx-lg-5 align-items-center mb-5">
-        <div class="col-lg-8 mb-5 mb-lg-0" style="z-index: 10">
-          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-            DocSecurePro <br />
-            <span style="color: black">Transferencia de Archivos</span>
-          </h1>
-          <p class="mb-4 opacity-70" style="color: black">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Temporibus, expedita iusto veniam atque, magni tempora mollitia
-            dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-            ab ipsum nisi dolorem modi. Quos?
-          </p>
+        <div id="fondoImg" class="col-lg-7 mb-5 mb-lg-0" style="z-index: 10">
+          <div id="backgroundTransparente" class="d-flex flex-column justify-content-center align-items-center m-4">
+            <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+              DocSecurePro <br />
+              <span style="color: black">Transferencia de Archivos</span>
+            </h1>
+            <p class="mb-4 opacity-70" style="color: black">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Temporibus, expedita iusto veniam atque, magni tempora mollitia
+              dolorum consequatur nulla, neque debitis eos reprehenderit quasi
+              ab ipsum nisi dolorem modi. Quos?
+            </p>
+          </div>
         </div>
 
         <div class="col-lg-4 mb-6 mb-lg-0 position-relative">
           <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
           <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 
-          <div class="card bg-glass" style="background-color: #BBDEF0">
+          <div id="card" class="card bg-glass">
             <div class="card-body px-4 py-5 px-md-5">
               <form class="example-form">
-                <div class="row">
-                  <div class="col-md-6 mb-4">
-                    <mat-form-field class="example-full-width">
-                      <mat-label>Nombre</mat-label>
-                      <input matInput [formControl]="nombreFormControl" placeholder="Ex. Juan">
-                 
-                      <mat-error *ngIf="nombreFormControl.hasError('required')">Nombre es <strong>requerido</strong></mat-error>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-6 mb-5">
-                    <mat-form-field class="example-full-width">
-                      <mat-label>Apellidos</mat-label>
-                      <input matInput [formControl]="apellidosFormControl" placeholder="Ex. Pérez">
-   
-                      <mat-error *ngIf="apellidosFormControl.hasError('required')">Apellidos son <strong>requeridos</strong></mat-error>
-                    </mat-form-field>
-                  </div>
+                <div class="col-md-16 mb-4 d-flex">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput [formControl]="nombreFormControl" placeholder="Ex. Juan">
+                    <mat-error *ngIf="nombreFormControl.hasError('required')">Nombre es <strong>requerido</strong></mat-error>
+                  </mat-form-field>
                 </div>
-                <div class="col-md-12 mb-4">
+                <div class="col-md-16 mb-4">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Apellidos</mat-label>
+                    <input matInput [formControl]="apellidosFormControl" placeholder="Ex. Pérez">
+                    <mat-error *ngIf="apellidosFormControl.hasError('required')">Apellidos son <strong>requeridos</strong></mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-16 mb-4">
                 <mat-form-field class="example-full-width">
                   <mat-label>Correo electrónico</mat-label>
                   <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
@@ -62,7 +60,7 @@
                   <mat-error *ngIf="emailFormControl.hasError('required')">El correo es <strong>obligatorio</strong></mat-error>
                 </mat-form-field>
                 </div>
-                <div class="col-md-12 mb-4">
+                <div class="col-md-16 mb-4">
                 <mat-form-field class="example-full-width">
                   <mat-label>Contraseña</mat-label>
                   <input type="password" matInput [formControl]="passwordFormControl" placeholder="Ex. ********">

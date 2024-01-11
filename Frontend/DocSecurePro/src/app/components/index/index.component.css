@@ -11,3 +11,17 @@ body{
 .example-full-width {
   width: 100%;
 }
+#fondoImg{
+  background-image: url("../../../assets/images/cosechado-vista-manos-mecanografia-computadora_1262-3196.jpg");
+  background-position: 80% 20%;
+}
+#backgroundTransparente{
+  background-color: rgba(255, 255, 255, 0.45);
+}
+#fondoImg, #card{
+  border: 2.5px solid white;
+  border-radius: 2px;
+}
+#card{
+  background-color: #BBDEF0;
+}
