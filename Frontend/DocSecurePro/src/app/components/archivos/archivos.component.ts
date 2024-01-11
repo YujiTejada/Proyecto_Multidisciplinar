@@ -28,11 +28,11 @@ export class ArchivosComponent implements OnInit {
   uploadFile() {
     // Método para subir archivos
     const archivoInput = document.getElementById('archivo') as HTMLInputElement;
-
+  
     if (archivoInput.files && archivoInput.files.length > 0) {
       const formData = new FormData();
       const file = archivoInput.files[0];
-
+  
       formData.append('file', file, file.name);
   
       // Llama al servicio para subir el archivo
@@ -124,7 +124,6 @@ export class ArchivosComponent implements OnInit {
     // Método para descargar un archivo
     const destinationPath = '';
   
-    // Llama al servicio para descargar el archivo
     // Llama al servicio para descargar el archivo
     this.service.downloadFile(filename, destinationPath).subscribe(
       (response: any) => {
