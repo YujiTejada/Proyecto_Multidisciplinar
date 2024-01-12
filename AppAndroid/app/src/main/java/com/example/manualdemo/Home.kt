@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -17,6 +18,7 @@ class Home : Fragment(), TemarioAdapter.OnItemClickListener {
     private lateinit var temarioAdapter: TemarioAdapter
     private var param1: String? = null
     private var param2: String? = null
+    private var temarioName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,33 +44,38 @@ class Home : Fragment(), TemarioAdapter.OnItemClickListener {
         temarioList.add(Temario(R.drawable.ic_launcher_foreground, "2. " + getString(R.string.registrarse)))
         temarioList.add(Temario(R.drawable.ic_launcher_foreground, "3. " + getString(R.string.subir_archivos)))
         temarioList.add(Temario(R.drawable.ic_launcher_foreground, "4. " + getString(R.string.borrar_archivos)))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "5. " + getString(R.string.iniciar_sesion)))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "5. " + getString(R.string.iniciar_sesion)))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "5. " + getString(R.string.iniciar_sesion)))
+        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "5. " + getString(R.string.cambiar_idioma)))
         temarioAdapter = TemarioAdapter(temarioList, this)
         recyclerView.adapter = temarioAdapter
     }
 
+    override val supportFragmentManager: Any
+        get() = TODO("Not yet implemented")
+
     override fun onItemClick(position: Int) {
+        temarioName = temarioList[position].name
+        changeContent(temarioName!!, position, this)
+    }
 
-        // Aquí obtienes la información del temario según la posición
-        val temarioName = temarioList[position].name
-
-        // Reemplaza el contenido del contenedor con el nuevo fragmento
-        val detalleFragment = Contenido.newInstance(temarioName)
+    fun changeContent(temarioName: String, position: Int, homeInstance: Home) {
+        val detalleFragment = Contenido.newInstance(homeInstance, temarioList, position, temarioName)
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView, detalleFragment)
             .addToBackStack(null)
             .commit()
+
     }
+
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: String, param2: String, param3: String) =
             Home().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
+                    putString("temarioName", param3)
                 }
             }
     }
+
 }

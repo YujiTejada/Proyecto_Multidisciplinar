@@ -4,6 +4,7 @@
     <string name="app_name">ManualDemo</string>
     <string name="borrar_archivos">Borrar Archivos</string>
     <string name="buscar">Buscar...</string>
+    <string name="cambiar_idioma">Cambiar Idioma</string>
     <string name="demo">Demo</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="idioma">Idioma</string>

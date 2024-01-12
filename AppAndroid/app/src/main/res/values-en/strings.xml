@@ -5,6 +5,7 @@
     <string name="registrarse">Sign In</string>
     <string name="subir_archivos">Upload Files</string>
     <string name="borrar_archivos">Delete Files</string>
+    <string name="cambiar_idioma">Change Language</string>
     <!-- activity_main -->
     <string name="idioma">Language</string>
     <string name="inicio">Start</string>

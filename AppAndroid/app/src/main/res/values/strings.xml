@@ -4,6 +4,7 @@
     <string name="registrarse">Registrarse</string>
     <string name="subir_archivos">Subir Archivos</string>
     <string name="borrar_archivos">Borrar Archivos</string>
+    <string name="cambiar_idioma">Cambiar Idioma</string>
     <!-- activity_main -->
     <string name="idioma">Idioma</string>
     <string name="inicio">Inicio</string>

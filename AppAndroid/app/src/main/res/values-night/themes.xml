@@ -1,7 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.ManualDemo" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorOnSecondary">@color/platinum</item>
+        <item name="colorOnPrimary">@color/flame</item>
+        <item name="colorPrimaryVariant">@color/sunset</item>
+        <item name="colorPrimary">@color/vanilla</item>
+        <item name="colorSecondary">@color/light_sea_green</item>
+        <item name="colorSecondaryVariant">@color/columbia_blue</item>
+    </style>
+
+    <style name="Theme.ManualDemo" parent="Base.Theme.ManualDemo">
+        <item name="colorOnSecondary">@color/platinum</item>
+        <item name="colorOnPrimary">@color/flame</item>
+        <item name="colorPrimaryVariant">@color/sunset</item>
+        <item name="colorPrimary">@color/vanilla</item>
+        <item name="colorSecondary">@color/light_sea_green</item>
+        <item name="colorSecondaryVariant">@color/columbia_blue</item>
     </style>
 </resources>

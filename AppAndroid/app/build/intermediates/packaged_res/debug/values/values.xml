@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="columbia_blue">#BBDEF0</color>
+    <color name="flame">#CF5C36</color>
+    <color name="light_sea_green">#00A6A6</color>
+    <color name="platinum">#D3D5D7</color>
+    <color name="sunset">#EFC88B</color>
+    <color name="vanilla">#F4E3B2</color>
     <color name="white">#FFFFFFFF</color>
     <string name="anterior">Anterior</string>
     <string name="app_name">ManualDemo</string>
     <string name="borrar_archivos">Borrar Archivos</string>
     <string name="buscar">Buscar...</string>
+    <string name="cambiar_idioma">Cambiar Idioma</string>
     <string name="demo">Demo</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="idioma">Idioma</string>
@@ -20,6 +27,19 @@
     <style name="Base.Theme.ManualDemo" parent="Theme.Material3.DayNight.NoActionBar">
         
         
+        <item name="colorOnSecondary">@color/platinum</item>
+        <item name="colorOnPrimary">@color/flame</item>
+        <item name="colorPrimaryVariant">@color/sunset</item>
+        <item name="colorPrimary">@color/vanilla</item>
+        <item name="colorSecondary">@color/light_sea_green</item>
+        <item name="colorSecondaryVariant">@color/columbia_blue</item>
     </style>
-    <style name="Theme.ManualDemo" parent="Base.Theme.ManualDemo"/>
+    <style name="Theme.ManualDemo" parent="Base.Theme.ManualDemo">
+        <item name="colorOnSecondary">@color/platinum</item>
+        <item name="colorOnPrimary">@color/flame</item>
+        <item name="colorPrimaryVariant">@color/sunset</item>
+        <item name="colorPrimary">@color/vanilla</item>
+        <item name="colorSecondary">@color/light_sea_green</item>
+        <item name="colorSecondaryVariant">@color/columbia_blue</item>
+    </style>
 </resources>
