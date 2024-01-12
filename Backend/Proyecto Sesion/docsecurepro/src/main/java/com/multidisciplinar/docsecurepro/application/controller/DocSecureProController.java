@@ -62,18 +62,25 @@ public class DocSecureProController {
     }
 
     @PostMapping("/users/insert")
-    public ResponseEntity<String> insertUser(@RequestBody InsertUserRequest insertUserRequest) {
+    public ResponseEntity<String> insertUser(@RequestBody InsertUserRequest insertUserRequest, HttpSession httpSession) {
         String userInsertResult = this.docSecureProService.insertUser(insertUserRequest);
-        ResponseEntity<String> responseEntity;
-        if (userInsertResult.equals("1")) {
-            responseEntity = new ResponseEntity<>("user_creation_succesful", HttpStatus.OK);
-        } else if (userInsertResult.equals("2")) {
-            responseEntity = new ResponseEntity<>("user_creation_unsuccesful", HttpStatus.EXPECTATION_FAILED);
+        if (userInsertResult.equals("2")) {
+            httpSession.setAttribute("login", true);
+            User userFound = this.docSecureProService.
+                    findUserByNombreUsuario(insertUserRequest.getNombreUsuario());
+            httpSession.setAttribute("usuario", userFound);
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .body("user_creation_succesful");
+        } else if (userInsertResult.equals("1")) {
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .body("user_creation_unsuccesful");
         } else {
-            responseEntity = new ResponseEntity<>("user_already_exists", HttpStatus.EXPECTATION_FAILED);
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .body("user_already_exists");
         }
-        responseEntity.getHeaders().setContentType(MediaType.TEXT_PLAIN);
-        return responseEntity;
     }
     @GetMapping("/users/checkSession")
     public ResponseEntity<String> checkSession(HttpSession httpSession) {
@@ -83,16 +90,30 @@ public class DocSecureProController {
                     .contentType(MediaType.TEXT_PLAIN)
                     .body("user_logged");
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+            return ResponseEntity.status(HttpStatus.OK)
                     .contentType(MediaType.TEXT_PLAIN)
                     .body("user_not_logged");
+        }
+    }
+
+    @GetMapping("/users/logout")
+    public ResponseEntity<String> logout(HttpSession httpSession) {
+        if (httpSession.getAttribute("login") != null) {
+            httpSession.setAttribute("login", false);
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .body("user_logged_out");
+        } else {
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .body("user_was_already_logged_out");
         }
     }
 
     @PostMapping("/mail/sendMail")
     public ResponseEntity<String> sendMail(@RequestBody SendMailRequest sendMailRequest, HttpSession httpSession) {
         User usuario = (User) httpSession.getAttribute("usuario");
-        if (this.docSecureProService.sendMail(sendMailRequest, usuario.getCorreo())) {
+        if (usuario != null && this.docSecureProService.sendMail(sendMailRequest, usuario.getCorreo())) {
             return ResponseEntity.ok()
                     .contentType(MediaType.TEXT_PLAIN)
                     .body("mail_sent_succesfully");

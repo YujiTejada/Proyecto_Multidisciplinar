@@ -19,7 +19,7 @@ public class GetUserByIdResponse {
         this.idUsuario = user.getIdUsuario();
         this.nombreUsuario = user.getNombreUsuario();
         this.correo = user.getCorreo();
-        this.idCargo = user.getIdCargo();
+        this.idCargo = user.getIdRol();
     }
 
 }
