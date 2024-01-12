@@ -44,7 +44,7 @@
                     android:id="@+id/tvNombre"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="1. Inicio Sesion"
+                    android:text="@string/tituloItemLayout"
                     android:textSize="28sp"
                     android:textStyle="bold" />
             </LinearLayout>

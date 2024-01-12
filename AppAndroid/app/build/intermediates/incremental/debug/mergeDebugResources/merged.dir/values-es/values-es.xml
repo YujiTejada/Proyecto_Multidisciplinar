@@ -31,11 +31,15 @@
     <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Compartir con"</string>
     <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Compartir con <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
     <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Ocultar"</string>
+    <string name="anterior">Anterior</string>
+    <string name="app_name">ManualDemo</string>
+    <string name="borrar_archivos">Borrar Archivos</string>
     <string name="bottomsheet_action_collapse">Ocultar la hoja inferior</string>
     <string name="bottomsheet_action_expand">Mostrar la hoja inferior</string>
     <string name="bottomsheet_action_expand_halfway">Desplegar hasta la mitad</string>
     <string name="bottomsheet_drag_handle_clicked">Controlador de arrastre tocado dos veces</string>
     <string name="bottomsheet_drag_handle_content_description">Controlador de arrastre</string>
+    <string name="buscar">Buscar...</string>
     <string msgid="881409763997275156" name="call_notification_answer_action">"Responder"</string>
     <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Vídeo"</string>
     <string msgid="3229508546291798546" name="call_notification_decline_action">"Rechazar"</string>
@@ -46,9 +50,14 @@
     <string name="character_counter_content_description">Caracteres introducidos: %1$d de %2$d</string>
     <string name="character_counter_overflowed_content_description">Límite de caracteres superado (%1$d de %2$d)</string>
     <string name="clear_text_end_icon_content_description">Borrar texto</string>
+    <string name="demo">Demo</string>
     <string name="error_icon_content_description">Error</string>
     <string name="exposed_dropdown_menu_content_description">Mostrar menú desplegable</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="icon_content_description">Icono del cuadro de diálogo</string>
+    <string name="idioma">Idioma</string>
+    <string name="iniciar_sesion">Inicio Sesión</string>
+    <string name="inicio">Inicio</string>
     <string name="item_view_role_description">Pestaña</string>
     <string name="material_clock_toggle_content_description">Selecciona AM o PM</string>
     <string name="material_hour_24h_suffix">%1$s horas</string>
@@ -106,6 +115,12 @@
     <string name="mtrl_timepicker_cancel">Cancelar</string>
     <string name="mtrl_timepicker_confirm">Aceptar</string>
     <string name="password_toggle_content_description">Mostrar contraseña</string>
+    <string name="registrarse">Registrarse</string>
     <string msgid="6264217191555673260" name="search_menu_title">"Buscar"</string>
+    <string name="siguiente">Siguiente</string>
     <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="subir_archivos">Subir Archivos</string>
+    <string name="textoContenido">Texto</string>
+    <string name="tituloContenido">Titulo</string>
+    <string name="tituloItemLayout">1. Iniciar Sesion</string>
 </resources>
