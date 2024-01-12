@@ -27,7 +27,7 @@ export class ArchivosComponent implements OnInit {
       // Actualizar la lista de archivos después de crear una carpeta
       this.getUploadedFiles();
     });
-    /*this.loginService.checkSession().subscribe(
+    this.loginService.checkSession().subscribe(
       (response: string) => {
         if (response === 'user_logged') {
           console.log('Usuario autenticado');
@@ -41,7 +41,7 @@ export class ArchivosComponent implements OnInit {
         console.error('Error al verificar la sesión', error);
         this.router.navigate(['/home']);
       }
-    );*/
+    );
   }
 
   uploadFile() {
