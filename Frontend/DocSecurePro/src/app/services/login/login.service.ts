@@ -36,4 +36,10 @@ export class LoginService {
     return this.http.post(loginUrl, mailRequest, {withCredentials: true, responseType: 'text'});
   }
 
+  public setNombreUsuario(nombreUsuario: string): Observable<any> {
+    const loginUrl = `http://localhost:8080/upload-user/${nombreUsuario}`;
+    console.log(loginUrl);
+    return this.http.post(loginUrl, {})
+  }
+
 }

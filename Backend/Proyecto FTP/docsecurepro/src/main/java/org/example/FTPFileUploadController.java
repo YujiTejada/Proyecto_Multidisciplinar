@@ -13,6 +13,8 @@ import java.util.Map;
 
 @RestController
 public class FTPFileUploadController {
+    private String nombre_usuario;
+    private FTPDatabaseConnection ftpDataBase = new FTPDatabaseConnection();
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> uploadFile(
             @RequestPart(name = "file", required = true) MultipartFile file,
@@ -201,6 +203,11 @@ public class FTPFileUploadController {
                 e.printStackTrace();
             }
         }
+
     }
 
+    @PostMapping(value="/upload-user/{nombreUsuario}")
+    public void setNombreUsuario(@PathVariable("nombreUsuario") String nombreUsuario) {
+        this.nombre_usuario = nombreUsuario;
+    }
 }
