@@ -25,9 +25,9 @@ export class ApiService {
     );
   }  
 
-  getFilesList(): Observable<FileInfo[]> {
-    let filesUrl = `${this.serverUrl}/files?folderName=${encodeURIComponent(this.currentDirectory)}`;
-  
+  getFilesList(currentDirectory: string): Observable<FileInfo[]> {
+    let filesUrl = `${this.serverUrl}/files?folderName=${encodeURIComponent(currentDirectory)}`;
+    
     return this.http.get<FileInfo[]>(filesUrl).pipe(
       catchError(error => this.handleError(error))
     );
@@ -93,4 +93,13 @@ export class ApiService {
     const loginUrl = '${this.urlApi}/users/login';
     return this.http.post(loginUrl, userLoginRequest, {withCredentials: true, responseType: 'text'});
   }
+  
+  searchFiles(searchQuery: string, currentDirectory: string): Observable<string[]> {
+    const searchUrl = `${this.serverUrl}/search-files?searchQuery=${encodeURIComponent(searchQuery)}&currentDirectory=${encodeURIComponent(currentDirectory)}`;
+    
+    return this.http.get<string[]>(searchUrl).pipe(
+      catchError(error => this.handleError(error))
+    );
+  }
+  
 }

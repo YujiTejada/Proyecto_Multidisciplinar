@@ -22,9 +22,10 @@
           <div class="card-body">
             <h2 class="card-title">Buscador</h2>
             <div class="input-group mb-3">
-      <input [(ngModel)]="searchTerm" (input)="getUploadedFiles()" type="search" class="form-control" placeholder="Buscar archivos" aria-label="Buscar archivos">
+              <input [(ngModel)]="searchTerm" type="search" class="form-control" placeholder="Buscar archivos" aria-label="Buscar archivos">
+              <button (click)="searchFiles()" class="btn btn-outline-secondary" type="button">Buscar</button>
             </div>
-          </div>
+          </div>          
         </div>
 
         <div class="card mt-3 mb-3">
