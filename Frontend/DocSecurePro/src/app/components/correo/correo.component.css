@@ -1,0 +1,18 @@
+.titulo {
+    font-size: 30px;
+}
+
+#contentMail {
+    background-color: #F4E3B2;
+}
+
+form {
+    margin-top: 100px;
+    width: 1000px;
+    background-color:#f3f3f3;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+textarea {
+    resize: none;
+  }

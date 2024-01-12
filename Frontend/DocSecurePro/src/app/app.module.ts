@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ArchivosComponent } from './components/archivos/archivos.component';
 import { IndexComponent } from './components/index/index.component';
+import { CorreoComponent } from './components/correo/correo.component';
 
 export function HttpLoaderFactory(http: HttpClient){
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -29,6 +30,7 @@ export function HttpLoaderFactory(http: HttpClient){
     ArchivosComponent,
     PantallaLoginComponent,
     PaginaInicioComponent,
+    CorreoComponent,
   ],
   imports: [
     BrowserModule,
