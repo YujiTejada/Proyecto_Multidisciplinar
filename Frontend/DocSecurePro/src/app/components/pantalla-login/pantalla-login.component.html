@@ -1,59 +1,103 @@
-<div id="contentLogIn">
-    <div id="column">
-        <div id="imagen">
-            <div id="label">
-                <label>Inicia Sesión</label>
-            </div>
-            <img src="https://img.freepik.com/vector-gratis/fondo-acuarela_220290-34.jpg" alt="">
+<section
+  class="background-radial-gradient overflow-hidden min-vh-100 d-flex flex-column"
+>
+  <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+    <div class="row gx-lg-5 align-items-center mb-5">
+      <div id="fondoImg" class="col-lg-7 mb-5 mb-lg-0">
+        <div
+          id="backgroundTransparente"
+          class="d-flex flex-column justify-content-center align-items-center m-4"
+        >
+          <h1 class="my-5 display-5 fw-bold ls-tight blue">
+            DocSecurePro <br />
+            <span>{{ "home.titulo" | translate }}</span>
+          </h1>
+          <p class="mb-4 opacity-70">
+            {{ "home.descripcion" | translate }}
+          </p>
         </div>
-    </div>
-    <!--Formulario de usuario-->
-    <div class="container">
+      </div>
+      <!--Formulario de usuario-->
+      <div class="col-lg-4 mb-6 mb-lg-0 position-relative">
         <div class="row">
-            <div class="col-6" id="datosUsuario">
-                <div class="row d-flex justify-content-center mt-2">
-                    <div class="col-5">
-                        <p class="titulo">Iniciar sesión</p>
-                    </div>
-                </div>
-                <form (ngSubmit)="onSubmit()" [formGroup]="userLoginForm">
-                    <div class="row d-flex justify-content-center mt-4">
-                        <!--Input de nombre de usuario-->
-                        <div class="col-6">
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="nombreUsuario">Nombre de usuario</label>
-                                <input type="text" id="nombreUsuario" name="nombreUsuario" class="form-control"
-                                formControlName="nombreUsuario" placeholder="Paquito Jones"/>
-                                <div *ngIf="userLoginForm.get('nombreUsuario')?.touched && userLoginForm.get('nombreUsuario')?.errors?.['required']" class="alert alert-danger">El nombre de usuario es obligatorio</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row d-flex justify-content-center">
-                        <!--Input de contraseña-->
-                        <div class="col-6">
-                            <div class="form-outline mb-4">
-                                <label class="form-label" for="contrasenya">Contraseña</label>
-                                <input type="password" id="contrasenya" name="contrasenya" class="form-control"
-                                formControlName="contrasenya" placeholder="**********" />
-                                <div *ngIf="userLoginForm.get('contrasenya')?.touched && userLoginForm.get('contrasenya')?.errors?.['required']" class="alert alert-danger">La contraseña es obligatoria</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Botones de recuperar contraseña e iniciar sesión-->
-                    <div class="row d-flex justify-content-center mt-4 mb-4">
-                        <div class="col-3">
-                            <a href="">¿Has olvidado tu contraseña?</a>
-                        </div>
-                        <div class="col-2">
-                            <button type="submit" [disabled]="userLoginForm.invalid" class="btn btn-info btn-lg">Iniciar sesión</button>
-                        </div>
-                    </div>
-                </form>
-                <!--Link para registrar una cuenta-->
-                <div class="text-center">
-                    <p>¿No tienes una cuenta? <a href="">Registrate</a></p>
-                </div>
+          <div class="col-6" id="datosUsuario">
+            <div class="row d-flex justify-content-center mt-2">
+              <div class="col-5">
+                <p class="titulo">Iniciar sesión</p>
+              </div>
             </div>
+            <form (ngSubmit)="onSubmit()" [formGroup]="userLoginForm">
+              <div class="row d-flex justify-content-center mt-4">
+                <!--Input de nombre de usuario-->
+                <div class="col-6">
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="nombreUsuario"
+                      >Nombre de usuario</label
+                    >
+                    <input
+                      type="text"
+                      id="nombreUsuario"
+                      name="nombreUsuario"
+                      class="form-control"
+                      formControlName="nombreUsuario"
+                      placeholder="Paquito Jones"
+                    />
+                    <div
+                      *ngIf="userLoginForm.get('nombreUsuario')?.touched && userLoginForm.get('nombreUsuario')?.errors?.['required']"
+                      class="alert alert-danger"
+                    >
+                      El nombre de usuario es obligatorio
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row d-flex justify-content-center">
+                <!--Input de contraseña-->
+                <div class="col-6">
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="contrasenya"
+                      >Contraseña</label
+                    >
+                    <input
+                      type="password"
+                      id="contrasenya"
+                      name="contrasenya"
+                      class="form-control"
+                      formControlName="contrasenya"
+                      placeholder="**********"
+                    />
+                    <div
+                      *ngIf="userLoginForm.get('contrasenya')?.touched && userLoginForm.get('contrasenya')?.errors?.['required']"
+                      class="alert alert-danger"
+                    >
+                      La contraseña es obligatoria
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Botones de recuperar contraseña e iniciar sesión-->
+              <div class="row d-flex justify-content-center mt-4 mb-4">
+                <div class="col-3">
+                  <a href="">¿Has olvidado tu contraseña?</a>
+                </div>
+                <div class="col-2">
+                  <button
+                    type="submit"
+                    [disabled]="userLoginForm.invalid"
+                    class="btn btn-info btn-lg"
+                  >
+                    Iniciar sesión
+                  </button>
+                </div>
+              </div>
+            </form>
+            <!--Link para registrar una cuenta-->
+            <div class="text-center">
+              <p>¿No tienes una cuenta? <a href="">Registrate</a></p>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>

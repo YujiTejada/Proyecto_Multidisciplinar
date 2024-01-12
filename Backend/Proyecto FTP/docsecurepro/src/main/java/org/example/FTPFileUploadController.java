@@ -1,6 +1,7 @@
 package org.example;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -8,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class FTPFileUploadController {
+    private String nombre_usuario;
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> uploadFile(
             @RequestPart(name = "file", required = true) MultipartFile file,
@@ -201,6 +202,82 @@ public class FTPFileUploadController {
                 e.printStackTrace();
             }
         }
+
     }
 
+    @GetMapping(value = "/search-files", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> searchFiles(
+            @RequestParam(name = "searchQuery") String searchQuery,
+            @RequestParam(name = "currentDirectory", required = false, defaultValue = "/") String currentDirectory) {
+
+        String server = "localhost";
+        int port = 21;
+        String username = "directivo";
+        String password = "";
+        FTPClient ftpClient = new FTPClient();
+
+        try {
+            ftpClient.connect(server, port);
+            ftpClient.login(username, password);
+            ftpClient.enterLocalPassiveMode();
+            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+
+            if (!ftpClient.isConnected()) {
+                System.out.println("Failed to connect to FTP server");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(createErrorResponse("Error connecting to FTP server"));
+            }
+
+            List<String> matchingFiles = searchFilesRecursively(ftpClient, currentDirectory, searchQuery);
+
+            System.out.println("Matching files: " + matchingFiles);
+
+            return ResponseEntity.ok(matchingFiles);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error during FTP operation: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(createErrorResponse("Error during FTP operation: " + e.getMessage()));
+        } finally {
+            try {
+                if (ftpClient.isConnected()) {
+                    ftpClient.logout();
+                    ftpClient.disconnect();
+                    System.out.println("Disconnected from FTP server");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private List<String> searchFilesRecursively(FTPClient ftpClient, String currentDirectory, String searchQuery) throws IOException {
+        FTPFile[] files = ftpClient.listFiles(currentDirectory);
+        List<String> matchingFiles = new ArrayList<>();
+
+        for (FTPFile file : files) {
+            String fileName = file.getName();
+            if (file.isFile() && fileName.contains(searchQuery)) {
+                matchingFiles.add(currentDirectory + fileName);
+            } else if (file.isDirectory() && !fileName.equals(".") && !fileName.equals("..")) {
+                // Recursive call to explore the subdirectory
+                List<String> subdirectoryMatchingFiles = searchFilesRecursively(ftpClient, currentDirectory + fileName + "/", searchQuery);
+                matchingFiles.addAll(subdirectoryMatchingFiles);
+            }
+        }
+
+        return matchingFiles;
+    }
+
+    private Map<String, String> createErrorResponse(String errorMessage) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("status", "error");
+        errorResponse.put("message", errorMessage);
+        return errorResponse;
+    }
+
+
+    @PostMapping(value="/upload-user/{nombreUsuario}")
+    public void setNombreUsuario(@PathVariable("nombreUsuario") String nombreUsuario) {
+        this.nombre_usuario = nombreUsuario;
+    }
 }

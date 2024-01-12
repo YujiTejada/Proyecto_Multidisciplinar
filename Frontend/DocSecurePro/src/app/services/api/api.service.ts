@@ -25,9 +25,9 @@ export class ApiService {
     );
   }  
 
-  getFilesList(): Observable<FileInfo[]> {
-    let filesUrl = `${this.serverUrl}/files?folderName=${encodeURIComponent(this.currentDirectory)}`;
-  
+  getFilesList(currentDirectory: string): Observable<FileInfo[]> {
+    let filesUrl = `${this.serverUrl}/files?folderName=${encodeURIComponent(currentDirectory)}`;
+    
     return this.http.get<FileInfo[]>(filesUrl).pipe(
       catchError(error => this.handleError(error))
     );
@@ -67,6 +67,16 @@ export class ApiService {
   onFolderCreated(): Observable<void> {
     return this.createFolderSubject.asObservable();
   }
+
+  deleteFolder(folderName: string, currentDirectory: string): Observable<any> {
+    const deleteFolderUrl = `${this.serverUrl}/delete-folder?folderName=${encodeURIComponent(folderName)}&currentDirectory=${encodeURIComponent(currentDirectory)}`;
+    return this.http.delete(deleteFolderUrl).pipe(
+      tap(() => {
+        this.createFolderSubject.next();
+      }),
+      catchError(error => this.handleError(error))
+    );
+  }
    
   private handleError(error: any): Observable<never> {
     console.error('Error:', error);
@@ -76,11 +86,19 @@ export class ApiService {
     } else {
       console.error('Error del servidor:', error.status, error.error);
     }
-
     return throwError(error);
   } 
   userLogin(userLoginRequest: UserLoginRequest): Observable<any> {
     const loginUrl = '${this.urlApi}/users/login';
     return this.http.post(loginUrl, userLoginRequest, {withCredentials: true, responseType: 'text'});
   }
+  
+  searchFiles(searchQuery: string, currentDirectory: string): Observable<string[]> {
+    const searchUrl = `${this.serverUrl}/search-files?searchQuery=${encodeURIComponent(searchQuery)}&currentDirectory=${encodeURIComponent(currentDirectory)}`;
+    
+    return this.http.get<string[]>(searchUrl).pipe(
+      catchError(error => this.handleError(error))
+    );
+  }
+  
 }

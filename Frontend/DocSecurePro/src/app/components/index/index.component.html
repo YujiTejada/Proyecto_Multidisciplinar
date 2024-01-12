@@ -1,84 +1,138 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-  <title></title>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-  <section class="background-radial-gradient overflow-hidden min-vh-100 d-flex flex-column">
-    
-    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-      <div class="row gx-lg-5 align-items-center mb-5">
-        <div id="fondoImg" class="col-lg-7 mb-5 mb-lg-0" style="z-index: 10">
-          <div id="backgroundTransparente" class="d-flex flex-column justify-content-center align-items-center m-4">
-            <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-              DocSecurePro <br />
-              <span style="color: black">Transferencia de Archivos</span>
-            </h1>
-            <p class="mb-4 opacity-70" style="color: black">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Temporibus, expedita iusto veniam atque, magni tempora mollitia
-              dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-              ab ipsum nisi dolorem modi. Quos?
-            </p>
-          </div>
+<section
+  class="background-radial-gradient overflow-hidden min-vh-100 d-flex flex-column"
+>
+  <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+    <div class="row gx-lg-5 align-items-center mb-5">
+      <div id="fondoImg" class="col-lg-7 mb-5 mb-lg-0">
+        <div
+          id="backgroundTransparente"
+          class="d-flex flex-column justify-content-center align-items-center m-4"
+        >
+          <h1 class="my-5 display-5 fw-bold ls-tight blue">
+            DocSecurePro <br />
+            <span>{{ "home.titulo" | translate }}</span>
+          </h1>
+          <p class="mb-4 opacity-70">
+            {{ "home.descripcion" | translate }}
+          </p>
         </div>
+      </div>
 
-        <div class="col-lg-4 mb-6 mb-lg-0 position-relative">
-          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
-          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+      <div class="col-lg-4 mb-6 mb-lg-0 position-relative">
+        <div
+          id="radius-shape-1"
+          class="position-absolute rounded-circle shadow-5-strong"
+        ></div>
+        <div
+          id="radius-shape-2"
+          class="position-absolute shadow-5-strong"
+        ></div>
 
-          <div id="card" class="card bg-glass">
-            <div class="card-body px-4 py-5 px-md-5">
-              <form class="example-form">
-                <div class="col-md-16 mb-4 d-flex">
-                  <mat-form-field class="example-full-width">
-                    <mat-label>Nombre</mat-label>
-                    <input matInput [formControl]="nombreFormControl" placeholder="Ex. Juan">
-                    <mat-error *ngIf="nombreFormControl.hasError('required')">Nombre es <strong>requerido</strong></mat-error>
-                  </mat-form-field>
+        <div id="card" class="card bg-glass">
+          <div class="card-body px-4 py-5 px-md-5">
+            <form
+              class="example-form"
+              (ngSubmit)="onSubmit()"
+              [formGroup]="userRegisterForm"
+            >
+              <div class="col-md-16 mb-2 d-flex">
+                <!--Input de nombre de usuario-->
+                <div class="form-group">
+                  <label for="nombreUsuario">Nombre de usuario</label>
+                  <input
+                    type="text"
+                    id="nombreUsuario"
+                    name="nombreUsuario"
+                    class="form-control"
+                    formControlName="nombreUsuario"
+                    placeholder="admin"
+                  />
+                  <div
+                    *ngIf="userRegisterForm.get('nombreUsuario')?.touched && userRegisterForm.get('nombreUsuario')?.errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                    El nombre de usuario es obligatorio.
+                  </div>
                 </div>
-                <div class="col-md-16 mb-4">
-                  <mat-form-field class="example-full-width">
-                    <mat-label>Apellidos</mat-label>
-                    <input matInput [formControl]="apellidosFormControl" placeholder="Ex. Pérez">
-                    <mat-error *ngIf="apellidosFormControl.hasError('required')">Apellidos son <strong>requeridos</strong></mat-error>
-                  </mat-form-field>
+              </div>
+              <div class="col-md-16 mb-2">
+                <!--Input de contraseña-->
+                <div class="form-group">
+                  <label for="contrasenya">Contraseña</label>
+                  <input
+                    type="password"
+                    id="contrasenya"
+                    name="contrasenya"
+                    class="form-control"
+                    formControlName="contrasenya"
+                    placeholder="admin"
+                  />
+                  <div
+                    *ngIf="userRegisterForm.get('contrasenya')?.touched && userRegisterForm.get('contrasenya')?.errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                    La contraseña es obligatoria.
+                  </div>
                 </div>
-                <div class="col-md-16 mb-4">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Correo electrónico</mat-label>
-                  <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
-                  
-                  <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                    Por favor, introduce una dirección de correo electrónico
-                  </mat-error>
-                  <mat-error *ngIf="emailFormControl.hasError('required')">El correo es <strong>obligatorio</strong></mat-error>
-                </mat-form-field>
+              </div>
+              <div class="col-md-16 mb-2">
+                <!--Input de correo-->
+                <div class="form-group">
+                  <label for="correo">Correo electrónico</label>
+                  <input
+                    type="email"
+                    id="correo"
+                    name="correo"
+                    class="form-control"
+                    formControlName="correo"
+                    placeholder="admin@gmail.com"
+                  />
+                  <div
+                    *ngIf="userRegisterForm.get('correo')?.touched && userRegisterForm.get('correo')?.errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                    El correo electrónico es obligatorio.
+                  </div>
                 </div>
-                <div class="col-md-16 mb-4">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Contraseña</mat-label>
-                  <input type="password" matInput [formControl]="passwordFormControl" placeholder="Ex. ********">
-                 
-                  <mat-error *ngIf="passwordFormControl.hasError('required')">La contraseña es <strong>obligatoria</strong></mat-error>
-                </mat-form-field>
+              </div>
+              <div class="col-md-16 mb-2">
+                <!--Input de rol-->
+                <div class="form-group">
+                  <label for="cargo">Cargo del usuario</label>
+                  <select
+                    name="cargo"
+                    id="cargo"
+                    class="form-select form-select-sm"
+                    formControlName="cargo"
+                  >
+                    <option
+                      *ngFor="let cargo of cargos; let i = index"
+                      [value]="i === 0 ? null : cargo"
+                      [attr.disabled]="i === 0 ? 'disabled' : null"
+                    >
+                      {{ cargo }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="userRegisterForm.get('cargo')?.touched && userRegisterForm.get('cargo')?.errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                    El rol de usuario es obligatorio.
+                  </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block mb-4" style="background-color: #00A6A6"
-                        [disabled]="!nombreFormControl.valid || !apellidosFormControl.valid || !emailFormControl.valid || !passwordFormControl.valid">
-                  Registrarse
-                </button>
-              </form>
-              
-            </div>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary btn-block mb-4"
+                style="background-color: #00a6a6"
+                [disabled]="userRegisterForm.invalid"
+              >
+                Registrarse
+              </button>
+            </form>
           </div>
         </div>
       </div>
     </div>
-  </section>
-</body>
-</html>
+  </div>
+</section>
