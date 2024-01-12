@@ -11,13 +11,12 @@ import { TranslateConfigService } from 'src/app/services/translate/translate-con
 })
 export class NavBarComponent {
   constructor (public router: Router,
-    private translateConfigService: TranslateConfigService,
-    private modalService: NgbModal){}
+    private translateConfigService: TranslateConfigService){}
 
-   
+
   changeLenguage(leng: any){
     this.translateConfigService.changeLanguaje(leng);
-  }  
+  }
 
 
 }

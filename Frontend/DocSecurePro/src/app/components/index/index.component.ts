@@ -29,7 +29,7 @@ export class IndexComponent {
       correo: ['', [Validators.required]],
       cargo: ['', [Validators.required]]
     })
-  
+
     ngOnInit(): void {
       this.userRegisterForm = this.formValidation;
     }
