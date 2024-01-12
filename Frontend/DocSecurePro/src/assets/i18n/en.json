@@ -3,28 +3,5 @@
    "languages": {
       "es": "Spanish",
       "en": "English"
-   },
-   "home": {
-      "titulo": "File Transfer",
-      "descripcion": "DocSecurePro offers a robust and secure platform designed to simplify file transfer efficiently and seamlessly. Forget about security concerns when exchanging sensitive information: with DocSecurePro, your files are protected end-to-end.\nOur intuitive and easy-to-use interface allows users to upload and download files quickly and securely, ensuring privacy and confidentiality with every transfer. In addition, DocSecurePro goes further by offering advanced encryption and authentication features, ensuring that only authorized recipients have access to your data.\nWith DocSecurePro, you can have peace of mind knowing that your valuable information is in safe hands. Join the file transfer revolution and experience uncompromising security - DocSecurePro, where trust and efficiency meet in every transfer!",
-      "registro":{
-         "boton": "Sign Up",
-         "nombre": "Name",
-         "correo": "E-mail",
-         "dropdown": "Select an option...",
-         "dropdown-options": {
-            "directivos": "Manager",
-            "representantes": "Agents"
-         },
-         "password": "Password",
-         "confirm": "Confirm",
-         "errores": {
-            "name": "Name is required",
-            "mail": "E-mail is required",
-            "dropdown":"This field is required",
-            "password": "Password is required",
-            "doublecheck": "Passwords do not match "
-         }
-      }
    }
 }
