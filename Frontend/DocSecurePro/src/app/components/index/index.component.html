@@ -1,76 +1,138 @@
-  <section class="background-radial-gradient overflow-hidden min-vh-100 d-flex flex-column">
-
-    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-      <div class="row gx-lg-5 align-items-center mb-5">
-        <div id="fondoImg" class="col-lg-7 mb-5 mb-lg-0">
-          <div id="backgroundTransparente" class="d-flex flex-column justify-content-center align-items-center m-4">
-            <h1 class="my-5 display-5 fw-bold ls-tight blue">
-              DocSecurePro <br />
-              <span>{{"home.titulo" | translate}}</span>
-            </h1>
-            <p class="mb-4 opacity-70">
-              {{"home.descripcion" | translate}}
-            </p>
-          </div>
+<section
+  class="background-radial-gradient overflow-hidden min-vh-100 d-flex flex-column"
+>
+  <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+    <div class="row gx-lg-5 align-items-center mb-5">
+      <div id="fondoImg" class="col-lg-7 mb-5 mb-lg-0">
+        <div
+          id="backgroundTransparente"
+          class="d-flex flex-column justify-content-center align-items-center m-4"
+        >
+          <h1 class="my-5 display-5 fw-bold ls-tight blue">
+            DocSecurePro <br />
+            <span>{{ "home.titulo" | translate }}</span>
+          </h1>
+          <p class="mb-4 opacity-70">
+            {{ "home.descripcion" | translate }}
+          </p>
         </div>
+      </div>
 
-        <div class="col-lg-4 mb-6 mb-lg-0 position-relative">
-          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
-          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+      <div class="col-lg-4 mb-6 mb-lg-0 position-relative">
+        <div
+          id="radius-shape-1"
+          class="position-absolute rounded-circle shadow-5-strong"
+        ></div>
+        <div
+          id="radius-shape-2"
+          class="position-absolute shadow-5-strong"
+        ></div>
 
-          <div id="card" class="card bg-glass">
-            <div class="card-body px-4 py-5 px-md-5">
-              <form class="example-form" (ngSubmit)="onSubmit()" [formGroup]="userRegisterForm">
-                <div class="col-md-16 mb-2 d-flex">
-                  <!--Input de nombre de usuario-->
-                  <div class="form-group">
-                    <label for="nombreUsuario">Nombre de usuario</label>
-                    <input type="text" id="nombreUsuario" name="nombreUsuario" class="form-control"
-                      formControlName="nombreUsuario" placeholder="admin" />
-                    <div *ngIf="userRegisterForm.get('nombreUsuario')?.touched && userRegisterForm.get('nombreUsuario')?.errors?.['required']"
-                      class="alert alert-danger">El nombre de usuario es obligatorio.</div>
+        <div id="card" class="card bg-glass">
+          <div class="card-body px-4 py-5 px-md-5">
+            <form
+              class="example-form"
+              (ngSubmit)="onSubmit()"
+              [formGroup]="userRegisterForm"
+            >
+              <div class="col-md-16 mb-2 d-flex">
+                <!--Input de nombre de usuario-->
+                <div class="form-group">
+                  <label for="nombreUsuario">Nombre de usuario</label>
+                  <input
+                    type="text"
+                    id="nombreUsuario"
+                    name="nombreUsuario"
+                    class="form-control"
+                    formControlName="nombreUsuario"
+                    placeholder="admin"
+                  />
+                  <div
+                    *ngIf="userRegisterForm.get('nombreUsuario')?.touched && userRegisterForm.get('nombreUsuario')?.errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                    El nombre de usuario es obligatorio.
                   </div>
                 </div>
-                <div class="col-md-16 mb-2">
-                  <!--Input de contraseña-->
-                  <div class="form-group">
-                    <label for="contrasenya">Contraseña</label>
-                    <input type="password" id="contrasenya" name="contrasenya" class="form-control"
-                      formControlName="contrasenya" placeholder="admin" />
-                    <div *ngIf="userRegisterForm.get('contrasenya')?.touched && userRegisterForm.get('contrasenya')?.errors?.['required']"
-                      class="alert alert-danger">La contraseña es obligatoria.</div>
+              </div>
+              <div class="col-md-16 mb-2">
+                <!--Input de contraseña-->
+                <div class="form-group">
+                  <label for="contrasenya">Contraseña</label>
+                  <input
+                    type="password"
+                    id="contrasenya"
+                    name="contrasenya"
+                    class="form-control"
+                    formControlName="contrasenya"
+                    placeholder="admin"
+                  />
+                  <div
+                    *ngIf="userRegisterForm.get('contrasenya')?.touched && userRegisterForm.get('contrasenya')?.errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                    La contraseña es obligatoria.
                   </div>
                 </div>
-                <div class="col-md-16 mb-2">
-                  <!--Input de correo-->
-                  <div class="form-group">
-                    <label for="correo">Correo electrónico</label>
-                    <input type="email" id="correo" name="correo" class="form-control" formControlName="correo"
-                      placeholder="admin@gmail.com" />
-                    <div *ngIf="userRegisterForm.get('correo')?.touched && userRegisterForm.get('correo')?.errors?.['required']"
-                      class="alert alert-danger">El correo electrónico es obligatorio.</div>
+              </div>
+              <div class="col-md-16 mb-2">
+                <!--Input de correo-->
+                <div class="form-group">
+                  <label for="correo">Correo electrónico</label>
+                  <input
+                    type="email"
+                    id="correo"
+                    name="correo"
+                    class="form-control"
+                    formControlName="correo"
+                    placeholder="admin@gmail.com"
+                  />
+                  <div
+                    *ngIf="userRegisterForm.get('correo')?.touched && userRegisterForm.get('correo')?.errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                    El correo electrónico es obligatorio.
                   </div>
                 </div>
-                <div class="col-md-16 mb-2">
-                  <!--Input de rol-->
-                  <div class="form-group">
-                    <label for="cargo">Cargo del usuario</label>
-                    <select name="cargo" id="cargo" class="form-select form-select-sm" formControlName="cargo">
-                      <option *ngFor="let cargo of cargos; let i = index" [value]="i === 0 ? null : cargo"
-                        [attr.disabled]="i === 0 ? 'disabled' : null">
-                        {{ cargo }}
-                      </option>
-                    </select>
-                    <div *ngIf="userRegisterForm.get('cargo')?.touched && userRegisterForm.get('cargo')?.errors?.['required']"
-                      class="alert alert-danger">El rol de usuario es obligatorio.</div>
+              </div>
+              <div class="col-md-16 mb-2">
+                <!--Input de rol-->
+                <div class="form-group">
+                  <label for="cargo">Cargo del usuario</label>
+                  <select
+                    name="cargo"
+                    id="cargo"
+                    class="form-select form-select-sm"
+                    formControlName="cargo"
+                  >
+                    <option
+                      *ngFor="let cargo of cargos; let i = index"
+                      [value]="i === 0 ? null : cargo"
+                      [attr.disabled]="i === 0 ? 'disabled' : null"
+                    >
+                      {{ cargo }}
+                    </option>
+                  </select>
+                  <div
+                    *ngIf="userRegisterForm.get('cargo')?.touched && userRegisterForm.get('cargo')?.errors?.['required']"
+                    class="alert alert-danger"
+                  >
+                    El rol de usuario es obligatorio.
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block mb-4" style="background-color: #00A6A6"
-                  [disabled]="userRegisterForm.invalid">Registrarse</button>
-              </form>
-            </div>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary btn-block mb-4"
+                style="background-color: #00a6a6"
+                [disabled]="userRegisterForm.invalid"
+              >
+                Registrarse
+              </button>
+            </form>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

@@ -31,7 +31,7 @@ export class PantallaLoginComponent implements OnInit {
 
     onSubmit(): void {
       this.formClass = this.userLoginForm.value;
-      this.loginSubscription = this.loginService.userLogin(this.formClass).subscribe({
+      /*this.loginSubscription = this.loginService.userLogin(this.formClass).subscribe({
         next: (response) => {
           if (response == "login_succesful") {
             console.log('Login successful', response);
@@ -57,6 +57,6 @@ export class PantallaLoginComponent implements OnInit {
           this.router.navigate(['/home']);
         }
       }
-    );
+    );*/
     }
 }

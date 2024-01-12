@@ -27,7 +27,7 @@ export class ArchivosComponent implements OnInit {
       // Actualizar la lista de archivos después de crear una carpeta
       this.getUploadedFiles();
     });
-    this.loginService.checkSession().subscribe(
+    /*this.loginService.checkSession().subscribe(
       (response: string) => {
         if (response === 'user_logged') {
           console.log('Usuario autenticado');
@@ -41,19 +41,19 @@ export class ArchivosComponent implements OnInit {
         console.error('Error al verificar la sesión', error);
         this.router.navigate(['/home']);
       }
-    );
+    );*/
   }
 
   uploadFile() {
     // Método para subir archivos
     const archivoInput = document.getElementById('archivo') as HTMLInputElement;
-  
+
     if (archivoInput.files && archivoInput.files.length > 0) {
       const formData = new FormData();
       const file = archivoInput.files[0];
-  
+
       formData.append('file', file, file.name);
-  
+
       // Llama al servicio para subir el archivo
       this.service.upload(formData, this.currentDirectory).subscribe(
         (response: FileInfo[]) => {
@@ -81,7 +81,7 @@ export class ArchivosComponent implements OnInit {
       this.folderHistory.push([...this.uploadedFiles]);
       const folderName = folder.name;
       const newPath = this.currentDirectory + folderName + '/';
-  
+
       this.service.getFilesListInFolder(newPath).subscribe(
         (response: FileInfo[]) => {
           this.uploadedFiles = response.map(file => {
@@ -89,7 +89,7 @@ export class ArchivosComponent implements OnInit {
             return { ...file, isDirectory };
           });
           this.isInFolder = true;
-          this.currentDirectory = newPath; 
+          this.currentDirectory = newPath;
         },
         (error) => {
           console.error('Error al obtener la lista de archivos en la carpeta:', error);
@@ -97,17 +97,17 @@ export class ArchivosComponent implements OnInit {
       );
     }
   }
-  
-  
+
+
   goBack() {
     if (this.folderHistory.length > 0) {
       const previousFiles = this.folderHistory.pop() || [];
       this.isInFolder = this.folderHistory.length > 0;
-  
+
       // Obtener la ruta de la carpeta anterior
       const lastSlashIndex = this.currentDirectory.lastIndexOf('/');
       this.currentDirectory = this.currentDirectory.substring(0, lastSlashIndex + 1);
-  
+
       // Actualizar la propiedad currentDirectory después de obtener la nueva lista de archivos
       if (this.folderHistory.length > 0) {
         const lastFolder = this.folderHistory[this.folderHistory.length - 1];
@@ -116,12 +116,12 @@ export class ArchivosComponent implements OnInit {
         // Si no hay más historial, la ruta debe ser la raíz
         this.currentDirectory = '/';
       }
-  
+
       this.uploadedFiles = previousFiles;
-      this.getUploadedFiles(); 
+      this.getUploadedFiles();
     }
-  }  
-  
+  }
+
   getUploadedFiles() {
     // Método para obtener la lista de archivos en la carpeta actual
     this.service.getFilesList().subscribe(
@@ -142,7 +142,7 @@ export class ArchivosComponent implements OnInit {
   downloadFile(filename: string) {
     // Método para descargar un archivo
     const destinationPath = '';
-  
+
     // Llama al servicio para descargar el archivo
     this.service.downloadFile(filename, destinationPath).subscribe(
       (response: any) => {
@@ -155,7 +155,7 @@ export class ArchivosComponent implements OnInit {
       }
     );
   }
-  
+
   createFolder() {
     const folderName = prompt('Ingrese el nombre de la carpeta:');
     if (folderName) {
@@ -173,11 +173,11 @@ export class ArchivosComponent implements OnInit {
         }
       );
     }
-  }  
-    
+  }
+
   deleteFolder() {
     const selectedFolder = prompt('Ingrese el nombre de la carpeta a eliminar:');
-    
+
     if (selectedFolder) {
       this.service.deleteFolder(selectedFolder, this.currentDirectory).subscribe(
         (response: any) => {
@@ -194,8 +194,8 @@ export class ArchivosComponent implements OnInit {
       );
     }
   }
-  
-    
+
+
   private saveFile(data: any, filename: string) {
     // Método para guardar el archivo descargado
     const blob = new Blob([data.body], { type: 'application/octet-stream' });
@@ -208,7 +208,7 @@ export class ArchivosComponent implements OnInit {
     a.click();
     window.URL.revokeObjectURL(url);
   }
-  
+
 
   deleteFile(filename: string) {
     this.service.deleteFile(filename, this.currentDirectory).subscribe(
@@ -226,5 +226,5 @@ export class ArchivosComponent implements OnInit {
     );
   }
 
-  
+
 }

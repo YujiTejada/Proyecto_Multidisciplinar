@@ -36,7 +36,7 @@ export class IndexComponent {
 
     onSubmit(): void {
       this.formClass = this.userRegisterForm.value;
-      this.registerSubscription = this.loginService.userRegister(this.formClass).subscribe({
+      /*this.registerSubscription = this.loginService.userRegister(this.formClass).subscribe({
         next: (response) => {
           if (response == "user_creation_succesful") {
             console.log('Insert successful', response);
@@ -55,7 +55,7 @@ export class IndexComponent {
           this.router.navigate(['/home']);
         }
       }
-    );
+    );*/
     }
 
 }
