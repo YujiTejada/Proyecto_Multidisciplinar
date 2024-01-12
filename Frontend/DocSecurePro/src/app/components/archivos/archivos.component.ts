@@ -178,8 +178,23 @@ export class ArchivosComponent implements OnInit {
   deleteFolder() {
     const selectedFolder = prompt('Ingrese el nombre de la carpeta a eliminar:');
     
-    
+    if (selectedFolder) {
+      this.service.deleteFolder(selectedFolder, this.currentDirectory).subscribe(
+        (response: any) => {
+          if (response.status === 'success') {
+            // Actualizar la lista de archivos después de eliminar la carpeta
+            this.getUploadedFiles();
+          } else {
+            console.error('Error al eliminar la carpeta:', response.message);
+          }
+        },
+        (error) => {
+          console.error('Error al eliminar la carpeta:', error);
+        }
+      );
+    }
   }
+  
     
   private saveFile(data: any, filename: string) {
     // Método para guardar el archivo descargado

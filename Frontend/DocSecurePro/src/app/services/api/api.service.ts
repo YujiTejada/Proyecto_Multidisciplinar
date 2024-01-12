@@ -67,6 +67,17 @@ export class ApiService {
   onFolderCreated(): Observable<void> {
     return this.createFolderSubject.asObservable();
   }
+
+  deleteFolder(folderName: string, currentDirectory: string): Observable<any> {
+    const deleteFolderUrl = `${this.serverUrl}/delete-folder?folderName=${encodeURIComponent(folderName)}&currentDirectory=${encodeURIComponent(currentDirectory)}`;
+    return this.http.delete(deleteFolderUrl).pipe(
+      tap(() => {
+        // Emitir un evento indicando que se ha eliminado la carpeta
+        this.createFolderSubject.next();
+      }),
+      catchError(error => this.handleError(error))
+    );
+  }
    
   private handleError(error: any): Observable<never> {
     console.error('Error:', error);
@@ -76,7 +87,6 @@ export class ApiService {
     } else {
       console.error('Error del servidor:', error.status, error.error);
     }
-
     return throwError(error);
   } 
   userLogin(userLoginRequest: UserLoginRequest): Observable<any> {
