@@ -17,7 +17,7 @@ public class User implements Serializable {
     private String nombreUsuario;
     private String correo;
     private String contrasenya;
-    private int idCargo;
+    private int idRol;
 
     public User(ResultSet resultSet){
 
@@ -26,9 +26,9 @@ public class User implements Serializable {
             this.nombreUsuario = resultSet.getString("nombre_usuario");
             this.correo = resultSet.getString("correo");
             this.contrasenya = resultSet.getString("contrasenya");
-            this.idCargo = resultSet.getInt("id_rol");
+            this.idRol = resultSet.getInt("id_rol");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }

@@ -14,13 +14,20 @@ import java.util.List;
 public class UserManagerImplementation {
 
     public int insert(Connection connection, InsertUserRequest user) {
+        int cargo = 0;
+        if (user.getCargo().equals("Directivo")) {
+            cargo = 2;
+        } else if (user.getCargo().equals("Representante")) {
+            cargo = 3;
+        }
         var sql = String.format("INSERT INTO usuarios(dni,nombre_usuario, contrasenya, correo, id_rol) " +
                         "VALUES(null,'%s', '%s', '%s', %d);",
-                user.getNombreUsuario(), user.getCorreo(), user.getContrasenya(), Integer.valueOf(user.getIdCargo()));
+                user.getNombreUsuario(), user.getCorreo(), user.getContrasenya(), cargo);
         try (Statement statement = connection.createStatement()) {
             return statement.executeUpdate(sql);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return 0;
         }
     }
 
@@ -35,7 +42,8 @@ public class UserManagerImplementation {
             resultSet.close();
             return usersRetrieved;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -51,7 +59,8 @@ public class UserManagerImplementation {
             }
             return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -68,7 +77,8 @@ public class UserManagerImplementation {
             resultSet.close();
             return null;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
     }
 
