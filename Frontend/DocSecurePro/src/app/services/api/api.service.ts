@@ -72,7 +72,6 @@ export class ApiService {
     const deleteFolderUrl = `${this.serverUrl}/delete-folder?folderName=${encodeURIComponent(folderName)}&currentDirectory=${encodeURIComponent(currentDirectory)}`;
     return this.http.delete(deleteFolderUrl).pipe(
       tap(() => {
-        // Emitir un evento indicando que se ha eliminado la carpeta
         this.createFolderSubject.next();
       }),
       catchError(error => this.handleError(error))

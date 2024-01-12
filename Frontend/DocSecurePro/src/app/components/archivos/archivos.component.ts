@@ -100,9 +100,8 @@ export class ArchivosComponent implements OnInit {
       // Actualizar la propiedad currentDirectory después de obtener la nueva lista de archivos
       if (this.folderHistory.length > 0) {
         const lastFolder = this.folderHistory[this.folderHistory.length - 1];
-        this.currentDirectory = lastFolder[lastFolder.length - 1].url || '/';  // Assuming 'url' is the property representing the folder path
+        this.currentDirectory = lastFolder[lastFolder.length - 1].url || '/';
       } else {
-        // If there's no more history, set the currentDirectory to the root
         this.currentDirectory = '/';
       }
 
@@ -210,9 +209,8 @@ export class ArchivosComponent implements OnInit {
       (response: string[]) => {
         console.log('Matching Files:', response);
         
-        // Assuming you have only one matching file for simplicity
         if (response.length > 0) {
-          const folderPath = this.extractFolderPath(response[0]); // Extract folder path from the first matching file
+          const folderPath = this.extractFolderPath(response[0]);
           this.loadFolder(folderPath);
         } else {
           console.log('File not found.');
