@@ -35,15 +35,6 @@ export class PantallaLoginComponent implements OnInit {
         next: (response) => {
           if (response == "login_succesful") {
             console.log('Login successful', response);
-            sessionStorage.setItem("nombreUsuario", this.userLoginForm.value.nombreUsuario);
-            this.loginService.setNombreUsuario(this.userLoginForm.value.nombreUsuario).subscribe(
-              (response) => {
-                console.log('Response:', response);
-              },
-              (error) => {
-                console.error('Error:', error);
-              }
-            );
             this.router.navigate(['/archivos']);
           } else if (response == "password_incorrect") {
             alert("Error en login: " + response);

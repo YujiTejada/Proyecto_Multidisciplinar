@@ -138,3 +138,12 @@ public void printTree(String path) {
 		}
 		return ftpClient;
 	}
+
+
+@CrossOrigin(origins = "http://localhost:4200",
+        maxAge = 1800,
+        allowCredentials = "true",
+        allowedHeaders = {"*"},
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.HEAD,
+                RequestMethod.TRACE, RequestMethod.OPTIONS, RequestMethod.PATCH},
+        exposedHeaders = {"set-cookie"})

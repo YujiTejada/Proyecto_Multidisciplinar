@@ -20,15 +20,16 @@ export class ApiService {
 
   upload(data: any, currentDirectory: string): Observable<any> {
     const uploadUrl = `${this.serverUrl}/upload?currentDirectory=${encodeURIComponent(currentDirectory)}`;
-    return this.http.post(uploadUrl, data, { responseType: 'text' }).pipe(
+
+    return this.http.post(uploadUrl, data, {withCredentials: true, responseType: 'text' }).pipe(
       catchError(error => this.handleError(error))
     );
   }  
 
   getFilesList(currentDirectory: string): Observable<FileInfo[]> {
-    let filesUrl = `${this.serverUrl}/files?folderName=${encodeURIComponent(currentDirectory)}`;
+    const filesUrl = `${this.serverUrl}/files?folderName=${encodeURIComponent(currentDirectory)}`;
     
-    return this.http.get<FileInfo[]>(filesUrl).pipe(
+    return this.http.get<FileInfo[]>(filesUrl, {withCredentials: true}).pipe(
       catchError(error => this.handleError(error))
     );
   }
@@ -36,7 +37,7 @@ export class ApiService {
   getFilesListInFolder(folderName: string): Observable<FileInfo[]> {
     const filesUrl = `${this.serverUrl}/files?folderName=${encodeURIComponent(folderName)}`;
     
-    return this.http.get<FileInfo[]>(filesUrl).pipe(
+    return this.http.get<FileInfo[]>(filesUrl, {withCredentials: true}).pipe(
       catchError(error => this.handleError(error))
     );
   }
@@ -44,21 +45,21 @@ export class ApiService {
   downloadFile(filename: string, destinationPath: string): Observable<HttpResponse<Blob>> {
     const downloadUrl = `${this.serverUrl}/download/${filename}?destinationPath=${destinationPath}`;
     
-    return this.http.get(downloadUrl, { responseType: 'blob', observe: 'response' }).pipe(
+    return this.http.get(downloadUrl, {withCredentials: true, responseType: 'blob', observe: 'response' }).pipe(
       catchError(error => this.handleError(error))
     ) as Observable<HttpResponse<Blob>>;
   }
 
   deleteFile(filename: string, currentDirectory: string): Observable<any> {
     const deleteUrl = `${this.serverUrl}/delete-file?filename=${encodeURIComponent(filename)}&currentDirectory=${encodeURIComponent(currentDirectory)}`;
-    return this.http.delete(deleteUrl).pipe(
+    return this.http.delete(deleteUrl, {withCredentials: true}).pipe(
       catchError(error => this.handleError(error))
     );
   }
   
   createFolder(folderName: string, currentDirectory: string): Observable<any> {
     const body = { folderName, currentDirectory };
-    return this.http.post(`${this.serverUrl}/create-folder`, body, { responseType: 'json' }).pipe(
+    return this.http.post(`${this.serverUrl}/create-folder`, body, {withCredentials: true, responseType: 'json' }).pipe(
       catchError(error => this.handleError(error))
     );
   }
@@ -70,7 +71,7 @@ export class ApiService {
 
   deleteFolder(folderName: string, currentDirectory: string): Observable<any> {
     const deleteFolderUrl = `${this.serverUrl}/delete-folder?folderName=${encodeURIComponent(folderName)}&currentDirectory=${encodeURIComponent(currentDirectory)}`;
-    return this.http.delete(deleteFolderUrl).pipe(
+    return this.http.delete(deleteFolderUrl, {withCredentials: true}).pipe(
       tap(() => {
         this.createFolderSubject.next();
       }),
@@ -87,16 +88,12 @@ export class ApiService {
       console.error('Error del servidor:', error.status, error.error);
     }
     return throwError(error);
-  } 
-  userLogin(userLoginRequest: UserLoginRequest): Observable<any> {
-    const loginUrl = '${this.urlApi}/users/login';
-    return this.http.post(loginUrl, userLoginRequest, {withCredentials: true, responseType: 'text'});
   }
   
   searchFiles(searchQuery: string, currentDirectory: string): Observable<string[]> {
     const searchUrl = `${this.serverUrl}/search-files?searchQuery=${encodeURIComponent(searchQuery)}&currentDirectory=${encodeURIComponent(currentDirectory)}`;
     
-    return this.http.get<string[]>(searchUrl).pipe(
+    return this.http.get<string[]>(searchUrl, {withCredentials: true}).pipe(
       catchError(error => this.handleError(error))
     );
   }

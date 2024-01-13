@@ -40,7 +40,6 @@ export class IndexComponent {
         next: (response) => {
           if (response == "user_creation_succesful") {
             console.log('Insert successful', response);
-            sessionStorage.setItem("nombreUsuario", this.userRegisterForm.value.nombreUsuario);
             this.router.navigate(['/archivos']);
           } else if (response == "user_creation_unsuccesful") {
             alert("Error en registro: " + response);

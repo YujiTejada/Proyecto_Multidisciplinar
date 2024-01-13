@@ -12,15 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200",
-        maxAge = 1800,
-        allowCredentials = "true",
-        allowedHeaders = {"*"},
-        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.HEAD,
-                RequestMethod.TRACE, RequestMethod.OPTIONS, RequestMethod.PATCH},
-        exposedHeaders = {"set-cookie"})
 @RequestMapping(ApiConstants.DOCSECUREPRO_ENDPOINT)
-public class DocSecureProController {
+public class    DocSecureProController {
 
     private DocSecureProService docSecureProService;
 
