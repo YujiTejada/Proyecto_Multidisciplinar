@@ -37,6 +37,8 @@ class TemarioAdapter(
     }
 
     interface OnItemClickListener {
+        abstract val supportFragmentManager: Any
+
         fun onItemClick(position: Int)
     }
 }

@@ -1,0 +1,48 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\ItzAl\\.gradle\\daemon\\8.2\\com.example.manualdemo.app-mergeDebugResources-29:\\values-en\\values-en.xml",
+            "map": [
+                {
+                    "source": "C:\\workspace\\Proyecto_Multidisciplinar\\AppAndroid\\app\\src\\main\\res\\values-en\\strings.xml",
+                    "from": {
+                        "startLines": "15,2,6,11,10,20,8,3,9,4,16,5,14,13,18",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "654,57,263,475,436,891,349,106,394,157,701,206,605,554,776",
+                        "endColumns": "45,47,56,44,37,69,43,49,40,47,47,55,47,49,54",
+                        "endOffsets": "695,100,315,515,469,956,388,151,430,200,744,257,648,599,826"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,101,149,206,251,289,359,403,453,494,542,590,646,694,744",
+                        "endColumns": "45,47,56,44,37,69,43,49,40,47,47,55,47,49,54",
+                        "endOffsets": "96,144,201,246,284,354,398,448,489,537,585,641,689,739,794"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "com.example.manualdemo.app-mergeDebugResources-29:/values-en/values-en.xml",
+            "map": [
+                {
+                    "source": "C:\\workspace\\Proyecto_Multidisciplinar\\AppAndroid\\app\\src\\main\\res\\values-en\\strings.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,-1,7,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,-1,4,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1,321,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "endColumns": "-1,-1,-1,-1,58,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1",
+                        "endOffsets": "-1,-1,-1,-1,375,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,101,149,206,251,310,348,418,462,512,553,601,649,705,753,803",
+                        "endColumns": "45,47,56,44,58,37,69,43,49,40,47,47,55,47,49,54",
+                        "endOffsets": "96,144,201,246,305,343,413,457,507,548,596,644,700,748,798,853"
+                    }
+                }
+            ]
+        }
+    ]
+}

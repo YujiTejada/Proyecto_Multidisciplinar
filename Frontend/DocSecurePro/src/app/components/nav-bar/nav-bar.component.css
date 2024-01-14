@@ -1,0 +1,56 @@
+#banner{
+    height: 80px;
+    background-color: #cf5c36;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+i{
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+.consolas{
+    font-family: 'Consolas';
+    
+}
+
+.blue{
+    color: #1800ff;
+}
+
+.btn-primary{
+    background-color: #00a6a6;
+    border: #00a6a6;
+    color: black
+}
+
+@media (max-width:330px){
+    h2,i{
+        font-size: 20px;
+    }
+    button{
+        width: 36.5%;
+        height: 30%;
+        font-size: 9px;
+    }
+}
+@media (max-width:265px){
+    h2,i{
+        font-size: 15px;
+    }
+    button{
+        width: 34%;
+        max-height: 20%;
+        font-size: 7.5px;
+    }
+}
+@media (max-width:230px){
+    h2,i{
+        font-size: 11px;
+    }
+}

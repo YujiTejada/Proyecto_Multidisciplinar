@@ -1,6 +1,12 @@
 R_DEF: Internal format may change without notice
 local
 color black
+color columbia_blue
+color flame
+color light_sea_green
+color platinum
+color sunset
+color vanilla
 color white
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -10,6 +16,8 @@ drawable icons8_translation_96__xxxhdpi_
 id appbarLay
 id bgCard
 id bnBar
+id btnAnterior
+id btnSiguiente
 id card
 id contenido_frame
 id cv
@@ -24,6 +32,8 @@ id ivImagen
 id opciones
 id rvItems
 id search_bar
+id texto
+id titulo
 id traducir
 id tvNombre
 layout activity_main
@@ -34,11 +44,22 @@ layout item_layout
 menu bottom_navigation_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
+string anterior
 string app_name
+string borrar_archivos
+string buscar
+string cambiar_idioma
 string demo
 string hello_blank_fragment
 string idioma
+string iniciar_sesion
 string inicio
+string registrarse
+string siguiente
+string subir_archivos
+string textoContenido
+string tituloContenido
+string tituloItemLayout
 style Base.Theme.ManualDemo
 style Theme.ManualDemo
 xml backup_rules

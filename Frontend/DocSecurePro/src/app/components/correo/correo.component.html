@@ -1,0 +1,75 @@
+<section class="background-radial-gradient overflow-hidden min-vh-100 d-flex flex-column">
+    <!--Formulario de usuario-->
+    <div class="container-fluid px-4 py-5 text-center text-lg-start my-5">
+        <div class="row vh-100">
+            <div class="col-md-1" id="columna">
+                <a class="card btn mt-3 d-flex align-items-center" href="archivos">
+                  <img src="../../../assets/icon/carpeta-abierta.png" class="card-img-top mt-3" alt="Carpeta width">
+                  <div class="card-body">
+                    <h5 class="card-title">Archivos</h5>
+                  </div>
+                </a>
+        
+                <a class="card btn mt-3 mb-3 d-flex align-items-center" href="mail">
+                  <img src="../../../assets/icon/email.png" class="card-img-top mt-3" alt="Bandeja de entrada">
+                  <div class="card-body">
+                    <h5 class="card-title">Correo</h5>
+                  </div>
+                </a>
+            </div>
+            
+            <div class="col-md-11" id="contenido">
+                <form (ngSubmit)="onSubmit()" [formGroup]="mailForm">
+                    <div class="col-5">
+                        <p class="titulo">{{ "mail-section.title" | translate }}</p>
+                    </div>
+                    <div class="row d-flex justify-content-center mt-4">
+                        <!--Input del receptor-->
+                        <div class="col-10">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="recipient">{{ "mail-section.Remitente" | translate }}</label>
+                                <input type="email" id="recipient" name="recipient" class="form-control"
+                                formControlName="recipient" placeholder="{{'home.registro.ejemplo' | translate}}@gmail.com"/>
+                                <div *ngIf="mailForm.get('recipient')?.touched && mailForm.get('recipient')?.errors?.['required']" class="alert alert-danger">
+                                    {{ "mail-section.errores.mail" | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <!--Input de asunto-->
+                        <div class="col-10">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="subject">{{ "mail-section.asunto" | translate }}</label>
+                                <input type="text" id="subject" name="subject" class="form-control"
+                                formControlName="subject" placeholder="{{ 'mail-section.ej' | translate }}" />
+                                <div *ngIf="mailForm.get('subject')?.touched && mailForm.get('subject')?.errors?.['required']" class="alert alert-danger">
+                                    {{ "mail-section.error.asunto" | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <!--Input de mensaje-->
+                        <div class="col-10">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="message">{{ "mail-section.mensaje" | translate }}</label>
+                                <textarea class="form-control" id="message" name="message" rows="5"
+                                formControlName="message" placeholder="{{ 'mail-section.ej-ms' | translate }}"></textarea>
+                                <div *ngIf="mailForm.get('message')?.touched && mailForm.get('message')?.errors?.['required']" class="alert alert-danger">
+                                    {{ "mail-section.error.cuerpo" | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Botón de mandar correo-->
+                    <div class="row d-flex justify-content-center mt-4 mb-4">
+                        <div class="col-3">
+                            <button type="submit" [disabled]="mailForm.invalid" class="btn btn-info btn-lg">{{ "mail-section.button" | translate }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

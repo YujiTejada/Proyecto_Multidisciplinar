@@ -1,7 +1,7 @@
-#Tue Jan 09 19:54:00 CET 2024
-base.0=D\:\\CFGS DAM\\2DAM\\PM\\GitHub\\Proyecto_Multidisciplinar\\AppAndroid\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=D\:\\CFGS DAM\\2DAM\\PM\\GitHub\\Proyecto_Multidisciplinar\\AppAndroid\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=D\:\\CFGS DAM\\2DAM\\PM\\GitHub\\Proyecto_Multidisciplinar\\AppAndroid\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+#Fri Jan 12 12:56:18 CET 2024
+base.0=C\:\\workspace\\Proyecto_Multidisciplinar\\AppAndroid\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\workspace\\Proyecto_Multidisciplinar\\AppAndroid\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\workspace\\Proyecto_Multidisciplinar\\AppAndroid\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=11/classes.dex

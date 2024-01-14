@@ -32,9 +32,10 @@ class Demo : Fragment() {
         val webView: WebView = view.findViewById(R.id.demoApp)
         val webSettings: WebSettings = webView.settings
         webSettings.javaScriptEnabled = true
-        webView.loadUrl("http://192.168.0.19:4200")
+        webView.loadUrl("http://192.168.243.11:4200")
         return view
     }
+
 
     companion object {
         @JvmStatic

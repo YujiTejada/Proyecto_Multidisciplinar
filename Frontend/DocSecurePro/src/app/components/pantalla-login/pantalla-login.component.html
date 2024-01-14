@@ -1,0 +1,68 @@
+<section class="background-radial-gradient overflow-hidden min-vh-100 d-flex flex-column">
+  <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+    <div class="row gx-lg-5 align-items-center mb-5">
+      <div id="fondoImg" class="col-lg-7 mb-5 mb-lg-0">
+        <div id="backgroundTransparente" class="d-flex flex-column justify-content-center align-items-center m-4">
+          <h1 class="my-5 display-5 fw-bold ls-tight blue">
+            DocSecurePro <br />
+            <span>{{ "home.titulo" | translate }}</span>
+          </h1>
+          <p class="mb-4 opacity-70">
+            {{ "home.descripcion" | translate }}
+          </p>
+        </div>
+      </div>
+      <!--Formulario de usuario-->
+      <div class="col-lg-4 mb-6 mb-lg-0 position-relative">
+        <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+        <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+        <div id="card" class="card bg-glass">
+          <div class="card-body px-4 py-5 px-md-5">
+            <form class="example-form" (ngSubmit)="onSubmit()" [formGroup]="userLoginForm">
+              <!--Input de nombre de usuario-->
+              <div class="col-md-16 mb-2 d-flex">
+                <div class="form-group">
+                  <label for="nombreUsuario">{{"home.registro.nombre" | translate}}</label>
+                  <input type="text" id="nombreUsuario" name="nombreUsuario" class="form-control"
+                    formControlName="nombreUsuario" placeholder="{{'home.registro.nombre' | translate}}" />
+                  <div
+                    *ngIf="userLoginForm.get('nombreUsuario')?.touched && userLoginForm.get('nombreUsuario')?.errors?.['required']"
+                    class="alert alert-danger">
+                    {{"home.registro.errores.name" | translate}}
+                  </div>
+                </div>
+              </div>
+              <!--Input de contraseña-->
+              <div class="col-md-16 mb-2">
+                <div class="form-group">
+                  <label for="contrasenya">{{"home.registro.password" | translate}}</label>
+                  <input type="password" id="contrasenya" name="contrasenya" class="form-control"
+                    formControlName="contrasenya" placeholder="{{'home.registro.password' | translate}}" />
+                  <div
+                    *ngIf="userLoginForm.get('contrasenya')?.touched && userLoginForm.get('contrasenya')?.errors?.['required']"
+                    class="alert alert-danger">
+                    {{"home.registro.errores.password" | translate}}
+                  </div>
+                </div>
+              </div>
+              <!--Botones de recuperar contraseña e iniciar sesión-->
+              <div class="col-md-16 mb-2">
+                <a href="logIn">{{"forgot" | translate}}</a>
+              </div>
+              <div class="col-md-16 mb-2">
+                <button type="submit" [disabled]="userLoginForm.invalid" class="btn btn-info btn-lg">
+                  {{"login" | translate}}
+                </button>
+              </div>
+            </form>
+             <!--Link para registrar una cuenta-->
+             <div class="col-md-16 mb-2">
+              <p>{{"noacount" | translate}}<a href="">{{"home.registro.boton" | translate}}</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
