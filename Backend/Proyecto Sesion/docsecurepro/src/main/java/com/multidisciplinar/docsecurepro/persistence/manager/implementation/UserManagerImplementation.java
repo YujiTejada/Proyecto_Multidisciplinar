@@ -20,9 +20,9 @@ public class UserManagerImplementation {
         } else if (user.getCargo().equals("Representante")) {
             cargo = 3;
         }
-        var sql = String.format("INSERT INTO usuarios(dni,nombre_usuario, contrasenya, correo, id_rol) " +
-                        "VALUES(null,'%s', '%s', '%s', %d);",
-                user.getNombreUsuario(), user.getCorreo(), user.getContrasenya(), cargo);
+        var sql = String.format("INSERT INTO usuarios(dni, nombre_usuario, contrasenya, correo, id_rol) " +
+                        "VALUES(null, '%s', '%s', '%s', %d);",
+                user.getNombreUsuario(), user.getContrasenya(), user.getCorreo(), cargo);
         try (Statement statement = connection.createStatement()) {
             return statement.executeUpdate(sql);
         } catch (SQLException e) {

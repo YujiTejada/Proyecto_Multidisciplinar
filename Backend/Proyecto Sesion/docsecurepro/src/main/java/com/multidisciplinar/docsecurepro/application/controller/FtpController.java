@@ -61,27 +61,30 @@ public class FtpController {
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             // Obtener bytes del archivo
             byte[] fileBytes = file.getBytes();
-            String uploadRoute = currentDirectory + "/" + file.getOriginalFilename();
+            String uploadRoute = currentDirectory + file.getOriginalFilename();
             // Subir archivo al servidor FTP
             if (ftpClient.storeFile(uploadRoute, new ByteArrayInputStream(fileBytes))) {
                 Archivo containerFolder = this.ftpService.findByRuta(currentDirectory);
-                Archivo uploadedFile = this.ftpService.findByRuta(
-                        currentDirectory + "/" + file.getOriginalFilename());
-                Archivo fileRecord = Archivo.builder()
+                Archivo uploadedFileRecord = Archivo.builder()
                         .nombreArchivo(file.getOriginalFilename())
                         .ruta(uploadRoute)
                         .esCarpeta(false)
                         .idUsuarios(loggedUser.getIdUsuario())
-                        .idArchivo(containerFolder.getIdArchivo())
+                        .idCarpeta(containerFolder.getIdArchivo())
                         .build();
-                Log operationRecord = Log.builder()
-                        .fechaHora(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                        .idUsuario(loggedUser.getIdUsuario())
-                        .tipoOperacion(TipoOperacionEnum.SUBIDA_ARCHIVO.getIdTipoOperacion())
-                        .idArchivos(uploadedFile.getIdArchivo()).build();
-                if (this.ftpService.recordFileUpload(fileRecord) != 0
-                        && this.ftpService.recordMovement(operationRecord) != 0) {
-                    return ResponseEntity.ok("File uploaded successfully");
+                if (this.ftpService.recordFileUpload(uploadedFileRecord) != 0) {
+                    Archivo uploadedFile = this.ftpService.findByRuta(uploadRoute);
+                    Log operationRecord = Log.builder()
+                            .fechaHora(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                            .idUsuario(loggedUser.getIdUsuario())
+                            .tipoOperacion(TipoOperacionEnum.SUBIDA_ARCHIVO.getIdTipoOperacion())
+                            .idArchivos(uploadedFile.getIdArchivo()).build();
+                    if (this.ftpService.recordMovement(operationRecord) != 0) {
+                        return ResponseEntity.ok("File uploaded successfully");
+                    } else {
+                        return ResponseEntity.ok("File uploaded successfully, " +
+                                "but the logging process was not succesful.");
+                    }
                 } else {
                     return ResponseEntity.ok("File uploaded successfully, " +
                             "but the logging process was not succesful.");
@@ -121,26 +124,32 @@ public class FtpController {
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             // Crear carpeta en el servidor FTP dentro del directorio actual
             if (ftpClient.makeDirectory(currentDirectory + folderName)) {
-                Archivo containerFolder = this.ftpService.findByRuta(currentDirectory
-                        .substring(0, currentDirectory.length()-1));
-                Archivo uploadedFolder = this.ftpService.findByRuta(currentDirectory + folderName);
+                Archivo containerFolder = this.ftpService.findByRuta(currentDirectory);
                 Archivo fileRecord = Archivo.builder()
                         .nombreArchivo(folderName)
                         .ruta(currentDirectory + folderName)
                         .esCarpeta(true)
                         .idUsuarios(loggedUser.getIdUsuario())
                         .idCarpeta(containerFolder.getIdArchivo()).build();
-                Log operationRecord = Log.builder()
-                        .fechaHora(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                        .idUsuario(loggedUser.getIdUsuario())
-                        .tipoOperacion(TipoOperacionEnum.CREACION_CARPETA.getIdTipoOperacion())
-                        .idArchivos(uploadedFolder.getIdArchivo()).build();
-                if (this.ftpService.recordFileUpload(fileRecord) != 0
-                        && this.ftpService.recordMovement(operationRecord) != 0) {
-                    Map<String, String> response = new HashMap<>();
-                    response.put("status", "success");
-                    response.put("message", "Folder created successfully");
-                    return ResponseEntity.ok(response);
+                if (this.ftpService.recordFileUpload(fileRecord) != 0) {
+                    Archivo uploadedFolder = this.ftpService.findByRuta(currentDirectory + folderName);
+                    Log operationRecord = Log.builder()
+                            .fechaHora(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                            .idUsuario(loggedUser.getIdUsuario())
+                            .tipoOperacion(TipoOperacionEnum.CREACION_CARPETA.getIdTipoOperacion())
+                            .idArchivos(uploadedFolder.getIdArchivo()).build();
+                    if (this.ftpService.recordMovement(operationRecord) != 0) {
+                        Map<String, String> response = new HashMap<>();
+                        response.put("status", "success");
+                        response.put("message", "Folder created successfully");
+                        return ResponseEntity.ok(response);
+                    } else {
+                        Map<String, String> response = new HashMap<>();
+                        response.put("status", "success");
+                        response.put("message", "Folder created successfully," +
+                                "but the logging process was not succesful.");
+                        return ResponseEntity.ok(response);
+                    }
                 } else {
                     Map<String, String> response = new HashMap<>();
                     response.put("status", "success");
@@ -185,16 +194,17 @@ public class FtpController {
             ftpClient.login(userRole, "");
             ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+            String fileRemotePath = currentDirectory + filename;
             // Eliminar archivo en el servidor FTP dentro del directorio actual
-            if (ftpClient.deleteFile(currentDirectory + "/" + filename)) {
-                Archivo deletedFile = this.ftpService.findByRuta(currentDirectory + "/" + filename);
+            if (ftpClient.deleteFile(fileRemotePath)) {
+                Archivo deletedFile = this.ftpService.findByRuta(fileRemotePath);
                 Log operationRecord = Log.builder()
                         .fechaHora(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
                         .idUsuario(loggedUser.getIdUsuario())
                         .tipoOperacion(TipoOperacionEnum.ELIMINACION_ARCHIVO.getIdTipoOperacion())
                         .idArchivos(deletedFile.getIdArchivo()).build();
-                if (this.ftpService.deleteByRuta(currentDirectory + "/" + filename) != 0
-                        && this.ftpService.recordMovement(operationRecord) != 0) {
+                if (this.ftpService.recordMovement(operationRecord) != 0 &&
+                        this.ftpService.deleteByRuta(fileRemotePath) != 0) {
                     Map<String, String> response = new HashMap<>();
                     response.put("status", "success");
                     response.put("message", "File deleted successfully");
@@ -245,17 +255,25 @@ public class FtpController {
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             // Eliminar carpeta en el servidor FTP dentro del directorio actual
             if (ftpClient.removeDirectory(currentDirectory + folderName)) {
-                Archivo containerFolder = this.ftpService.findByRuta(currentDirectory
-                        .substring(0, currentDirectory.length()-1));
+                this.ftpService.deleteByContaingRuta(currentDirectory + folderName);
+                Archivo containerFolder = this.ftpService.findByRuta(currentDirectory);
                 Log operationRecord = Log.builder()
                         .fechaHora(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
                         .idUsuario(loggedUser.getIdUsuario())
                         .tipoOperacion(TipoOperacionEnum.ELIMINACION_CARPETA.getIdTipoOperacion())
                         .idArchivos(containerFolder.getIdArchivo()).build();
-                Map<String, String> response = new HashMap<>();
-                response.put("status", "success");
-                response.put("message", "Folder deleted successfully");
-                return ResponseEntity.ok(response);
+                if (this.ftpService.recordMovement(operationRecord) != 0) {
+                    Map<String, String> response = new HashMap<>();
+                    response.put("status", "success");
+                    response.put("message", "Folder deleted successfully");
+                    return ResponseEntity.ok(response);
+                } else {
+                    Map<String, String> response = new HashMap<>();
+                    response.put("status", "success");
+                    response.put("message", "Folder deleted successfully, " +
+                            "but there was an error logging the process");
+                    return ResponseEntity.ok(response);
+                }
             } else {
                 Map<String, String> response = new HashMap<>();
                 response.put("status", "error");
@@ -328,7 +346,7 @@ public class FtpController {
             ftpClient.login(userRole, "");
             ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-            String remoteFilePath = destinationPath + "/" + filename;
+            String remoteFilePath = destinationPath + filename;
             var baos = new ByteArrayOutputStream();
             if (ftpClient.retrieveFile(remoteFilePath, baos)) {
                 byte[] fileContent = baos.toByteArray();
@@ -410,15 +428,17 @@ public class FtpController {
     }
 
     private String determineUserRole(int userRol) {
+        String userRole = "";
         if (userRol == RoleEnum.DIRECTIVO.getRoleCode()) {
-            return RoleEnum.DIRECTIVO.getRoleName();
+            userRole = RoleEnum.DIRECTIVO.getRoleName();
         } else if (userRol == RoleEnum.REPRESENTANTE.getRoleCode()) {
-            return RoleEnum.REPRESENTANTE.getRoleName();
+            userRole = RoleEnum.REPRESENTANTE.getRoleName();
         } else if (userRol == RoleEnum.SUPER_ADMIN.getRoleCode()) {
-            return RoleEnum.SUPER_ADMIN.getRoleName();
+            userRole = RoleEnum.SUPER_ADMIN.getRoleName();
         } else {
-            return "unknown_role";
+            userRole = "unknown_role";
         }
+        return userRole.toLowerCase();
     }
 
     private List<String> searchFilesRecursively(
@@ -439,19 +459,6 @@ public class FtpController {
         }
 
         return matchingFiles;
-    }
-
-    private FTPClient getFtpClient(String userRole) {
-        FTPClient ftpClient = new FTPClient();
-        try {
-            ftpClient.connect(FtpConstants.SERVER, FtpConstants.PORT);
-            ftpClient.login(userRole, "");
-            ftpClient.enterLocalPassiveMode();
-            return ftpClient;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     private Map<String, String> createErrorResponse(String errorMessage) {

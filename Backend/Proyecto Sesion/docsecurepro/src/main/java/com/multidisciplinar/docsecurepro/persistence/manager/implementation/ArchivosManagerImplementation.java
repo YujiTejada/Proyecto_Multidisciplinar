@@ -1,9 +1,7 @@
 package com.multidisciplinar.docsecurepro.persistence.manager.implementation;
 
 import com.multidisciplinar.docsecurepro.api.dao.Archivo;
-import com.multidisciplinar.docsecurepro.bean.docsecurepro.InsertUserRequest;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.arch.Processor;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,7 +12,7 @@ import java.sql.Statement;
 public class ArchivosManagerImplementation {
 
     public int insert(Connection connection, Archivo archivo) {
-        var sql = String.format("INSERT INTO archivos(nombre_archivo, ruta, carpeta_no, id_usuarios, id_carpeta) " +
+        var sql = String.format("INSERT INTO archivos(nombre_archivo, ruta, es_carpeta, id_usuarios, id_carpeta) " +
                         "VALUES('%s', '%s', null, %d, %d);",
                 archivo.getNombreArchivo(), archivo.getRuta(), archivo.getIdUsuarios(), archivo.getIdCarpeta());
         try (Statement statement = connection.createStatement()) {
@@ -42,8 +40,18 @@ public class ArchivosManagerImplementation {
         }
     }
 
-    public int deleteByRuta(Connection connection, String ruta) {
+    public int deleteByExactRuta(Connection connection, String ruta) {
         var sql = String.format("DELETE FROM archivos WHERE ruta LIKE '%s';", ruta);
+        try (Statement statement = connection.createStatement()) {
+            return statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public int deleteByContainingRuta(Connection connection, String ruta) {
+        var sql = String.format("DELETE FROM archivos WHERE ruta LIKE '%%%s%%';", ruta);
         try (Statement statement = connection.createStatement()) {
             return statement.executeUpdate(sql);
         } catch (SQLException e) {

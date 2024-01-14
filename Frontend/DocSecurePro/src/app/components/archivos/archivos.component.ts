@@ -125,7 +125,7 @@ export class ArchivosComponent implements OnInit {
   }
 
   downloadFile(filename: string) {
-    const destinationPath = '';
+    const destinationPath = this.currentDirectory;
 
     this.service.downloadFile(filename, destinationPath).subscribe(
       (response: any) => {

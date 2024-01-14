@@ -24,15 +24,28 @@ public class FtpService {
     }
 
     public Archivo findByRuta(String rutaArchivo) {
-        return this.archivosService.findByRuta(rutaArchivo);
+        return this.archivosService.findByRuta(fixRoute(rutaArchivo));
+
     }
 
     public int deleteByRuta(String rutaArchivo) {
-        return this.archivosService.deleteByRuta(rutaArchivo);
+        return this.archivosService.deleteByExactRuta(fixRoute(rutaArchivo));
+    }
+
+    public int deleteByContaingRuta(String rutaArchivo) {
+        return this.archivosService.deleteByContainingRuta(fixRoute(rutaArchivo));
     }
 
     public int recordMovement(Log log) {
         return this.logService.insert(log);
+    }
+
+    public String fixRoute(String route) {
+        if (route.length() > 1 && route.lastIndexOf("/") == route.length() - 1) {
+            return route.substring(0, route.length() - 1).replace("//", "/");
+        } else {
+            return route.replace("//", "/");
+        }
     }
 
 }

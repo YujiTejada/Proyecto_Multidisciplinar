@@ -24,7 +24,7 @@ public class Archivo {
             this.idArchivo = resultSet.getInt("id_archivo");
             this.nombreArchivo = resultSet.getString("nombre_archivo");
             this.ruta = resultSet.getString("ruta");
-            this.esCarpeta = resultSet.getBoolean("carpeta_no");
+            this.esCarpeta = resultSet.getBoolean("es_carpeta");
             this.idUsuarios = resultSet.getInt("id_usuarios");
             this.idCarpeta = resultSet.getInt("id_carpeta");
         } catch (SQLException e) {

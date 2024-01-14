@@ -1,7 +1,6 @@
 package com.multidisciplinar.docsecurepro.application.service.database;
 
 import com.multidisciplinar.docsecurepro.api.dao.Archivo;
-import com.multidisciplinar.docsecurepro.bean.docsecurepro.InsertUserRequest;
 import com.multidisciplinar.docsecurepro.persistence.manager.implementation.ArchivosManagerImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,11 +40,30 @@ public class ArchivosService {
         }
     }
 
-    public int deleteByRuta(String ruta) {
+    public int deleteByExactRuta(String ruta) {
         Connection connection = null;
         try {
             connection = dataSource.getConnection();
-            return this.manager.deleteByRuta(connection, ruta);
+            return this.manager.deleteByExactRuta(connection, ruta);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public int deleteByContainingRuta(String ruta) {
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+            return this.manager.deleteByContainingRuta(connection, ruta);
         } catch (SQLException e) {
             e.printStackTrace();
             return 0;
