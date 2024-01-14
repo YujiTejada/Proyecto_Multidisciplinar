@@ -255,7 +255,7 @@ public class FtpController {
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             // Eliminar carpeta en el servidor FTP dentro del directorio actual
             if (ftpClient.removeDirectory(currentDirectory + folderName)) {
-                this.ftpService.deleteByContaingRuta(currentDirectory + folderName);
+                //this.ftpService.deleteByContaingRuta(currentDirectory + folderName);
                 Archivo containerFolder = this.ftpService.findByRuta(currentDirectory);
                 Log operationRecord = Log.builder()
                         .fechaHora(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
