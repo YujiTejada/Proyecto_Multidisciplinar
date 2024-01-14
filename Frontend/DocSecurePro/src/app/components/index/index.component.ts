@@ -17,7 +17,7 @@ export class IndexComponent {
   formClass!: UserRegisterRequest;
   registerSubscription: Subscription | undefined;
 
-  cargos = ['Seleccione un rol de usuario:', 'SuperAdmin', 'Directivo', 'Representante']
+  cargos = ['placeholder', 'directivos', 'representantes', 'admin']
 
   constructor(private readonly fb: FormBuilder
     , private loginService: LoginService

@@ -29,12 +29,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `archivos` (
   `id_archivo` tinyint(3) UNSIGNED NOT NULL,
-  `nombre_archivo` varchar(60) NOT NULL,
-  `ruta` varchar(100) NOT NULL,
-  `carpeta_no` tinyint(1) DEFAULT NULL,
+  `nombre_archivo` varchar(100) NOT NULL,
+  `ruta` varchar(1024) NOT NULL,
+  `es_carpeta` BOOLEAN DEFAULT NULL,
   `id_usuarios` tinyint(3) UNSIGNED NOT NULL,
   `id_carpeta` tinyint(3) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `archivos` VALUES(1, "root", "/", true, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -55,7 +57,7 @@ CREATE TABLE `eventos` (
 -- Estructura de tabla para la tabla `logg`
 --
 
-CREATE TABLE `logg` (
+CREATE TABLE `log` (
   `id_log` tinyint(3) UNSIGNED NOT NULL,
   `fecha_hora` datetime NOT NULL DEFAULT current_timestamp(),
   `id_usuario` tinyint(3) UNSIGNED NOT NULL,
@@ -105,6 +107,7 @@ INSERT INTO `tipo_operacion` (`id_tipo_operacion`, `tipo_operacion`) VALUES
 (5, 'Eliminacion de carpeta'),
 (3, 'Renombre de archivo'),
 (6, 'Renombre de carpeta'),
+(7, 'Eliminacion de archivo'),
 (1, 'Subida de archivo');
 
 -- --------------------------------------------------------
@@ -121,6 +124,8 @@ CREATE TABLE `usuarios` (
   `correo` varchar(50) NOT NULL,
   `id_rol` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `usuarios` VALUES(1, null, "admin", "admin", "admin@gmail.com", 1);
 
 --
 -- Índices para tablas volcadas
@@ -143,9 +148,9 @@ ALTER TABLE `eventos`
   ADD KEY `id_usuarios` (`id_usuarios`);
 
 --
--- Indices de la tabla `logg`
+-- Indices de la tabla `log`
 --
-ALTER TABLE `logg`
+ALTER TABLE `log`
   ADD PRIMARY KEY (`id_log`),
   ADD KEY `id_usuario` (`id_usuario`),
   ADD KEY `tipo_operacion` (`tipo_operacion`),
@@ -191,7 +196,7 @@ ALTER TABLE `eventos`
 --
 -- AUTO_INCREMENT de la tabla `logg`
 --
-ALTER TABLE `logg`
+ALTER TABLE `log`
   MODIFY `id_log` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -221,7 +226,7 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `archivos`
   ADD CONSTRAINT `archivos_ibfk_1` FOREIGN KEY (`id_usuarios`) REFERENCES `usuarios` (`id_usuarios`),
-  ADD CONSTRAINT `archivos_ibfk_2` FOREIGN KEY (`id_carpeta`) REFERENCES `archivos` (`id_archivo`);
+  ADD CONSTRAINT `archivos_ibfk_2` FOREIGN KEY (`id_carpeta`) REFERENCES `archivos` (`id_archivo`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --
 -- Filtros para la tabla `eventos`
@@ -231,12 +236,11 @@ ALTER TABLE `eventos`
   ADD CONSTRAINT `eventos_ibfk_2` FOREIGN KEY (`id_usuarios`) REFERENCES `usuarios` (`id_usuarios`);
 
 --
--- Filtros para la tabla `logg`
+-- Filtros para la tabla `log`
 --
-ALTER TABLE `logg`
-  ADD CONSTRAINT `logg_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuarios`),
-  ADD CONSTRAINT `logg_ibfk_2` FOREIGN KEY (`tipo_operacion`) REFERENCES `tipo_operacion` (`id_tipo_operacion`),
-  ADD CONSTRAINT `logg_ibfk_3` FOREIGN KEY (`id_archivos`) REFERENCES `archivos` (`id_archivo`);
+ALTER TABLE `log`
+  ADD CONSTRAINT `log_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuarios`),
+  ADD CONSTRAINT `log_ibfk_2` FOREIGN KEY (`tipo_operacion`) REFERENCES `tipo_operacion` (`id_tipo_operacion`);
 
 --
 -- Filtros para la tabla `usuarios`

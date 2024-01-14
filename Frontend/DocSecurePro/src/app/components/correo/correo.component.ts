@@ -27,7 +27,7 @@ export class CorreoComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.mailSubscription = this.loginService.checkSession().subscribe({
+    /*this.mailSubscription = this.loginService.checkSession().subscribe({
       next: (response) => {
         if (response === 'user_logged') {
           console.log('Usuario autenticado');
@@ -41,7 +41,7 @@ export class CorreoComponent implements OnInit {
         console.error('Error al verificar la sesión', err);
         this.router.navigate(['/home']);
       }
-    });
+    });*/
     this.mailForm = this.formValidation;
   }
 

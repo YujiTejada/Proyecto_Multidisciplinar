@@ -1,30 +1,65 @@
 {
-    "login": "Inicia Sesion",
-    "languages": {
-        "es": "Español",
-        "en": "Ingles"
-     },
-     "home": {
+   "login": "Inicia Sesion",
+   "languages": {
+      "es": "Español",
+      "en": "Ingles"
+   },
+   "forgot": "¿Has olvidado tu contraseña?",
+   "noacount": "¿No tienes una cuenta?",
+   "home": {
       "titulo": "Transferencia de archivos",
       "descripcion": "DocSecurePro ofrece una plataforma robusta y segura diseñada para simplificar la transferencia de archivos de manera eficiente y sin complicaciones. Olvídate de las preocupaciones relacionadas con la seguridad al intercambiar información sensible: con DocSecurePro, tus archivos están protegidos de extremo a extremo.\n Nuestra interfaz intuitiva y fácil de usar permite a los usuarios cargar y descargar archivos de manera rápida y segura, garantizando la privacidad y confidencialidad en cada transferencia. Además, DocSecurePro va más allá al ofrecer funciones avanzadas de cifrado y autenticación, asegurando que solo los destinatarios autorizados tengan acceso a tus datos.\nCon DocSecurePro, puedes tener la tranquilidad de saber que tu información valiosa está en buenas manos. Únete a la revolución en la transferencia de archivos y experimenta la seguridad sin compromisos. ¡DocSecurePro, donde la confianza y la eficiencia se encuentran en cada transferencia!",
-      "registro":{
+      "registro": {
          "boton": "Registrate",
          "nombre": "Nombre",
-         "correo": "Correo",
-         "dropdown": "Seleciona un rol...",
+         "correo": "Correo electronico",
+         "ejemplo": "ejemplo",
+         "dropdown": "Seleciona un rol",
          "dropdown-options": {
-            "directivos": "Directivos",
-            "representantes": "Representantes"
+            "placeholder": "Seleciona un cargo...",
+            "directivos": "Directivo",
+            "representantes": "Representante",
+            "admin": "Super Admin"
          },
          "password": "Contraseña",
          "confirm": "Confirmar",
          "errores": {
-          "name": "El nombre es obligatorio",
-          "mail": "EL correo es obligatorio",
-          "dropdown":"Este campo es obligatorio",
-          "password": "La contraseña es obligatoria",
-          "doublecheck": "Las contraseñas no coinciden"
-       }
+            "name": "El nombre es obligatorio",
+            "mail": "EL correo es obligatorio",
+            "dropdown": "Este campo es obligatorio",
+            "password": "La contraseña es obligatoria",
+            "doublecheck": "Las contraseñas no coinciden"
+         }
       }
+   },
+   "mail-section": {
+      "title": "Enviar un correo",
+      "Remitente": "Remitente",
+      "asunto": "Asunto",
+      "ej": "Ej: 'Nuevo contrato'",
+      "mensaje": "Mensaje",
+      "ej-ms": "Ej: 'Le informo que he subido un nuevo contrato al servidor.'",
+      "button": "Enviar mensaje",
+      "errores": {
+         "mail": "EL correo es obligatorio",
+         "asunto": "El asunto es obligatorio",
+         "cuerpo": "El cuerpo es obligatorio"
+      }
+   },
+   "archivos": "Archivos",
+   "Correo": "Correo",
+   "file-section": {
+      "buscador": "Buscador",
+      "b-placeholder": "Buscar archivos",
+      "buscar": "Buscar",
+      "arc-doc": "Archivos y Documentos",
+      "selec-arc": "Seleccionar Archivo",
+      "sub": "Subir Archivo",
+      "cre": "Crear Carpeta",
+      "eli": "Eliminar Carpeta",
+      "ruta": "Ruta Actual",
+      "descargar": "Descargar",
+      "eliminar": "Eliminar",
+      "volver": "Volver"
    }
- }
+}

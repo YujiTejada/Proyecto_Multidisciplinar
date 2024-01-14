@@ -1,30 +1,65 @@
 {
-   "login": "Log In" ,
+   "login": "Log In",
    "languages": {
       "es": "Spanish",
       "en": "English"
-    },
-    "home": {
-       "titulo": "File Transfer",
-       "descripcion": "DocSecurePro offers a robust and secure platform designed to simplify file transfer efficiently and seamlessly. Forget about security concerns when exchanging sensitive information: with DocSecurePro, your files are protected end-to-end.\nOur intuitive and easy-to-use interface allows users to upload and download files quickly and securely, ensuring privacy and confidentiality with every transfer. In addition, DocSecurePro goes further by offering advanced encryption and authentication features, ensuring that only authorized recipients have access to your data.\nWith DocSecurePro, you can have peace of mind knowing that your valuable information is in safe hands. Join the file transfer revolution and experience uncompromising security - DocSecurePro, where trust and efficiency meet in every transfer!",
-       "registro":{
-          "boton": "Sign Up",
-          "nombre": "Name",
-          "correo": "E-mail",
-          "dropdown": "Select an option...",
-          "dropdown-options": {
-             "directivos": "Manager",
-             "representantes": "Agents"
-          },
-          "password": "Password",
-          "confirm": "Confirm",
-          "errores": {
-             "name": "Name is required",
-             "mail": "E-mail is required",
-             "dropdown":"This field is required",
-             "password": "Password is required",
-             "doublecheck": "Passwords do not match "
-          }
-       }
-    }
+   },
+   "forgot": "Forgot your password?",
+   "noacount": "Don't have an account?",
+   "home": {
+      "titulo": "File Transfer",
+      "descripcion": "DocSecurePro offers a robust and secure platform designed to simplify file transfer efficiently and seamlessly. Forget about security concerns when exchanging sensitive information: with DocSecurePro, your files are protected end-to-end.\nOur intuitive and easy-to-use interface allows users to upload and download files quickly and securely, ensuring privacy and confidentiality with every transfer. In addition, DocSecurePro goes further by offering advanced encryption and authentication features, ensuring that only authorized recipients have access to your data.\nWith DocSecurePro, you can have peace of mind knowing that your valuable information is in safe hands. Join the file transfer revolution and experience uncompromising security - DocSecurePro, where trust and efficiency meet in every transfer!",
+      "registro": {
+         "boton": "Sign Up",
+         "nombre": "User Name",
+         "correo": "E-mail",
+         "ejemplo": "example",
+         "dropdown": "Choose a position",
+         "dropdown-options": {
+            "placeholder": "Select an option...",
+            "directivos": "Manager",
+            "representantes": "Agents",
+            "admin": "Super Admin"
+         },
+         "password": "Password",
+         "confirm": "Confirm",
+         "errores": {
+            "name": "Name is required",
+            "mail": "E-mail is required",
+            "dropdown": "This field is required",
+            "password": "Password is required",
+            "doublecheck": "Passwords do not match "
+         }
+      }
+   },
+   "mail-section": {
+      "title": "Send an email",
+      "Remitente": "Sender",
+      "asunto": "Subject",
+      "ej": "Ex: 'New contract'",
+      "mensaje": "Message",
+      "ej-ms": "Ex: 'I am informing you that I have uploaded a new contract to the server.'",
+      "button": "Send message",
+      "errores": {
+         "mail": "Mail is required",
+         "asunto": "Subject is required",
+         "cuerpo": "The body is required"
+      }
+   },
+   "archivos": "Archivos",
+   "Correo": "Correo",
+   "file-section": {
+      "buscador": "Buscador",
+      "b-placeholder": "Buscar archivos",
+      "buscar": "Buscar",
+      "arc-doc": "Archivos y Documentos",
+      "selec-arc": "Seleccionar Archivo",
+      "sub": "Subir Archivo",
+      "cre": "Crear Carpeta",
+      "eli": "Eliminar Carpeta",
+      "ruta": "Ruta Actual",
+      "descargar": "Descargar",
+      "eliminar": "Eliminar",
+      "volver": "Volver"
+   }
 }
