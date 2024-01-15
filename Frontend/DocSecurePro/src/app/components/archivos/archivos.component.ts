@@ -44,11 +44,9 @@ export class ArchivosComponent implements OnInit {
   uploadFile() {
     const archivoInput = document.getElementById('archivo') as HTMLInputElement;
 
-
     if (archivoInput.files && archivoInput.files.length > 0) {
       const formData = new FormData();
       const file = archivoInput.files[0];
-
 
       formData.append('file', file, file.name);
 
@@ -69,7 +67,12 @@ export class ArchivosComponent implements OnInit {
     if (folder.isDirectory) {
       this.folderHistory.push([...this.uploadedFiles]);
       const folderName = folder.name;
-      const newPath = this.currentDirectory + folderName + '/';
+      let newPath = '/';
+      if (this.currentDirectory != '/') {
+        newPath = this.currentDirectory + '/' + folderName;
+      } else {
+        newPath = this.currentDirectory + folderName;
+      }
 
       this.service.getFilesListInFolder(newPath).subscribe(
         (response: FileInfo[]) => {
@@ -91,22 +94,16 @@ export class ArchivosComponent implements OnInit {
   goBack() {
     if (this.folderHistory.length > 0) {
       const previousFiles = this.folderHistory.pop() || [];
-      this.isInFolder = this.folderHistory.length > 0;
-  
       // Obtener la ruta de la carpeta anterior
       const lastSlashIndex = this.currentDirectory.lastIndexOf('/');
-      this.currentDirectory = this.currentDirectory.substring(0, lastSlashIndex + 1);
-  
+      this.currentDirectory = this.currentDirectory.substring(0, lastSlashIndex);
       // Actualizar la propiedad currentDirectory después de obtener la nueva lista de archivos
-      if (this.folderHistory.length > 0) {
-        const lastFolder = this.folderHistory[this.folderHistory.length - 1];
-        this.currentDirectory = lastFolder[lastFolder.length - 1].url || '/';
-      } else {
-        this.currentDirectory = '/';
-      }
-
+      //const lastFolder = this.folderHistory[this.folderHistory.length - 1];
+      //this.currentDirectory = lastFolder[lastFolder.length - 1].url || '/';
       this.uploadedFiles = previousFiles;
-      this.getUploadedFiles(); 
+      this.getUploadedFiles();
+    } else {
+      this.currentDirectory = '/';
     }
   }  
   
@@ -158,7 +155,6 @@ export class ArchivosComponent implements OnInit {
 
   deleteFolder() {
     const selectedFolder = prompt('Ingrese el nombre de la carpeta a eliminar:');
-
 
     if (selectedFolder) {
       this.service.deleteFolder(selectedFolder, this.currentDirectory).subscribe(

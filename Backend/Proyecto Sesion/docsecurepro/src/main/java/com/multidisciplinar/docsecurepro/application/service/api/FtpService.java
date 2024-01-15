@@ -40,11 +40,12 @@ public class FtpService {
         return this.logService.insert(log);
     }
 
-    public String fixRoute(String route) {
+    private String fixRoute(String route) {
+        String fixedRoute = route.replace("//", "/");
         if (route.length() > 1 && route.lastIndexOf("/") == route.length() - 1) {
-            return route.substring(0, route.length() - 1).replace("//", "/");
+            return fixedRoute.substring(0, route.length() - 1);
         } else {
-            return route.replace("//", "/");
+            return fixedRoute;
         }
     }
 

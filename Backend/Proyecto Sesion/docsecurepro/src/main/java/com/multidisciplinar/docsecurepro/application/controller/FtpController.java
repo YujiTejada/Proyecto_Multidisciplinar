@@ -61,7 +61,7 @@ public class FtpController {
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             // Obtener bytes del archivo
             byte[] fileBytes = file.getBytes();
-            String uploadRoute = currentDirectory + file.getOriginalFilename();
+            String uploadRoute = fixRoute(currentDirectory + "/" + file.getOriginalFilename());
             // Subir archivo al servidor FTP
             if (ftpClient.storeFile(uploadRoute, new ByteArrayInputStream(fileBytes))) {
                 Archivo containerFolder = this.ftpService.findByRuta(currentDirectory);
@@ -114,6 +114,7 @@ public class FtpController {
             @RequestBody Map<String, String> folderInfo, HttpSession httpSession) {
         String folderName = folderInfo.get("folderName");
         String currentDirectory = folderInfo.get("currentDirectory");
+        String folderPath = fixRoute(folderInfo.get("currentDirectory") + "/" + folderInfo.get("folderName"));
         FTPClient ftpClient = new FTPClient();
         try {
             ftpClient.connect(FtpConstants.SERVER, FtpConstants.PORT);
@@ -123,16 +124,16 @@ public class FtpController {
             ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             // Crear carpeta en el servidor FTP dentro del directorio actual
-            if (ftpClient.makeDirectory(currentDirectory + folderName)) {
+            if (ftpClient.makeDirectory(folderPath)) {
                 Archivo containerFolder = this.ftpService.findByRuta(currentDirectory);
                 Archivo fileRecord = Archivo.builder()
                         .nombreArchivo(folderName)
-                        .ruta(currentDirectory + folderName)
+                        .ruta(folderPath)
                         .esCarpeta(true)
                         .idUsuarios(loggedUser.getIdUsuario())
                         .idCarpeta(containerFolder.getIdArchivo()).build();
                 if (this.ftpService.recordFileUpload(fileRecord) != 0) {
-                    Archivo uploadedFolder = this.ftpService.findByRuta(currentDirectory + folderName);
+                    Archivo uploadedFolder = this.ftpService.findByRuta(folderPath);
                     Log operationRecord = Log.builder()
                             .fechaHora(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
                             .idUsuario(loggedUser.getIdUsuario())
@@ -194,7 +195,7 @@ public class FtpController {
             ftpClient.login(userRole, "");
             ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-            String fileRemotePath = currentDirectory + filename;
+            String fileRemotePath = fixRoute(currentDirectory + "/" + filename);
             // Eliminar archivo en el servidor FTP dentro del directorio actual
             if (ftpClient.deleteFile(fileRemotePath)) {
                 Archivo deletedFile = this.ftpService.findByRuta(fileRemotePath);
@@ -254,7 +255,7 @@ public class FtpController {
             ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             // Eliminar carpeta en el servidor FTP dentro del directorio actual
-            if (ftpClient.removeDirectory(currentDirectory + folderName)) {
+            if (ftpClient.removeDirectory(fixRoute(currentDirectory + "/" + folderName))) {
                 //this.ftpService.deleteByContaingRuta(currentDirectory + folderName);
                 Archivo containerFolder = this.ftpService.findByRuta(currentDirectory);
                 Log operationRecord = Log.builder()
@@ -346,7 +347,7 @@ public class FtpController {
             ftpClient.login(userRole, "");
             ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-            String remoteFilePath = destinationPath + filename;
+            String remoteFilePath = fixRoute(destinationPath + "/" + filename);
             var baos = new ByteArrayOutputStream();
             if (ftpClient.retrieveFile(remoteFilePath, baos)) {
                 byte[] fileContent = baos.toByteArray();
@@ -428,7 +429,7 @@ public class FtpController {
     }
 
     private String determineUserRole(int userRol) {
-        String userRole = "";
+        String userRole;
         if (userRol == RoleEnum.DIRECTIVO.getRoleCode()) {
             userRole = RoleEnum.DIRECTIVO.getRoleName();
         } else if (userRol == RoleEnum.REPRESENTANTE.getRoleCode()) {
@@ -466,6 +467,15 @@ public class FtpController {
         errorResponse.put("status", "error");
         errorResponse.put("message", errorMessage);
         return errorResponse;
+    }
+
+    private String fixRoute(String route) {
+        String fixedRoute = route.replace("//", "/");
+        if (route.length() > 1 && route.lastIndexOf("/") == route.length() - 1) {
+            return fixedRoute.substring(0, route.length() - 1);
+        } else {
+            return fixedRoute;
+        }
     }
 
 }
