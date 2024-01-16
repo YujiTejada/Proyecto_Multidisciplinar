@@ -1,35 +1,31 @@
 package com.multidisciplinar.docsecurepro.application.service.database;
 
-import com.multidisciplinar.docsecurepro.api.dao.User;
-import com.multidisciplinar.docsecurepro.bean.docsecurepro.InsertUserRequest;
-import com.multidisciplinar.docsecurepro.persistence.manager.implementation.UserManagerImplementation;
-import lombok.Getter;
+import com.multidisciplinar.docsecurepro.api.dao.Archivo;
+import com.multidisciplinar.docsecurepro.persistence.manager.implementation.ArchivosManagerImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
-@Getter
 @Service
-public class UserService {
+public class ArchivosService {
 
     private DataSource dataSource;
-    private UserManagerImplementation manager;
+    private ArchivosManagerImplementation manager;
 
     @Autowired
-    public UserService(DataSource dataSource) {
+    public ArchivosService(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.manager = new UserManagerImplementation();
+        this.manager = new ArchivosManagerImplementation();
     }
 
-    public int insert(InsertUserRequest user) {
+    public int insert(Archivo archivo) {
         Connection connection = null;
         try {
             connection = dataSource.getConnection();
-            return manager.insert(connection, user);
+            return this.manager.insert(connection, archivo);
         } catch (SQLException e) {
             e.printStackTrace();
             return 0;
@@ -44,14 +40,14 @@ public class UserService {
         }
     }
 
-    public List<User> selectAll() {
+    public int deleteByExactRuta(String ruta) {
         Connection connection = null;
         try {
             connection = dataSource.getConnection();
-            return manager.findAll(connection);
+            return this.manager.deleteByExactRuta(connection, ruta);
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return 0;
         } finally {
             if (connection != null) {
                 try {
@@ -63,14 +59,14 @@ public class UserService {
         }
     }
 
-    public User findByNombreUsuario(String nombreUsuario) {
+    public int deleteByContainingRuta(String ruta) {
         Connection connection = null;
         try {
             connection = dataSource.getConnection();
-            return manager.findByNombreUsuario(connection, nombreUsuario);
+            return this.manager.deleteByContainingRuta(connection, ruta);
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return 0;
         } finally {
             if (connection != null) {
                 try {
@@ -82,11 +78,11 @@ public class UserService {
         }
     }
 
-    public User findByIdUsuario(int id) {
+    public Archivo findByRuta(String ruta) {
         Connection connection = null;
         try {
             connection = dataSource.getConnection();
-            return manager.findByIdUsuario(connection, id);
+            return this.manager.findByRuta(connection, ruta);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

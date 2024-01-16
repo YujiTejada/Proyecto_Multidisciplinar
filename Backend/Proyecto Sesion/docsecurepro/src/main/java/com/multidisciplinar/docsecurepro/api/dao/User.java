@@ -20,7 +20,6 @@ public class User implements Serializable {
     private int idRol;
 
     public User(ResultSet resultSet){
-
         try {
             this.idUsuario = resultSet.getInt("id_usuarios");
             this.nombreUsuario = resultSet.getString("nombre_usuario");
@@ -30,7 +29,6 @@ public class User implements Serializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
 }

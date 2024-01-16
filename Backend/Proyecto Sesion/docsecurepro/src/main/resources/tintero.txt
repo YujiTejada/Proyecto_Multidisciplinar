@@ -147,3 +147,9 @@ public void printTree(String path) {
         methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.HEAD,
                 RequestMethod.TRACE, RequestMethod.OPTIONS, RequestMethod.PATCH},
         exposedHeaders = {"set-cookie"})
+
+
+/*if (!ftpClient.isConnected()) {
+                System.out.println("Failed to connect to FTP server");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(createErrorResponse("Error connecting to FTP server"));
+            }*/
