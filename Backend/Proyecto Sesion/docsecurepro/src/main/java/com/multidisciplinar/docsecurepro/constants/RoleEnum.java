@@ -9,7 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public enum RoleEnum {
 
-    SUPER_ADMIN(1, "SuperAdmin"),
+    SUPER_ADMIN(1, "superAdmin"),
     DIRECTIVO(2, "directivo"),
     REPRESENTANTE(3, "representante");
 

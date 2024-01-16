@@ -17,7 +17,7 @@ export class IndexComponent {
   formClass!: UserRegisterRequest;
   registerSubscription: Subscription | undefined;
 
-  cargos = ['placeholder', 'directivos', 'representantes', 'admin']
+  cargos = ['placeholder', 'directivo', 'representante', 'superAdmin']
 
   constructor(private readonly fb: FormBuilder
     , private loginService: LoginService

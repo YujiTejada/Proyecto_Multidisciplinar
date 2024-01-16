@@ -2,8 +2,10 @@ package com.multidisciplinar.docsecurepro.persistence.manager.implementation;
 
 import com.multidisciplinar.docsecurepro.api.dao.User;
 import com.multidisciplinar.docsecurepro.bean.docsecurepro.InsertUserRequest;
+import com.multidisciplinar.docsecurepro.constants.RoleEnum;
 import lombok.NoArgsConstructor;
 
+import javax.management.relation.Role;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,10 +17,12 @@ public class UserManagerImplementation {
 
     public int insert(Connection connection, InsertUserRequest user) {
         int cargo = 0;
-        if (user.getCargo().equals("Directivo")) {
-            cargo = 2;
-        } else if (user.getCargo().equals("Representante")) {
-            cargo = 3;
+        if (user.getCargo().equals(RoleEnum.DIRECTIVO.getRoleName())) {
+            cargo = RoleEnum.DIRECTIVO.getRoleCode();
+        } else if (user.getCargo().equals(RoleEnum.REPRESENTANTE.getRoleName())) {
+            cargo = RoleEnum.REPRESENTANTE.getRoleCode();
+        } else if (user.getCargo().equals(RoleEnum.SUPER_ADMIN.getRoleName())) {
+            cargo = RoleEnum.SUPER_ADMIN.getRoleCode();
         }
         var sql = String.format("INSERT INTO usuarios(dni, nombre_usuario, contrasenya, correo, id_rol) " +
                         "VALUES(null, '%s', '%s', '%s', %d);",
