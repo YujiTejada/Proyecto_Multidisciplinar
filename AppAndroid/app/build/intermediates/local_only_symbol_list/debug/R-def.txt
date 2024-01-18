@@ -47,9 +47,12 @@ mipmap ic_launcher_round
 string anterior
 string app_name
 string borrar_archivos
+string borrar_carpeta
 string buscar
-string cambiar_idioma
+string buscar_archivo
+string crear_carpeta
 string demo
+string descargar_archivos
 string hello_blank_fragment
 string idioma
 string iniciar_sesion

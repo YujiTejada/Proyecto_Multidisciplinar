@@ -5,7 +5,21 @@
     <string name="registrarse">Registrarse</string>
     <string name="subir_archivos">Subir Archivos</string>
     <string name="borrar_archivos">Borrar Archivos</string>
-    <string name="cambiar_idioma">Cambiar Idioma</string>
+    <string name="descargar_archivos">Descargar Archivos</string>
+    <string name="crear_carpeta">Crear Carpeta</string>
+    <string name="borrar_carpeta">Borrar Carpeta</string>
+    <string name="buscar_archivo">Buscar Archivo</string>
+    <!--<string-array name="manual_usuario">
+        <string name="iniciar_sesion">Para utilizar todas las funciones de la aplicación, primero debes iniciar sesión con tu cuenta existente.\n1. Abre la aplicación XYZ en tu dispositivo.\n2. Selecciona la opción "Iniciar Sesión" en la pantalla de inicio.\n3. Ingresa tu nombre de usuario y contraseña.\n4. Haz clic en el botón "Iniciar Sesión".</string>
+        <string name="registrarse">Si no tienes una cuenta, necesitas registrarte para acceder a la aplicación.\n1. En la pantalla de inicio, elige la opción "Registrarse".\n2. Completa el formulario de registro proporcionando la información necesaria.\n3. Crea un nombre de usuario y una contraseña segura.\n4. Haz clic en el botón "Registrarse" para crear tu cuenta.</string>
+        <string name="subir_archivos">Para subir archivos a la aplicación, sigue estos pasos:\n1. Después de iniciar sesión, navega a la sección "Subir Archivo".\n2. Selecciona la opción para cargar un nuevo archivo.\n3. Busca el archivo en tu dispositivo y selecciona "Abrir".\n4. Espera a que se complete la carga del archivo.</string>
+        <string name="borrar_archivos">Si necesitas eliminar un archivo, sigue estos pasos:\n1. Ve a la sección "Mis Archivos".\n2. Localiza el archivo que deseas eliminar.\n3. Selecciona la opción "Eliminar" junto al archivo.\n4. Confirma la eliminación cuando se te solicite.</string>
+        <string name="descargar_archivos">Descargar un archivo es fácil:\n1. En la sección "Mis Archivos", encuentra el archivo que deseas descargar.\n2. Selecciona la opción "Descargar".\n3. El archivo se descargará en tu dispositivo.</string>
+        <string name="crear_carpeta">Organiza tus archivos creando carpetas:\n1. Navega a la sección "Mis Archivos".\n2. Selecciona la opción "Crear Carpeta".\n3. Asigna un nombre a la carpeta y confirma la creación.</string>
+        <string name="borrar_carpeta">Para eliminar una carpeta:\n1. En la sección "Mis Archivos", encuentra la carpeta que deseas eliminar.\n2. Selecciona la opción "Eliminar Carpeta".\n3. Confirma la eliminación cuando se te solicite.</string>
+        <string name="buscar_archivo">La función de búsqueda te ayuda a encontrar rápidamente tus archivos:\n1. En la barra de búsqueda, ingresa el nombre o palabras clave del archivo que estás buscando.\n2. Selecciona el resultado correspondiente para acceder al archivo.</string>
+    </string-array> -->
+
     <!-- activity_main -->
     <string name="idioma">Idioma</string>
     <string name="inicio">Inicio</string>

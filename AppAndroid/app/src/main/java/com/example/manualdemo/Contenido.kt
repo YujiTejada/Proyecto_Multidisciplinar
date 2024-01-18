@@ -11,7 +11,7 @@ import android.widget.TextView
 private const val ARG_PARAM1 = "param1"
 private var ARG_PARAM2: Int = 0
 private lateinit var temarioList: ArrayList<Temario>
-private const val MAX_SECTION: Int = 4
+private const val MAX_SECTION: Int = 7
 private var posicion: Int = 0
 
 /**
@@ -41,6 +41,9 @@ class Contenido : Fragment() {
 
         // Encuentra el TextView por su ID en la vista inflada y establece el texto
         view.findViewById<TextView>(R.id.titulo).text = temarioName
+        //val arrayManualUsuario = resources.getStringArray(R.array.manual_usuario)
+        //view.findViewById<TextView>(R.id.texto).text = arrayManualUsuario[posicion]
+
         // Encuentra el botón por su ID en la vista inflada
         val btnAnterior = view.findViewById<Button>(R.id.btnAnterior)
 

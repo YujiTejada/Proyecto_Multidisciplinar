@@ -44,7 +44,10 @@ class Home : Fragment(), TemarioAdapter.OnItemClickListener {
         temarioList.add(Temario(R.drawable.ic_launcher_foreground, "2. " + getString(R.string.registrarse)))
         temarioList.add(Temario(R.drawable.ic_launcher_foreground, "3. " + getString(R.string.subir_archivos)))
         temarioList.add(Temario(R.drawable.ic_launcher_foreground, "4. " + getString(R.string.borrar_archivos)))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "5. " + getString(R.string.cambiar_idioma)))
+        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "5. " + getString(R.string.descargar_archivos)))
+        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "6. " + getString(R.string.crear_carpeta)))
+        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "7. " + getString(R.string.borrar_carpeta)))
+        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "8. " + getString(R.string.buscar_archivo)))
         temarioAdapter = TemarioAdapter(temarioList, this)
         recyclerView.adapter = temarioAdapter
     }
