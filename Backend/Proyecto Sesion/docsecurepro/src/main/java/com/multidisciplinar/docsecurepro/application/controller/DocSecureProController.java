@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(ApiConstants.DOCSECUREPRO_ENDPOINT)
-public class    DocSecureProController {
+public class DocSecureProController {
 
     private DocSecureProService docSecureProService;
 

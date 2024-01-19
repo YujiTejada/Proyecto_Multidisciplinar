@@ -44,7 +44,7 @@ export class IndexComponent {
           } else if (response == "user_creation_unsuccesful") {
             alert("Error en registro: " + response);
             this.router.navigate(['/home']);
-          } else if (response == "user_does_not_exist") {
+          } else if (response == "user_already_exists") {
             alert("Error en registro: " + response);
           }
         },
