@@ -2989,6 +2989,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable eliminacion_descarga
 drawable ic_arrow_back_black_24
 drawable ic_call_answer
 drawable ic_call_answer_low
@@ -3084,6 +3085,10 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable pantalla_de_inicio
+drawable registro
+drawable sesion_iniciada_correo
+drawable subida_archivos
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -3167,7 +3172,6 @@ id animateToEnd
 id animateToStart
 id antiClockwise
 id anticipate
-id appbarLay
 id arc
 id asConfigured
 id async
@@ -3320,6 +3324,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imgContenido
 id immediateStop
 id included
 id indeterminate
@@ -3860,6 +3865,14 @@ string character_counter_pattern
 string clear_text_end_icon_content_description
 string crear_carpeta
 string demo
+string desc_crear_carpeta
+string desc_descargar_archivo
+string desc_eliminar_archivo
+string desc_eliminar_carpeta
+string desc_email
+string desc_iniciar_sesion
+string desc_registrarse
+string desc_subir_archivo
 string descargar_archivos
 string error_a11y_label
 string error_icon_content_description
