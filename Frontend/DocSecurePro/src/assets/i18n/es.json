@@ -17,9 +17,9 @@
          "dropdown": "Seleciona un rol",
          "dropdown-options": {
             "placeholder": "Seleciona un cargo...",
-            "directivos": "Directivo",
-            "representantes": "Representante",
-            "admin": "Super Admin"
+            "directivo": "Directivo",
+            "representante": "Representante",
+            "superAdmin": "Super Admin"
          },
          "password": "Contraseña",
          "confirm": "Confirmar",

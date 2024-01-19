@@ -17,9 +17,9 @@
          "dropdown": "Choose a position",
          "dropdown-options": {
             "placeholder": "Select an option...",
-            "directivos": "Manager",
-            "representantes": "Agents",
-            "admin": "Super Admin"
+            "directivo": "Manager",
+            "representante": "Agents",
+            "superAdmin": "Super Admin"
          },
          "password": "Password",
          "confirm": "Confirm",
@@ -46,12 +46,12 @@
          "cuerpo": "The body is required"
       }
    },
-   "archivos": "Archivos",
-   "Correo": "Correo",
+   "archivos": "Files",
+   "Correo": "E-mail",
    "file-section": {
-      "buscador": "Buscador",
-      "b-placeholder": "Buscar archivos",
-      "buscar": "Buscar",
+      "buscador": "Tracker",
+      "b-placeholder": "Search Files",
+      "buscar": "Search",
       "arc-doc": "Archivos y Documentos",
       "selec-arc": "Seleccionar Archivo",
       "sub": "Subir Archivo",
