@@ -5,14 +5,14 @@
         <a class="card btn mt-3 d-flex align-items-center" href="archivos">
           <img src="../../../assets/icon/carpeta-abierta.png" class="card-img-top mt-3" alt="Carpeta width">
           <div class="card-body">
-            <h5 class="card-title">Archivos</h5>
+            <h5 class="card-title">{{ 'archivos' | translate}}</h5>
           </div>
         </a>
 
         <a class="card btn mt-3 mb-3 d-flex align-items-center" href="mail">
           <img src="../../../assets/icon/email.png" class="card-img-top mt-3" alt="Bandeja de entrada">
           <div class="card-body">
-            <h5 class="card-title">Correo</h5>
+            <h5 class="card-title">{{'Correo' | translate}}</h5>
           </div>
         </a>
       </div>
@@ -20,30 +20,30 @@
       <div class="col-md-11" id="contenido">
         <div class="card mt-3">
           <div class="card-body">
-            <h2 class="card-title">Buscador</h2>
+            <h2 class="card-title">{{'buscador'}}</h2>
             <div class="input-group mb-3">
-              <input [(ngModel)]="searchTerm" type="search" class="form-control" placeholder="Buscar archivos" aria-label="Buscar archivos">
-              <button (click)="searchFiles()" class="btn btn-outline-secondary" type="button">Buscar</button>
+              <input [(ngModel)]="searchTerm" type="search" class="form-control" placeholder="{{'file-section.b-placeholder' | translate}}" aria-label="Buscar archivos">
+              <button (click)="searchFiles()" class="btn btn-outline-secondary" type="button">{{'file-section.buscar' | translate}}</button>
             </div>
-          </div>          
+          </div>
         </div>
 
         <div class="card mt-3 mb-3">
           <div class="card-body">
-            <h2 class="card-title">Archivos y Documentos</h2>
+            <h2 class="card-title">{{'file-section.arc-doc' | translate}}</h2>
             <!-- Formulario para subir archivos -->
             <form (ngSubmit)="uploadFile()" #fileForm="ngForm" class="mt-3">
               <div class="mb-3">
-                <label for="archivo" class="form-label">Seleccionar Archivo</label>
+                <label for="archivo" class="form-label">{{'file-section.selec-arc' | translate}}</label>
                 <input type="file" [(ngModel)]="file" name="file" id="archivo" class="form-control">
               </div>
-              <button type="submit" class="btn btn-primary mr-5">Subir Archivo</button>
+              <button type="submit" class="btn btn-primary mr-5">{{'file-section.sub' | translate}}</button>
               <!-- Botón para crear una carpeta -->
-              <button class="btn btn-success mr-3" (click)="createFolder()">Crear Carpeta</button>
-              <button class="btn btn-danger" *ngIf="isInFolder" (click)="deleteFolder()">Eliminar Carpeta</button>
+              <button class="btn btn-success mr-3" (click)="createFolder()">{{'file-section.cre' | translate}}</button>
+              <button class="btn btn-danger" *ngIf="isInFolder" (click)="deleteFolder()">{{'file-section.eli' | translate}}</button>
             </form>
             <div>
-              <h3>Ruta Actual: {{ currentDirectory }}</h3>
+              <h3>{{'file-section.ruta' | translate}}: {{ currentDirectory }}</h3>
             </div>
             <!-- Lista de archivos disponibles para descargar -->
             <div class="card mt-3">
@@ -60,14 +60,14 @@
                         {{ uploadedFile.name }}
                       </div>
                       <div>
-                        <a *ngIf="!uploadedFile.isDirectory" (click)="downloadFile(uploadedFile.name)" class="btn btn-primary m-3">Descargar</a>
-                        <a *ngIf="!uploadedFile.isDirectory" (click)="deleteFile(uploadedFile.name)" class="btn btn-danger m-3">Eliminar</a>
+                        <a *ngIf="!uploadedFile.isDirectory" (click)="downloadFile(uploadedFile.name)" class="btn btn-primary m-3">{{'file-section.descargar' | translate}}</a>
+                        <a *ngIf="!uploadedFile.isDirectory" (click)="deleteFile(uploadedFile.name)" class="btn btn-danger m-3">{{'file-section.eliminar' | translate}}</a>
                       </div>
                     </ng-template>
                   </div>
                   <hr>
                 </ng-container>
-                <button *ngIf="folderHistory.length > 0" class="btn btn-secondary mt-3" (click)="goBack()">Volver</button>
+                <button *ngIf="folderHistory.length > 0" class="btn btn-secondary mt-3" (click)="goBack()">{{'file-section.volver' | translate}}r</button>
               </div>
             </div>
           </div>

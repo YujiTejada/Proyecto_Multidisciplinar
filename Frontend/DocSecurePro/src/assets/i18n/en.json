@@ -52,14 +52,14 @@
       "buscador": "Tracker",
       "b-placeholder": "Search Files",
       "buscar": "Search",
-      "arc-doc": "Archivos y Documentos",
-      "selec-arc": "Seleccionar Archivo",
-      "sub": "Subir Archivo",
-      "cre": "Crear Carpeta",
-      "eli": "Eliminar Carpeta",
-      "ruta": "Ruta Actual",
-      "descargar": "Descargar",
-      "eliminar": "Eliminar",
-      "volver": "Volver"
+      "arc-doc": "Files y Documents",
+      "selec-arc": "Select Files",
+      "sub": "Upload File",
+      "cre": "Create Folder",
+      "eli": "Delete Folder",
+      "ruta": "Actual Path",
+      "descargar": "Download",
+      "eliminar": "Delete",
+      "volver": "Return"
    }
 }
