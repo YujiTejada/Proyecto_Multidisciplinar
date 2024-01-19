@@ -9,16 +9,7 @@
     <string name="crear_carpeta">Create Folder</string>
     <string name="borrar_carpeta">Delete Folder</string>
     <string name="buscar_archivo">Search File</string>
-    <!--<string-array name="manual_usuario">
-        <string name="iniciar_sesion">To use all the features of the application, you need to log in with your existing account.\n1. Open the XYZ application on your device.\n2. Select the Log In option on the home screen.\n3. Enter your username and password.\n4. Click the Log In button.</string>
-        <string name="registrarse">If you dont have an account, you need to register to access the application.\n1. On the home screen, choose the Register option.\n2. Complete the registration form by providing the necessary information.\n3. Create a username and a secure password.\n4. Click the Register button to create your account.</string>
-        <string name="subir_archivos">To upload files to the application, follow these steps:\n1. After logging in, navigate to the Upload File section.\n2. Select the option to upload a new file.\n3. Browse for the file on your device and select Open.\n4. Wait for the file upload to complete.</string>
-        <string name="borrar_archivos">If you need to delete a file, follow these steps:\n1. Go to the My Files section.\n2. Locate the file you want to delete.\n3. Select the Delete option next to the file.\n4. Confirm the deletion when prompted.</string>
-        <string name="descargar_archivos">Downloading a file is easy:\n1. In the My Files section, find the file you want to download.\n2. Select the Download option.\n3. The file will be downloaded to your device.</string>
-        <string name="crear_carpeta">Organize your files by creating folders:\n1. Navigate to the My Files section.\n2. Select the Create Folder option.\n3. Assign a name to the folder and confirm the creation.</string>
-        <string name="borrar_carpeta">To delete a folder:\n1. In the My Files section, find the folder you want to delete.\n2. Select the Delete Folder option.\n3. Confirm the deletion when prompted.</string>
-        <string name="buscar_archivo">The search function helps you quickly find your files:\n1. In the search bar, enter the name or keywords of the file you are looking for.\n2. Select the corresponding result to access the file.</string>
-    </string-array> -->
+
 
     <!-- activity_main -->
     <string name="idioma">Language</string>
@@ -34,4 +25,19 @@
     <string name="tituloItemLayout">1. Log In</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="desc_iniciar_sesion">Accessing your account is simple. From the upper right corner of the screen, simply click on the dropdown icon to reveal a menu where you will find the option to provide your email address and password in the designated fields. Once you have entered the required information, click on the login button, and you\'re done!</string>
+    <string name="desc_registrarse">Welcome to the registration of our application, your gateway to an unparalleled audiovisual experience! In the upper right corner, you will find stylish icons with a dropdown icon to change the language to English, allowing you to explore our application in the language of your preference. Additionally, you will have instant access to login through an intuitive icon.</string>
+
+    <string name="desc_subir_archivo">Uploading files to our application is a simple process. First, go to the files screen by clicking on the sidebar icon on the left, then click on the button labeled "Upload File," and your file explorer will open. Select the files or folders you want to upload.</string>
+
+    <string name="desc_eliminar_archivo">For deleting files, go to the files screen on the left sidebar. If you have any uploaded files in the application, they will appear in the list. On the right-hand side, there are two buttons. Clicking on the delete button will delete the file.</string>
+
+    <string name="desc_descargar_archivo">For downloading files, go to the files screen on the left sidebar. If you have any uploaded files in the application, they will appear in the list. On the right-hand side, there are two buttons. Clicking on the download button will download the file.</string>
+
+    <string name="desc_crear_carpeta">For creating folders, go to the files screen. Below the search bar, you will find a button labeled "Create Folder." Click on it, and a text box will appear asking for the name you want to give to the folder. Enter the name, and the folder will be created.</string>
+
+    <string name="desc_eliminar_carpeta">For deleting folders, go to the files screen. Below the search bar, you will find a button labeled "Delete Folder." Click on it, and a text box will appear asking for the name of the folder you want to delete. Enter the name, and the folder will be deleted.</string>
+
+    <string name="desc_email">Discover the efficiency of managing your emails in our application, designed to make communication intuitive and accessible. On the left sidebar, you will find a clearly identified icon with an envelope, indicating the "Mail" section. Clicking on this icon will redirect you to the email screen. The email screen is divided into two sections for effective organization. On the left side, you will find a complete list of all your emails, with a "Compose" button above. To review a specific email, simply click on the desired message, and it will open on the other part of the screen.</string>
+
 </resources>

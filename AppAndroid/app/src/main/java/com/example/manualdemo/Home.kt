@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -19,6 +18,8 @@ class Home : Fragment(), TemarioAdapter.OnItemClickListener {
     private var param1: String? = null
     private var param2: String? = null
     private var temarioName: String? = null
+    private var temarioImagen: Int? = null
+    private var temarioDesc: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,14 +41,37 @@ class Home : Fragment(), TemarioAdapter.OnItemClickListener {
         recyclerView = view.findViewById<RecyclerView>(R.id.rvItems)
         recyclerView.layoutManager = LinearLayoutManager(context)
         temarioList = ArrayList()
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "1. " + getString(R.string.iniciar_sesion)))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "2. " + getString(R.string.registrarse)))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "3. " + getString(R.string.subir_archivos)))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "4. " + getString(R.string.borrar_archivos)))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "5. " + getString(R.string.descargar_archivos)))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "6. " + getString(R.string.crear_carpeta)))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "7. " + getString(R.string.borrar_carpeta)))
-        temarioList.add(Temario(R.drawable.ic_launcher_foreground, "8. " + getString(R.string.buscar_archivo)))
+
+        temarioList.add(Temario(R.drawable.pantalla_de_inicio, "1. " + getString(R.string.iniciar_sesion),
+            getString(R.string.desc_iniciar_sesion)))
+        temarioList.add(Temario(R.drawable.registro, "2. " + getString(R.string.registrarse),
+            getString(
+                R.string.desc_registrarse
+            )))
+        temarioList.add(Temario(R.drawable.subida_archivos, "3. " + getString(R.string.subir_archivos),
+            getString(
+                R.string.desc_subir_archivo
+            )))
+        temarioList.add(Temario(R.drawable.eliminacion_descarga, "4. " + getString(R.string.borrar_archivos),
+            getString(
+                R.string.desc_eliminar_archivo
+            )))
+        temarioList.add(Temario(R.drawable.subida_archivos, "5. " + getString(R.string.descargar_archivos),
+            getString(
+                R.string.desc_descargar_archivo
+            )))
+        temarioList.add(Temario(R.drawable.subida_archivos, "6. " + getString(R.string.crear_carpeta),
+            getString(
+                R.string.desc_crear_carpeta
+            )))
+        temarioList.add(Temario(R.drawable.subida_archivos, "7. " + getString(R.string.borrar_carpeta),
+            getString(
+                R.string.desc_eliminar_carpeta
+            )))
+        temarioList.add(Temario(R.drawable.sesion_iniciada_correo, "8. " + getString(R.string.buscar_archivo),
+            getString(
+                R.string.desc_email
+            )))
         temarioAdapter = TemarioAdapter(temarioList, this)
         recyclerView.adapter = temarioAdapter
     }
@@ -57,17 +81,19 @@ class Home : Fragment(), TemarioAdapter.OnItemClickListener {
 
     override fun onItemClick(position: Int) {
         temarioName = temarioList[position].name
-        changeContent(temarioName!!, position, this)
+        temarioImagen = temarioList[position].Image
+        temarioDesc = temarioList[position].descripcion
+        changeContent(temarioName!!, temarioImagen!!, temarioDesc!!, position, this)
     }
 
-    fun changeContent(temarioName: String, position: Int, homeInstance: Home) {
-        val detalleFragment = Contenido.newInstance(homeInstance, temarioList, position, temarioName)
+    fun changeContent(temarioName: String, temarioImagen: Int, temarioDesc: String,position: Int, homeInstance: Home) {
+        val detalleFragment = Contenido.newInstance(homeInstance, temarioList, position, temarioName, temarioImagen, temarioDesc)
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainerView, detalleFragment)
             .addToBackStack(null)
             .commit()
-
     }
+
 
     companion object {
         @JvmStatic

@@ -29,12 +29,22 @@ class TemarioAdapter(
 
     override fun onBindViewHolder(holder: TemarioViewHolder, position: Int) {
         val temario = temarioList[position]
+
+        // Configurar la escala de la imagen para que ocupe todo el espacio posible
+        holder.imageView.scaleType = ImageView.ScaleType.CENTER_CROP
+
+        // Establecer la imagen en el ImageView
         holder.imageView.setImageResource(temario.Image)
+
+        // Establecer el texto en el TextView
         holder.textView.text = temario.name
+
+        // Configurar el clic del elemento
         holder.itemView.setOnClickListener {
             itemClickListener.onItemClick(position)
         }
     }
+
 
     interface OnItemClickListener {
         abstract val supportFragmentManager: Any
