@@ -5,7 +5,21 @@
     <string name="registrarse">Sign In</string>
     <string name="subir_archivos">Upload Files</string>
     <string name="borrar_archivos">Delete Files</string>
-    <string name="cambiar_idioma">Change Language</string>
+    <string name="descargar_archivos">Download Files</string>
+    <string name="crear_carpeta">Create Folder</string>
+    <string name="borrar_carpeta">Delete Folder</string>
+    <string name="buscar_archivo">Search File</string>
+    <!--<string-array name="manual_usuario">
+        <string name="iniciar_sesion">To use all the features of the application, you need to log in with your existing account.\n1. Open the XYZ application on your device.\n2. Select the Log In option on the home screen.\n3. Enter your username and password.\n4. Click the Log In button.</string>
+        <string name="registrarse">If you dont have an account, you need to register to access the application.\n1. On the home screen, choose the Register option.\n2. Complete the registration form by providing the necessary information.\n3. Create a username and a secure password.\n4. Click the Register button to create your account.</string>
+        <string name="subir_archivos">To upload files to the application, follow these steps:\n1. After logging in, navigate to the Upload File section.\n2. Select the option to upload a new file.\n3. Browse for the file on your device and select Open.\n4. Wait for the file upload to complete.</string>
+        <string name="borrar_archivos">If you need to delete a file, follow these steps:\n1. Go to the My Files section.\n2. Locate the file you want to delete.\n3. Select the Delete option next to the file.\n4. Confirm the deletion when prompted.</string>
+        <string name="descargar_archivos">Downloading a file is easy:\n1. In the My Files section, find the file you want to download.\n2. Select the Download option.\n3. The file will be downloaded to your device.</string>
+        <string name="crear_carpeta">Organize your files by creating folders:\n1. Navigate to the My Files section.\n2. Select the Create Folder option.\n3. Assign a name to the folder and confirm the creation.</string>
+        <string name="borrar_carpeta">To delete a folder:\n1. In the My Files section, find the folder you want to delete.\n2. Select the Delete Folder option.\n3. Confirm the deletion when prompted.</string>
+        <string name="buscar_archivo">The search function helps you quickly find your files:\n1. In the search bar, enter the name or keywords of the file you are looking for.\n2. Select the corresponding result to access the file.</string>
+    </string-array> -->
+
     <!-- activity_main -->
     <string name="idioma">Language</string>
     <string name="inicio">Start</string>

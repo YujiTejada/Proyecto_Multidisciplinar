@@ -25,10 +25,10 @@ com.example.manualdemo.app-cardview-1.0.0-23 C:\Users\ItzAl\.gradle\caches\trans
 com.example.manualdemo.app-emoji2-1.2.0-24 C:\Users\ItzAl\.gradle\caches\transforms-3\fd2e1203a98305522125a8a0138bcbc0\transformed\emoji2-1.2.0\res
 com.example.manualdemo.app-material-1.11.0-25 C:\Users\ItzAl\.gradle\caches\transforms-3\fef0b4911f7fba22eaa6d4a2664b7d03\transformed\material-1.11.0\res
 com.example.manualdemo.app-appcompat-1.6.1-26 C:\Users\ItzAl\.gradle\caches\transforms-3\ff3e7a6cbd6877b655429719bd7e51c8\transformed\appcompat-1.6.1\res
-com.example.manualdemo.app-pngs-27 C:\workspace\Proyecto_Multidisciplinar\AppAndroid\app\build\generated\res\pngs\debug
-com.example.manualdemo.app-resValues-28 C:\workspace\Proyecto_Multidisciplinar\AppAndroid\app\build\generated\res\resValues\debug
-com.example.manualdemo.app-packageDebugResources-29 C:\workspace\Proyecto_Multidisciplinar\AppAndroid\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.example.manualdemo.app-packageDebugResources-30 C:\workspace\Proyecto_Multidisciplinar\AppAndroid\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.example.manualdemo.app-merged_res-31 C:\workspace\Proyecto_Multidisciplinar\AppAndroid\app\build\intermediates\merged_res\debug
-com.example.manualdemo.app-debug-32 C:\workspace\Proyecto_Multidisciplinar\AppAndroid\app\src\debug\res
-com.example.manualdemo.app-main-33 C:\workspace\Proyecto_Multidisciplinar\AppAndroid\app\src\main\res
+com.example.manualdemo.app-pngs-27 C:\workspace\Proyecto_Multidisciplinar\Proyecto_Multidisciplinar\AppAndroid\app\build\generated\res\pngs\debug
+com.example.manualdemo.app-resValues-28 C:\workspace\Proyecto_Multidisciplinar\Proyecto_Multidisciplinar\AppAndroid\app\build\generated\res\resValues\debug
+com.example.manualdemo.app-packageDebugResources-29 C:\workspace\Proyecto_Multidisciplinar\Proyecto_Multidisciplinar\AppAndroid\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.manualdemo.app-packageDebugResources-30 C:\workspace\Proyecto_Multidisciplinar\Proyecto_Multidisciplinar\AppAndroid\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.manualdemo.app-merged_res-31 C:\workspace\Proyecto_Multidisciplinar\Proyecto_Multidisciplinar\AppAndroid\app\build\intermediates\merged_res\debug
+com.example.manualdemo.app-debug-32 C:\workspace\Proyecto_Multidisciplinar\Proyecto_Multidisciplinar\AppAndroid\app\src\debug\res
+com.example.manualdemo.app-main-33 C:\workspace\Proyecto_Multidisciplinar\Proyecto_Multidisciplinar\AppAndroid\app\src\main\res
