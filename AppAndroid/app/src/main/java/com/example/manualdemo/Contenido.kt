@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 
 private const val ARG_PARAM1 = "param1"
@@ -38,9 +39,14 @@ class Contenido : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_contenido, container, false)
         val temarioName = arguments?.getString("temarioName")
-
+        val temarioImagen = arguments?.getInt("temarioImagen")
+        val temarioDesc = arguments?.getString("temarioDesc")
         // Encuentra el TextView por su ID en la vista inflada y establece el texto
         view.findViewById<TextView>(R.id.titulo).text = temarioName
+        if (temarioImagen != null) {
+            view.findViewById<ImageView>(R.id.imgContenido).setImageResource(temarioImagen)
+        }
+        view.findViewById<TextView>(R.id.texto).text = temarioDesc
         //val arrayManualUsuario = resources.getStringArray(R.array.manual_usuario)
         //view.findViewById<TextView>(R.id.texto).text = arrayManualUsuario[posicion]
 
@@ -70,7 +76,9 @@ class Contenido : Fragment() {
         if (nuevoParam2 >= 0 && nuevoParam2 <= MAX_SECTION) {
             posicion = nuevoParam2
             val temarioName = temarioList[posicion].name
-            homeInstance?.changeContent(temarioName, posicion, homeInstance!!)
+            val temarioImagen = temarioList[posicion].Image
+            val temarioDesc = temarioList[posicion].descripcion
+            homeInstance?.changeContent(temarioName, temarioImagen, temarioDesc, posicion, homeInstance!!)
         }
     }
 
@@ -80,7 +88,9 @@ class Contenido : Fragment() {
             homeInstance: Home,
             param1: ArrayList<Temario>,
             position: Int,
-            temarioName: String
+            temarioName: String,
+            temarioImagen: Int,
+            temarioDesc: String
         ) =
             Contenido().apply {
                 this.homeInstance = homeInstance
@@ -88,6 +98,8 @@ class Contenido : Fragment() {
                     putParcelableArrayList(ARG_PARAM1, param1)
                     putInt(ARG_PARAM2, position)
                     putString("temarioName", temarioName)
+                    putInt("temarioImagen", temarioImagen)
+                    putString("temarioDesc", temarioDesc)
                 }
             }
 
